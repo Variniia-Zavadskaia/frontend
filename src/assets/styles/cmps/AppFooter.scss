@@ -1,0 +1,17 @@
+.app-footer {
+    // display: grid;
+    // padding: rem(20px) 2rem;
+    color: $ig-primary-clr2;
+    
+    a {
+        color: $ig-primary-clr2;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        margin: 1rem 0;
+        text-transform: uppercase;
+    }
+}

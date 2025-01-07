@@ -1,0 +1,77 @@
+.app-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // min-height: 3.5rem;
+    border-right: 0.0625rem solid $border-color;
+    padding: rem(20px) 2rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    nav {
+        display: grid;
+        width: 100%;
+        align-items: center;
+        gap: 1em;
+
+        font-size: 1.2em;
+
+        .active {
+            color: $ig-primory-clr;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-inline-end: 2em;
+        }
+        .search {
+            input {
+                border: 0.0625rem solid $border-color; /* 1px */
+                border-radius: 0.1875rem; /* 3px */
+                padding: 0.3125rem 0.625rem; /* 5px 10px */
+                outline: none;
+                &:focus {
+                    border-color: darken($border-color, 10%);
+                }
+            }
+        }
+
+        .login-link {
+            margin-inline-start: auto;
+        }
+
+        button {
+            margin-inline-end: 0;
+        }
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-inline-start: auto;
+
+        color: $ig-primory-clr;
+
+        .score {
+            padding: 8px;
+            // background-color: $clr2;
+            border-radius: 50%;
+            margin: 10px;
+
+            // color: $clr6;
+        }
+
+        img {
+            width: 32px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+        }
+
+        .btn-link {
+            color: $ig-primory-clr;
+        }
+    }
+}

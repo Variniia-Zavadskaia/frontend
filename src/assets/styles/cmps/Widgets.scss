@@ -1,0 +1,45 @@
+section {
+    padding: rem(20px) 2rem;
+    div {
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .icon {
+            width: 3rem;
+            height: 3rem;
+            color: $ig-primory-clr;
+        }
+
+        a {
+            font-size: 1rem;
+            color: $ig-primory-clr;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            gap: 1rem;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        button {
+            align-self: flex-end;
+        }
+
+        .text {
+            display: block;
+        }
+
+        .second {
+            color: $ig-primary-clr2;
+            font-weight: normal;
+            // position: relative;
+        }
+    }
+}
