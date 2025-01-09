@@ -20,7 +20,7 @@ export function Widgets() {
                 <div>
                     <NavLink className="menu-item" to={`user/${user._id}`}>
                         {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                        <img src="src/assets/icons/profile.svg" alt="Profile Icon" className="icon regular" />
+                        <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                         <div>
                             <span className="text first">{user.fullname}</span>
                             <span className="text second">{user.fullname}</span>
@@ -38,7 +38,7 @@ export function Widgets() {
             <div>
                 <NavLink className="menu-item" to={`user/${user._id}`}>
                     {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                    <img src="src/assets/icons/profile.svg" alt="Profile Icon" className="icon regular" />
+                    <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>
                         <span className="text second">{user.fullname}</span>
@@ -48,7 +48,7 @@ export function Widgets() {
                 {/* <button onClick={onLogout}>logout</button> */}
                 <NavLink className="menu-item" to={`user/${user._id}`}>
                     {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                    <img src="src/assets/icons/profile.svg" alt="Profile Icon" className="icon regular" />
+                    <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>
                         <span className="text second">{user.fullname}</span>
@@ -57,7 +57,7 @@ export function Widgets() {
                 </NavLink>
                 <NavLink className="menu-item" to={`user/${user._id}`}>
                     {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                    <img src="src/assets/icons/profile.svg" alt="Profile Icon" className="icon regular" />
+                    <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>
                         <span className="text second">{user.fullname}</span>
@@ -66,7 +66,7 @@ export function Widgets() {
                 </NavLink>
                 <NavLink className="menu-item" to={`user/${user._id}`}>
                     {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                    <img src="src/assets/icons/profile.svg" alt="Profile Icon" className="icon regular" />
+                    <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>
                         <span className="text second">{user.fullname}</span>

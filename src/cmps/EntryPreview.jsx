@@ -8,7 +8,7 @@ export function EntryPreview({ entry }) {
         <header>
              <NavLink className="menu-item" to={`user/${user._id}`}>
                                 {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                                <img src="src/assets/icons/profile.svg" alt="Profile Icon" className="icon regular" />
+                                <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                                 <div>
                                     <span className="text first">{user.fullname}</span>
                                 </div>
