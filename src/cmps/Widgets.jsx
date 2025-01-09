@@ -1,6 +1,5 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { AppFooter } from './AppFooter'

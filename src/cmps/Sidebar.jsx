@@ -1,6 +1,4 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 
 import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
@@ -8,10 +6,31 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 
+import { onToggleModal } from '../store/actions/app.actions'
+import { addEntry } from '../store/actions/entry.actions'
+
 export function Sidebar() {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
 
+    function onAddModal() {
+        onToggleModal({ cmp: TestModal })
+    }
+
+    function TestModal() {
+        
+    }
+
+        async function onAddEntry() {
+            const entry = entryService.getEmptyEntry()
+            entry.vendor = prompt('Vendor?')
+            try {
+                const savedEntry = await addEntry(entry)
+                showSuccessMsg(`entry added (id: ${savedEntry._id})`)
+            } catch (err) {
+                showErrorMsg('Cannot add entry')
+            }
+        }
     async function onLogout() {
         try {
             await logout()
@@ -23,7 +42,7 @@ export function Sidebar() {
     }
 
     return (
-        <header className="sidebar full">
+        <section className="sidebar full">
             <nav>
                 <NavLink to="entry" className="logo">
                     Instagram
@@ -36,11 +55,11 @@ export function Sidebar() {
                         <span className="text">Home</span>
                     </NavLink>
 
-                    <NavLink className="menu-item" to="about">
+                    <button className="menu-item">
                         {' '}
                         <img src="src/assets/icons/search.svg" alt="Search Icon" className="icon regular" />
                         <span className="text">Search</span>
-                    </NavLink>
+                    </button>
 
                     <NavLink className="menu-item" to="explore">
                         <img src="src/assets/icons/explore.svg" alt="Explore Icon" className="icon regular" />
@@ -54,10 +73,11 @@ export function Sidebar() {
                     </NavLink>
                     
                     {/* <NavLink to="review">Notification</NavLink> */}
-                    <NavLink className="menu-item" to="review">
+                    <button className="menu-item" onClick={onAddEntry}>
+                        {' '}
                         <img src="src/assets/icons/create.svg" alt="Create Icon" className="icon regular" />
                         <span className="text">Create</span>
-                    </NavLink>
+                    </button>
                    
                     {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
 
@@ -81,6 +101,6 @@ export function Sidebar() {
                     <span className="text">Logout</span>
                 </NavLink>
             </nav>
-        </header>
+        </section>
     )
 }

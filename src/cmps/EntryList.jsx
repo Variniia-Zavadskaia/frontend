@@ -17,8 +17,10 @@ export function EntryList({ entrys, onRemoveEntry, onUpdateEntry }) {
                 <li key={entry._id}>
                     <EntryPreview entry={entry}/>
                     {shouldShowActionBtns(entry) && <div className="actions">
-                        <button onClick={() => onUpdateEntry(entry)}>Edit</button>
-                        <button onClick={() => onRemoveEntry(entry._id)}>x</button>
+                        <button onClick={() => onUpdateEntry(entry)}>Like</button>
+                        <button onClick={() => onUpdateEntry(entry)}>Comments</button>
+                        <button onClick={() => onUpdateEntry(entry)}>Share</button>
+                        <button onClick={() => onRemoveEntry(entry._id)}>Save</button>
                     </div>}
                 </li>)
             }
