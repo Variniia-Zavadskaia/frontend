@@ -21,12 +21,12 @@
                 transform: scale(1.1); 
             }
         }
-        // &.wide {
-        //     grid-column: span 2; 
-        // }
+        &.wide {
+            grid-column: span 2; 
+        }
 
-        // &.tall {
-        //     grid-row: span 2; 
-        // }
+        &.tall {
+            grid-row: span 2; 
+        }
     }
 }

@@ -42,61 +42,57 @@ export function Sidebar() {
     }
 
     return (
-        <section className="sidebar full">
+        <section className="sidebar ">
             <nav>
                 <NavLink to="entry" className="logo">
                     <div>{sideBarSvg.logo}</div>
                 </NavLink>
                 <ul className="menu">
-                    <NavLink className="menu-item" to="entry">
-                        {/* {' '} */}
-                        <div className="icon regular">{sideBarSvg.home}</div>
+                    <NavLink className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')} to="entry">
+                        <div className="icon">{sideBarSvg.home}</div>
                         <span className="text">Home</span>
                     </NavLink>
 
                     <button className="menu-item">
-                        {' '}
-                        <div className="icon regular">{sideBarSvg.search}</div>
+                        <div className="icon">{sideBarSvg.search}</div>
                         <span className="text">Search</span>
                     </button>
 
                     <NavLink className="menu-item" to="explore">
-                        <div className="icon regular">{sideBarSvg.explore}</div>
+                        <div className="icon">{sideBarSvg.explore}</div>
                         <span className="text">Explore</span>
                     </NavLink>
 
                     {/* <NavLink to="review">Reels</NavLink> */}
                     <NavLink className="menu-item" to="direct">
-                        <div className="icon regular">{sideBarSvg.messages}</div>
+                        <div className="icon">{sideBarSvg.messages}</div>
                         <span className="text">Messages</span>
                     </NavLink>
 
                     {/* <NavLink to="review">Notification</NavLink> */}
                     <button className="menu-item" onClick={onAddModal}>
-                        {' '}
-                        <div className="icon regular">{sideBarSvg.create}</div>
+                        <div className="icon">{sideBarSvg.create}</div>
                         <span className="text">Create</span>
                     </button>
 
                     {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
-
                     {!user && (
                         <NavLink to="login" className="login-link">
                             Login
                         </NavLink>
                     )}
                     {user && (
-                        <div className="user-info">
+                        // <div className="user-info">
                             <NavLink className="menu-item" to={`user/${user._id}`}>
-                                {/* {user.imgUrl && <img src={user.imgUrl} />}{' '} */}
-                                <img src="src/assets/icons/user.svg" alt="Profile Icon" className="icon regular" />
+                                {user.imgUrl && <img src={user.imgUrl} className='icon' />}{' '}
+                                {/* <img src="src/assets/icons/user.svg" alt="Profile Icon" className="icon regular" /> */}
                                 <span className="text">Profile</span>
                             </NavLink>
-                        </div>
+                        // </div>
                     )}
                 </ul>
-                <NavLink className="menu-item" onClick={onLogout}>
-                    <div>{sideBarSvg.more}</div>
+                <NavLink className="menu-item logout" onClick={onLogout}>
+                    <div className="icon">{sideBarSvg.more}</div>
                     <span className="text">Logout</span>
                 </NavLink>
             </nav>

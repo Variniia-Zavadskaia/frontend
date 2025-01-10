@@ -14,7 +14,7 @@
         }
         .story {
             flex: 0 0 auto;
-            width: 5rem;
+            width: 4rem;
             text-align: center;
 
             img {
@@ -29,11 +29,11 @@
                 display: block;
                 margin-top: 0.5rem;
                 font-size: 0.8rem;
-                color: $ig-primory-clr;
+                // color: $ig-primory-clr;
             }
         }
         button {
-            margin-inline-end: 0;
+            // margin-inline-end: 0;
         }
     }
     .widget{
@@ -58,4 +58,8 @@
     //     margin: 0;
     //     font-size: 1.3em;
     // }
+    footer{
+        text-align: center;
+        font-size: rem(12px);
+    }
 }

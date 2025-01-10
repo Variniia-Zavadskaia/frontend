@@ -20,7 +20,8 @@ export function Widgets() {
                 <div>
                     <NavLink className="menu-item" to={`user/${user._id}`}>
                         {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                        <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
+                        {user.imgUrl && <img src={user.imgUrl} className='icon' />}{' '}
+                        {/* <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" /> */}
                         <div>
                             <span className="text first">{user.fullname}</span>
                             <span className="text second">{user.fullname}</span>

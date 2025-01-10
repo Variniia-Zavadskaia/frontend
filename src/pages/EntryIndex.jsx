@@ -10,10 +10,17 @@ import { userService } from '../services/user'
 import { EntryList } from '../cmps/EntryList'
 import { EntryFilter } from '../cmps/EntryFilter'
 import { Widgets } from '../cmps/Widgets'
+import { AppFooter } from '../cmps/AppFooter'
 
 export function EntryIndex() {
     const [filterBy, setFilterBy] = useState(entryService.getDefaultFilter())
     const entrys = useSelector(storeState => storeState.entryModule.entrys)
+
+    const randomFaces = [
+        'https://randomuser.me/api/portraits/men/1.jpg',
+        'https://randomuser.me/api/portraits/women/2.jpg',
+        'https://randomuser.me/api/portraits/men/3.jpg',
+    ]
 
     useEffect(() => {
         loadEntrys(filterBy)
@@ -56,18 +63,12 @@ export function EntryIndex() {
         <section className="entry-index">
             <div className="content">
                 <ul className="stories">
-                    <li className="story">
-                        <img src="https://via.placeholder.com/80" alt="User Story" />
-                        <span>Name 1</span>
-                    </li>
-                    <li className="story">
-                        <img src="https://via.placeholder.com/80" alt="User Story" />
-                        <span>Name 2</span>
-                    </li>
-                    <li className="story">
-                        <img src="https://via.placeholder.com/80" alt="User Story" />
-                        <span>Name 3</span>
-                    </li>
+                    {randomFaces.map((face, idx) => (
+                        <li key={idx} className="story">
+                            <img src={face} alt={`Random Face ${idx + 1}`} />
+                            <span>Name {idx + 1}</span>
+                        </li>
+                    ))}
                 </ul>
                 {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>}
                 <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
@@ -75,6 +76,7 @@ export function EntryIndex() {
             {/* <EntryFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
 
             <Widgets className="widgets" />
+            <AppFooter />
         </section>
     )
 }

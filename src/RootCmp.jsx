@@ -39,7 +39,7 @@ export function RootCmp() {
                 </Routes>
             </main>
             <DynamicModal />
-            <AppFooter />
+            {/* <AppFooter /> */}
         </div>
     )
 }

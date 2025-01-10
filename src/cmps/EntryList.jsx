@@ -1,5 +1,6 @@
 import { userService } from '../services/user'
 import { EntryPreview } from './EntryPreview'
+import { entrySvg } from './Svgs'
 
 export function EntryList({ entrys, onRemoveEntry, onUpdateEntry }) {
     
@@ -16,12 +17,23 @@ export function EntryList({ entrys, onRemoveEntry, onUpdateEntry }) {
             {entrys.map(entry =>
                 <li key={entry._id}>
                     <EntryPreview entry={entry}/>
-                    {shouldShowActionBtns(entry) && <div className="actions">
-                        <button onClick={() => onUpdateEntry(entry)}>Like</button>
-                        <button onClick={() => onUpdateEntry(entry)}>Comments</button>
-                        <button onClick={() => onUpdateEntry(entry)}>Share</button>
-                        <button onClick={() => onRemoveEntry(entry._id)}>Save</button>
-                    </div>}
+                    {/* {shouldShowActionBtns(entry) && <div className="actions">
+                        <button onClick={() => onUpdateEntry(entry)}>{entrySvg.heart}</button>
+                        <button onClick={() => onUpdateEntry(entry)}>{entrySvg.comment}</button>
+                        <button onClick={() => onUpdateEntry(entry)}>{entrySvg.share}</button>
+                        <button onClick={() => onRemoveEntry(entry._id)}>{entrySvg.save}</button>
+                    </div>} */}
+                   <div className="actions">
+                        <button onClick={() => onUpdateEntry(entry)}>{entrySvg.heart}</button>
+                        <button onClick={() => onUpdateEntry(entry)}>{entrySvg.comment}</button>
+                        <button onClick={() => onUpdateEntry(entry)}>{entrySvg.share}</button>
+                        <button onClick={() => onRemoveEntry(entry._id)}>{entrySvg.save}</button>
+                    </div>
+                    <p> likes</p>
+                    <div>
+                        <p>Add a comment...</p>
+                        <button>{entrySvg.emoji}</button>
+                    </div>
                 </li>)
             }
         </ul>
