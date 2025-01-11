@@ -59,6 +59,9 @@ export function EntryIndex() {
         }
     }
 
+console.log(entrys);
+
+
     return (
         <section className="entry-index">
             <div className="content">

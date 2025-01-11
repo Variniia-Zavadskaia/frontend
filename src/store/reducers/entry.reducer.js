@@ -26,7 +26,7 @@ export function entryReducer(state = initialState, action) {
             newState = { ...state, entrys, lastRemovedCar }
             break
         case ADD_ENTRY:
-            newState = { ...state, entrys: [...state.entrys, action.entry] }
+            newState = { ...state, entrys: [action.entry, ...state.entrys] }
             break
         case UPDATE_ENTRY:
             entrys = state.entrys.map(entry => (entry._id === action.entry._id) ? action.entry : entry)

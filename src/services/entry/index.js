@@ -5,11 +5,13 @@ import { getRandomIntInclusive, makeId } from '../util.service'
 import { entryService as local } from './entry.service.local'
 import { entryService as remote } from './entry.service.remote'
 
-function getEmptyEntry() {
+function getEmptyEntry(user = null) {
 	return {
-		vendor: makeId(),
-		speed: getRandomIntInclusive(80, 240),
-		msgs: [],
+        txt: '',
+        imgUrl: null,
+        by: user,
+        comments: [],
+        likedBy: []
 	}
 }
 

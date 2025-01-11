@@ -21,8 +21,8 @@ import { DynamicModal } from './cmps/DynamicModal.jsx'
 export function RootCmp() {
     return (
         <div className="app">
-            <main className="container">
                 <Sidebar />
+            <main className="container">
                 <UserMsg />
                 <Routes>
                     <Route path="entry" element={<EntryIndex />} />

@@ -8,6 +8,7 @@ import { logout } from '../store/actions/user.actions'
 
 import { onToggleModal } from '../store/actions/app.actions'
 import { addEntry } from '../store/actions/entry.actions'
+import { CreateEntry } from "./CreateEntry.jsx"
 
 import { sideBarSvg } from './Svgs'
 
@@ -15,22 +16,23 @@ export function Sidebar() {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
 
-    function onAddModal() {
-        onToggleModal({ cmp: TestModal })
+    function onAddEntry() {
+        onToggleModal({ cmp: CreateEntry })
     }
 
     function TestModal() {}
 
-    async function onAddEntry() {
-        const entry = entryService.getEmptyEntry()
-        entry.vendor = prompt('Vendor?')
-        try {
-            const savedEntry = await addEntry(entry)
-            showSuccessMsg(`entry added (id: ${savedEntry._id})`)
-        } catch (err) {
-            showErrorMsg('Cannot add entry')
-        }
-    }
+    // async function onAddEntry() {
+    //     const entry = entryService.getEmptyEntry()
+    //     entry.vendor = prompt('Vendor?')
+    //     try {
+    //         const savedEntry = await addEntry(entry)
+    //         showSuccessMsg(`entry added (id: ${savedEntry._id})`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot add entry')
+    //     }
+    // }
+
     async function onLogout() {
         try {
             await logout()
@@ -70,7 +72,7 @@ export function Sidebar() {
                     </NavLink>
 
                     {/* <NavLink to="review">Notification</NavLink> */}
-                    <button className="menu-item" onClick={onAddModal}>
+                    <button className="menu-item" onClick={onAddEntry}>
                         <div className="icon">{sideBarSvg.create}</div>
                         <span className="text">Create</span>
                     </button>

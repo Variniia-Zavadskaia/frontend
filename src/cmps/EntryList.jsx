@@ -23,7 +23,7 @@ export function EntryList({ entrys, onRemoveEntry, onUpdateEntry }) {
                         <button onClick={() => onUpdateEntry(entry)}>{entrySvg.share}</button>
                         <button onClick={() => onRemoveEntry(entry._id)}>{entrySvg.save}</button>
                     </div>} */}
-                   <div className="actions">
+                   {/* <div className="actions">
                         <button onClick={() => onUpdateEntry(entry)}>{entrySvg.heart}</button>
                         <button onClick={() => onUpdateEntry(entry)}>{entrySvg.comment}</button>
                         <button onClick={() => onUpdateEntry(entry)}>{entrySvg.share}</button>
@@ -33,7 +33,7 @@ export function EntryList({ entrys, onRemoveEntry, onUpdateEntry }) {
                     <div>
                         <p>Add a comment...</p>
                         <button>{entrySvg.emoji}</button>
-                    </div>
+                    </div> */}
                 </li>)
             }
         </ul>

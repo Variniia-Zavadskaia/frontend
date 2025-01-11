@@ -19,23 +19,23 @@ async function query(filterBy = { txt: '', price: 0 }) {
     var entrys = await storageService.query(STORAGE_KEY)
     const { txt, minSpeed, maxPrice, sortField, sortDir } = filterBy
 
-    if (txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        entrys = entrys.filter(entry => regex.test(entry.vendor) || regex.test(entry.description))
-    }
-    if (minSpeed) {
-        entrys = entrys.filter(entry => entry.speed >= minSpeed)
-    }
-    if(sortField === 'vendor' || sortField === 'owner'){
-        entrys.sort((entry1, entry2) => 
-            entry1[sortField].localeCompare(entry2[sortField]) * +sortDir)
-    }
-    if(sortField === 'price' || sortField === 'speed'){
-        entrys.sort((entry1, entry2) => 
-            (entry1[sortField] - entry2[sortField]) * +sortDir)
-    }
+    // if (txt) {
+    //     const regex = new RegExp(filterBy.txt, 'i')
+    //     entrys = entrys.filter(entry => regex.test(entry.vendor) || regex.test(entry.description))
+    // }
+    // if (minSpeed) {
+    //     entrys = entrys.filter(entry => entry.speed >= minSpeed)
+    // }
+    // if(sortField === 'vendor' || sortField === 'owner'){
+    //     entrys.sort((entry1, entry2) => 
+    //         entry1[sortField].localeCompare(entry2[sortField]) * +sortDir)
+    // }
+    // if(sortField === 'price' || sortField === 'speed'){
+    //     entrys.sort((entry1, entry2) => 
+    //         (entry1[sortField] - entry2[sortField]) * +sortDir)
+    // }
     
-    entrys = entrys.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
+    // entrys = entrys.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
     return entrys
 }
 
@@ -58,14 +58,16 @@ async function save(entry) {
         }
         savedEntry = await storageService.put(STORAGE_KEY, entryToSave)
     } else {
-        const entryToSave = {
-            vendor: entry.vendor,
-            price: entry.price,
-            speed: entry.speed,
-            // Later, owner is set by the backend
-            owner: userService.getLoggedinUser(),
-            msgs: []
-        }
+        // const entryToSave = {
+        //     vendor: entry.vendor,
+        //     price: entry.price,
+        //     speed: entry.speed,
+        //     // Later, owner is set by the backend
+        //     owner: userService.getLoggedinUser(),
+        //     msgs: []
+        // }
+        const entryToSave = {...entry}
+        entryToSave.by = userService.getLoggedinUser()
         savedEntry = await storageService.post(STORAGE_KEY, entryToSave)
     }
     return savedEntry

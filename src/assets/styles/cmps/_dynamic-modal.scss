@@ -15,7 +15,7 @@
 //     }
 // }
 
-.modal-overlay {
+.dynamic-modal  {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,9 +43,9 @@
         }
     }
 
-    .modal {
-        width: rem(609px);
-        height: rem(609px);
+    .add-entry {
+        width: rem(600px);
+        // height: rem(855px);
         background-color: #fff;
         border-radius: 1rem;
         overflow: hidden;
@@ -53,7 +53,7 @@
         flex-direction: column;
         box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.2);
 
-        .modal-header {
+        .add-entry-header {
             padding: rem(11px);
             border-bottom: 0.1rem solid #dbdbdb;
             // display: flex;
@@ -67,7 +67,7 @@
             }
         }
 
-        .modal-body {
+        .add-entry-body {
             padding: 2rem;
             display: flex;
             flex-direction: column;
