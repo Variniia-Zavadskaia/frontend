@@ -1,14 +1,33 @@
 .preview {
+    // display: grid;
+    // grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+    // grid-gap: 20px;
     display: flex;
     flex-direction: column;
     margin-bottom: 1.25rem;
     overflow: hidden;
     // padding: 1rem;
     border-bottom: 0.0625rem solid $border-color;
-   
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        padding-bottom: rem(12px);
+
+        .prof-preview {
+            display: flex;
+            align-items: center;
+        }
+
+        button,
+        a {
+            align-self: center;
+        }
+    }
 
     .entry-image {
-        // width: rem(406px);
+        width: rem(406px);
         position: relative;
         img {
             width: 100%;
@@ -59,7 +78,6 @@
                     }
                 }
             }
-          
         }
 
         .entry-likes {

@@ -38,6 +38,7 @@ export function CreateEntry() {
             showErrorMsg('Cannot add entry', err)
         }
         // replace by input function
+        // onClose()
         onToggleModal()
     }
 
