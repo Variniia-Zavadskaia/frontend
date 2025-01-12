@@ -2,10 +2,22 @@
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { entrySvg } from './Svgs'
+import { EntryMenu } from './EntryMenu'
+import { onToggleModal } from '../store/actions/app.actions'
 
-export function EntryPreview({ entry }) {
+export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     // const user = useSelector(storeState => storeState.userModule.user)
     const userBy = entry.by
+    function onOptions() {
+         onToggleModal({ 
+            cmp: EntryMenu,
+            props:{
+                entry,
+                onRemoveEntry,
+                onUpdateEntry
+            }
+        })
+    }
 
     return (
         <article className="preview">
@@ -14,7 +26,7 @@ export function EntryPreview({ entry }) {
                     {userBy.imgUrl && <img src={userBy.imgUrl} className="icon" />}
                     <span className="text first">{userBy.fullname}</span>
                 </NavLink>
-                <button>{entrySvg.option}</button>
+                <button onClick={onOptions}>{entrySvg.option}</button>
             </header>
 
             <div className="entry-image">

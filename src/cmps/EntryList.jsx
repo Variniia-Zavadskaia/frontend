@@ -16,7 +16,7 @@ export function EntryList({ entrys, onRemoveEntry, onUpdateEntry }) {
         <ul className="feed">
             {entrys.map(entry =>
                 <li key={entry._id}>
-                    <EntryPreview entry={entry}/>
+                    <EntryPreview entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry}/>
                     {/* {shouldShowActionBtns(entry) && <div className="actions">
                         <button onClick={() => onUpdateEntry(entry)}>{entrySvg.heart}</button>
                         <button onClick={() => onUpdateEntry(entry)}>{entrySvg.comment}</button>

@@ -35,16 +35,16 @@ export function EntryIndex() {
         }
     }
 
-    async function onAddEntry() {
-        const entry = entryService.getEmptyEntry()
-        entry.vendor = prompt('Vendor?')
-        try {
-            const savedEntry = await addEntry(entry)
-            showSuccessMsg(`entry added (id: ${savedEntry._id})`)
-        } catch (err) {
-            showErrorMsg('Cannot add entry')
-        }
-    }
+    // async function onAddEntry() {
+    //     const entry = entryService.getEmptyEntry()
+    //     entry.vendor = prompt('Vendor?')
+    //     try {
+    //         const savedEntry = await addEntry(entry)
+    //         showSuccessMsg(`entry added (id: ${savedEntry._id})`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot add entry')
+    //     }
+    // }
 
     async function onUpdateEntry(entry) {
         const speed = +prompt('New speed?', entry.speed)
@@ -73,7 +73,7 @@ console.log(entrys);
                         </li>
                     ))}
                 </ul>
-                {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>}
+                {/* {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>} */}
                 <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
             </div>
             {/* <EntryFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
