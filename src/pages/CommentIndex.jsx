@@ -1,54 +1,54 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { loadReviews, removeReview, getActionAddReview, getActionRemoveReview } from '../store/actions/review.actions'
+import { loadComments, removeComment, getActionAddComment, getActionRemoveComment } from '../store/actions/comment.actions'
 import { loadUsers } from '../store/actions/user.actions'
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { socketService, SOCKET_EVENT_REVIEW_ADDED, SOCKET_EVENT_REVIEW_REMOVED } from '../services/socket.service'
-import { ReviewList } from '../cmps/ReviewList'
-import { ReviewEdit } from '../cmps/CommentEdit'
+import { socketService, SOCKET_EVENT_COMMENT_ADDED, SOCKET_EVENT_COMMENT_REMOVED } from '../services/socket.service'
+import { CommentList } from '../cmps/CommentList'
+import { CommentEdit } from '../cmps/CommentEdit'
 
-export function ReviewIndex() {
+export function CommentIndex() {
 	const loggedInUser = useSelector(storeState => storeState.userModule.user)
-	const reviews = useSelector(storeState => storeState.reviewModule.reviews)
+	const comments = useSelector(storeState => storeState.commentModule.comments)
 
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		loadReviews()
+		loadComments()
 		loadUsers()
 
-		socketService.on(SOCKET_EVENT_REVIEW_ADDED, review => {
-			console.log('GOT from socket', review)
-			dispatch(getActionAddReview(review))
+		socketService.on(SOCKET_EVENT_COMMENT_ADDED, comment => {
+			console.log('GOT from socket', comment)
+			dispatch(getActionAddComment(comment))
 		})
 
-		socketService.on(SOCKET_EVENT_REVIEW_REMOVED, reviewId => {
-			console.log('GOT from socket', reviewId)
-			dispatch(getActionRemoveReview(reviewId))
+		socketService.on(SOCKET_EVENT_COMMENT_REMOVED, commentId => {
+			console.log('GOT from socket', commentId)
+			dispatch(getActionRemoveComment(commentId))
 		})
 
 		return () => {
-            socketService.off(SOCKET_EVENT_REVIEW_ADDED)
-            socketService.off(SOCKET_EVENT_REVIEW_REMOVED)
+            socketService.off(SOCKET_EVENT_COMMENT_ADDED)
+            socketService.off(SOCKET_EVENT_COMMENT_REMOVED)
         }
 	}, [])
 
-	async function onRemoveReview(reviewId) {
+	async function onRemoveComment(commentId) {
 		try {
-			await removeReview(reviewId)
-			showSuccessMsg('Review removed')
+			await removeComment(commentId)
+			showSuccessMsg('Comment removed')
 		} catch (err) {
 			showErrorMsg('Cannot remove')
 		}
 	}
 
-	return <div className="review-index">
-        <h2>Reviews and Gossip</h2>
-        {loggedInUser && <ReviewEdit/>}
-        <ReviewList 
-            reviews={reviews} 
-            onRemoveReview={onRemoveReview}/>
+	return <div className="comment-index">
+        <h2>Comments and Gossip</h2>
+        {loggedInUser && <CommentEdit/>}
+        <CommentList 
+            comments={comments} 
+            onRemoveComment={onRemoveComment}/>
     </div>
 }

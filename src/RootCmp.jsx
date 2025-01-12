@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router'
 
 import { EntryIndex } from './pages/EntryIndex.jsx'
 import { Explore } from './pages/Explore.jsx'
-import { ReviewIndex } from './pages/ReviewIndex.jsx'
+import { CommentIndex } from './pages/CommentIndex.jsx'
 import { Direct } from './pages/Direct.jsx'
 import { AdminIndex } from './pages/AdminIndex.jsx'
 
@@ -21,7 +21,7 @@ import { DynamicModal } from './cmps/DynamicModal.jsx'
 export function RootCmp() {
     return (
         <div className="app">
-            <aside className="sidebar-container">
+            <aside className="sidebar">
                 <Sidebar />
             </aside>
             <main className="container">
@@ -31,7 +31,7 @@ export function RootCmp() {
                     <Route path="explore" element={<Explore />} />
                     <Route path="entry/:entryId" element={<EntryDetails />} />
                     <Route path="user/:id" element={<UserDetails />} />
-                    <Route path="review" element={<ReviewIndex />} />
+                    <Route path="Comment" element={<CommentIndex />} />
                     <Route path="direct" element={<Direct />} />
                     <Route path="admin" element={<AdminIndex />} />
                     <Route path="login" element={<LoginSignup />}>

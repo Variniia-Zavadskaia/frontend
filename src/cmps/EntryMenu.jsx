@@ -17,7 +17,7 @@ async function removeEntry() {
             {isOwner && <button className="delete" onClick={removeEntry}>Delete</button>}
             {isOwner && <button onClick={() => onUpdateEntry(entry)}>Edit</button>}
             {!isOwner && <button className='unfollow' >Unfollow</button>}
-            <button>Go to post</button>
+            <NavLink className="menu-item" to="entry/:entryId">Go to post</NavLink>
             <button>Share to...</button>
             <button>Copy link</button>
             <button>About this account</button>

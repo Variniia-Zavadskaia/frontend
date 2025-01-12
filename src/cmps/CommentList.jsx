@@ -1,24 +1,24 @@
 import { userService } from '../services/user'
 
-import { ReviewPreview } from './CommentPreview.jsx'
+import { CommentPreview } from './CommentPreview.jsx'
 
-export function ReviewList({ reviews, onRemoveReview }) {
+export function CommentList({ comments, onRemoveComment }) {
     
-    function shouldShowActionBtns(review) {
+    function shouldShowActionBtns(comment) {
         const user = userService.getLoggedinUser()
         
         if (!user) return false
         if (user.isAdmin) return true
-        return review.byUser?._id === user._id
+        return comment.byUser?._id === user._id
     }
 
     return <section>
-        <ul className="list review-list">
-            {reviews.map(review =>
-                <li key={review._id}>
-                    <ReviewPreview review={review}/>
-                    {shouldShowActionBtns(review) && <div className="actions">
-                        <button onClick={() => onRemoveReview(review._id)}>x</button>
+        <ul className="list comment-list">
+            {comments.map(comment =>
+                <li key={comment._id}>
+                    <CommentPreview comment={comment}/>
+                    {shouldShowActionBtns(comment) && <div className="actions">
+                        <button onClick={() => onRemoveComment(comment._id)}>x</button>
                     </div>}
                 </li>)
             }
