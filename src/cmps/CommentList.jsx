@@ -1,6 +1,6 @@
 import { userService } from '../services/user'
 
-import { ReviewPreview } from './ReviewPreview.jsx'
+import { ReviewPreview } from './CommentPreview.jsx'
 
 export function ReviewList({ reviews, onRemoveReview }) {
     

@@ -18,7 +18,7 @@
 @import "pages/AboutUs";
 @import "pages/EntryIndex";
 @import "pages/Explore";
-@import "pages/ReviewIndex";
+@import "pages/CommentIndex";
 @import "pages/UserDetails";
 @import "pages/TaskDetails";
 @import "pages/LoginSignup";
@@ -34,9 +34,9 @@
 @import "cmps/Widgets";
 
 @import "cmps/EntryFilter";
-@import "cmps/ReviewEdit";
-@import "cmps/ReviewList";
-@import "cmps/ReviewPreview";
+@import "cmps/CommentEdit";
+@import "cmps/CommentList";
+@import "cmps/CommentPreview";
 @import "cmps/EntryMenu";
 // @import "cmps/EntryPreview";
 
