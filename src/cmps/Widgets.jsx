@@ -9,8 +9,6 @@ export function Widgets() {
 
     return (
         <section className="widgets">
-            {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
-
             {/* {!user && (
                            <NavLink to="login" className="login-link">
                                Login

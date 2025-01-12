@@ -12,13 +12,15 @@ export function DynamicModal() {
 	console.log('modalData', modalData)
 	if (!modalData) return <></>
 	const Cmp = modalData.cmp
+    const props = {...modalData.props}
+    props.onClose = onCloseModal
     console.log(Cmp);
     
 	return (
 		<div className="dynamic-modal">
 			<button className="close-btn" onClick={onCloseModal}>&times;</button>
 			<section className="modal">
-				{Cmp && <Cmp {...modalData.props } />}
+				{Cmp && <Cmp {...props } />}
 			</section>
 		</div>
 	)

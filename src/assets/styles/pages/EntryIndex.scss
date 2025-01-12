@@ -1,17 +1,18 @@
 .entry-index {
-    // position: absolute;
     display: grid;
     grid-template-columns: 2fr 1fr;
     justify-content: center;
-
+    
+    justify-items: end;
     .content {
-        padding: 0 2rem ;
+        // padding: 0 2rem ;
         grid-column: 1;
         ul {
             display: flex;
+            align-items: center;
             gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1rem 0;
+            // margin-bottom: 2rem;
+            // padding: 1rem 0;
         }
         .story {
             flex: 0 0 auto;

@@ -1,7 +1,9 @@
-section {
+.widgets {
     padding: rem(20px) 2rem;
+    // width: rem(319px);
     div {
         .menu-item {
+            width: rem(319px);
             display: flex;
             align-items: center;
             margin-bottom: 2rem;
@@ -30,7 +32,7 @@ section {
         }
 
         button {
-            // align-self: flex-end;
+            margin-left: auto;
         }
 
         .text {

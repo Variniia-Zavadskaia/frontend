@@ -7,7 +7,7 @@ import { addEntry } from '../store/actions/entry.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { onToggleModal } from "../store/actions/app.actions.js"
 
-export function CreateEntry() {
+export function CreateEntry({onClose}) {
 
     const [imgData, setImgData] = useState({ imgUrl: null })
     // const {_id, fullname, imgUrl} = useSelector((storeState) => storeState.userModule.user)
@@ -39,7 +39,8 @@ export function CreateEntry() {
         }
         // replace by input function
         // onClose()
-        onToggleModal()
+        onClose()
+        // onToggleModal()
     }
 
     console.log(entry);

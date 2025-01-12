@@ -21,7 +21,8 @@
         }
 
     }
-    .delete {
+    .delete, .unfollow {
         color: red;
+        font-weight: bold;
     }
 }

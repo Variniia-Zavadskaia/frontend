@@ -9,13 +9,13 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     // const user = useSelector(storeState => storeState.userModule.user)
     const userBy = entry.by
     function onOptions() {
-         onToggleModal({ 
+        onToggleModal({
             cmp: EntryMenu,
-            props:{
+            props: {
                 entry,
                 onRemoveEntry,
-                onUpdateEntry
-            }
+                onUpdateEntry,
+            },
         })
     }
 
@@ -57,10 +57,10 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
                         <NavLink to={`user/${userBy._id}`}>{userBy.fullname}</NavLink> {entry.txt}
                     </p>
                 </div>
-                
+
+                <span className="view-comments">View all 20 comments</span>
                 <div className="entry-comments">
-                    <span className="view-comments">View all 20 comments</span>
-                    <p>Add a comment...</p>
+                    <textarea name="txt" placeholder="Add a comment..."></textarea>
                     <button>{entrySvg.emoji}</button>
                 </div>
             </div>
