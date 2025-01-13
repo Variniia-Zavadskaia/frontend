@@ -2,16 +2,17 @@
     display: grid;
     height: 100vh;
     border-right: 0.0625rem solid $border-color;
-    padding: rem(25px) rem(12px);
-    width: rem(244px);
+    // padding: rem(25px) rem(12px);
+    // width: rem(244px);
     position: fixed;
     top: 0;
     left: 0;
     color: $ig-primory-clr;
+    // justify-content: center;
     
     nav {
         display: grid;
-        // justify-items: center;
+        justify-items: center;
         grid-template-rows: auto 1fr auto;
         list-style: none;
         padding: 0;
@@ -19,7 +20,7 @@
         width: 100%;
         
         .logo {
-            justify-self: center;
+           
             width: rem(220px);
             margin: rem(12px);
             color: $ig-primory-clr;

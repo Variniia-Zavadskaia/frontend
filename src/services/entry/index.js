@@ -18,9 +18,9 @@ function getEmptyEntry(user = null) {
 function getDefaultFilter() {
     return {
         txt: '',
-        minSpeed: '',
-        sortField: '',
-        sortDir: '',
+        // minSpeed: '',
+        // sortField: '',
+        // sortDir: '',
     }
 }
 

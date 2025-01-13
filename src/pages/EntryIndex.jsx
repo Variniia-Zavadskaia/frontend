@@ -47,13 +47,14 @@ export function EntryIndex() {
     // }
 
     async function onUpdateEntry(entry) {
-        const speed = +prompt('New speed?', entry.speed)
-        if (speed === 0 || speed === entry.speed) return
+        // const speed = +prompt('New speed?', entry.speed)
+        // if (speed === 0 || speed === entry.speed) return
 
-        const entryToSave = { ...entry, speed }
+        // const entryToSave = { ...entry, speed }
+        const entryToSave = { ...entry}
         try {
             const savedEntry = await updateEntry(entryToSave)
-            showSuccessMsg(`entry updated, new speed: ${savedEntry.speed}`)
+            showSuccessMsg(`entry updated`)
         } catch (err) {
             showErrorMsg('Cannot update entry')
         }

@@ -1,0 +1,130 @@
+// .dynamic-modal {
+//     position: fixed;
+//     inset: 0;
+//     margin: 100px;
+//     text-align: center;
+//     background: lightblue;
+
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     .close {
+//         position: absolute;
+//         left: 20px;
+//         top: 20px;
+//     }
+// }
+
+.dynamic-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    .close-btn {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        font-size: 2.4rem;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1000;
+
+        &:hover {
+            color: #ccc;
+        }
+    }
+
+    .add-entry {
+        width: rem(600px);
+        // height: rem(855px);
+        background-color: #fff;
+        border-radius: 1rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.2);
+        
+        &__header {
+            padding: 11px;
+            border-bottom: 1px solid #dbdbdb;
+            text-align: center;
+        
+            h2 {
+              font-size: 16px;
+              font-weight: 600;
+            }
+          }
+
+        // .add-entry-header {
+        //     padding: rem(11px);
+        //     border-bottom: 0.1rem solid #dbdbdb;
+        //     // display: flex;
+        //     // align-items: center;
+        //     // justify-content: space-between;
+        //     text-align: center;
+
+        //     h2 {
+        //         font-size: rem(16px);
+        //         font-weight: 600;
+        //     }
+        // }
+
+        .add-entry-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .image-upload-area {
+                width: 100%;
+                margin: auto;
+                // height: 20rem;
+                border: 0.2remdashed #dbdbdb;
+                border-radius: 0.8rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+                .upload-icon {
+                    width: 5rem;
+                    height: 5rem;
+                    // margin-bottom: 1.6rem;
+                    // fill: #999;
+                }
+
+                p {
+                    font-size: rem(20px);
+                    // color: #999;
+                    // margin-bottom: 1.6rem;
+                }
+
+                .upload-btn {
+                    padding: rem(7px) rem(16px);
+                    font-size: rem(14px);
+                    font-weight: 600;
+                    color: #fff;
+                    background-color: #0095f6;
+                    border: none;
+                    border-radius: 0.4rem;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #007bb5;
+                    }
+                }
+            }
+        }
+    }
+}

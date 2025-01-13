@@ -17,6 +17,7 @@
 
 @import "pages/AboutUs";
 @import "pages/EntryIndex";
+@import "pages/EntryDetails";
 @import "pages/Explore";
 @import "pages/CommentIndex";
 @import "pages/UserDetails";
@@ -38,6 +39,7 @@
 @import "cmps/CommentList";
 @import "cmps/CommentPreview";
 @import "cmps/EntryMenu";
+@import "cmps/EditEntry";
 // @import "cmps/EntryPreview";
 
 @import "./cmps/dynamic-modal";

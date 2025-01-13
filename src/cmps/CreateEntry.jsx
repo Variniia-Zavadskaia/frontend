@@ -50,40 +50,39 @@ export function CreateEntry({onClose}) {
 
     return (
         <div className="add-entry">
-            <header className="add-entry-header">
+            <header className="add-entry__header">
                 <h2>Create New Post</h2>
-                {imgData.imgUrl && !showText &&
-                      <button onClick={onSetShowText}>Next</button> 
-                }
+                {imgData.imgUrl && !showText &&(
+                      <button className="add-entry__btn" onClick={onSetShowText}>Next</button> 
+                 ) }
                 {
-                    showText && <button onClick={onAddEntry}>Share</button> 
+                    showText &&( <button className="add-entry__btn" onClick={onAddEntry}>Share</button>) 
                 }
             </header>
            
-            <div className="add-entry-body">
-                <div className="image-upload-area">
-                    {imgData.imgUrl ? 
-                        <img src={imgData.imgUrl} style={{ maxWidth: '200px', float: 'right' }}/> :
+            <div className="add-entry__body">
+                <div className="add-entry__upload-area">
+                    {imgData.imgUrl ? (
+                        <img className="add-entry__image" src={imgData.imgUrl} alt="Uploaded content"/> 
+                    ):(
                         <div>
-                            <div>{sideBarSvg.uploade}</div>
-                            <p>Drag photos and videos here</p>
-                            {/* <label className="upload-btn"> */}
-                                {/* <p>Select from computer</p> */}
-                            <ImgUploader onUploaded={onUploaded}></ImgUploader>
-                            {/* </label> */}
+                            <div className="add-entry__upload-icon">{sideBarSvg.uploade}</div>
+                            <p className="add-entry__upload-text">Drag photos and videos here</p>
+                            <ImgUploader  className="add-entry__btn" onUploaded={onUploaded}></ImgUploader>
                         </div>
-                    }
+                    )}
                 </div>
 
                 <div>
-                    {showText && 
-                        <div className="caption-area">
+                    {showText && (
+                        <div className="add-entry__caption-area">
                             <textarea
+                             className="add-entry__textarea"
                             // placeholder="Write a caption..."
                             value={text}
                             onChange={handleTextChange}
                             />
-                        </div>}
+                        </div>)}
                 </div>
             </div>
         </div>

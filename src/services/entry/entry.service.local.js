@@ -17,7 +17,7 @@ window.cs = entryService
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var entrys = await storageService.query(STORAGE_KEY)
-    const { txt, minSpeed, maxPrice, sortField, sortDir } = filterBy
+    // const { txt, minSpeed, maxPrice, sortField, sortDir } = filterBy
 
     // if (txt) {
     //     const regex = new RegExp(filterBy.txt, 'i')
@@ -53,8 +53,7 @@ async function save(entry) {
     if (entry._id) {
         const entryToSave = {
             _id: entry._id,
-            price: entry.price,
-            speed: entry.speed,
+            txt: entry.txt,
         }
         savedEntry = await storageService.put(STORAGE_KEY, entryToSave)
     } else {
