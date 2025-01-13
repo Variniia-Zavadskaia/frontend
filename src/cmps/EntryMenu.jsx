@@ -33,9 +33,9 @@ export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
             )}
             {isOwner && <button onClick={editEntry}>Edit</button>}
             {!isOwner && <button className="unfollow">Unfollow</button>}
-            <NavLink className="menu-item" to="entry/:entryId">
+            <Link className="menu-item" to={`/entry/${entry._id}`}>
                 Go to post
-            </NavLink>
+            </Link>
             <button>Share to...</button>
             <button>Copy link</button>
             <button>About this account</button>

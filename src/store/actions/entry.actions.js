@@ -13,6 +13,8 @@ export async function loadEntrys(filterBy) {
 }
 
 export async function loadEntry(entryId) {
+    // console.log('hhh');
+    
     try {
         const entry = await entryService.getById(entryId)
         store.dispatch(getCmdSetEntry(entry))
