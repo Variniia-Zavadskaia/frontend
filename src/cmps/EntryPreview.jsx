@@ -22,7 +22,7 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     return (
         <article className="preview">
             <header>
-                <NavLink className="prof-preview" to={`user/${userBy._id}`}>
+                <NavLink className="prof-preview" to={`/user/${userBy._id}`}>
                     {userBy.imgUrl && <img src={userBy.imgUrl} className="icon" />}
                     <span className="text first">{userBy.fullname}</span>
                 </NavLink>
@@ -54,7 +54,7 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
                 <div className="entry-likes">... likes</div>
                 <div className="entry-comment">
                     <p>
-                        <NavLink to={`user/${userBy._id}`}>{userBy.fullname}</NavLink> {entry.txt}
+                        <NavLink to={`/user/${userBy._id}`}>{userBy.fullname}</NavLink> {entry.txt}
                     </p>
                 </div>
 
