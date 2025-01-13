@@ -1,6 +1,6 @@
 import { entrySvg } from './Svgs'
 import { useState } from 'react'
-import { useSelector } from "react-redux";
+import { UserIcon } from './elements/UserIcon'
 
 export function EditEntry({ entry, onClose, onUpdateEntry }) {
     const [txt, setTxt] = useState(entry.txt)
@@ -22,7 +22,6 @@ export function EditEntry({ entry, onClose, onUpdateEntry }) {
             <header className="edit-entry-header">
                 <button onClick={onClose}>Cancel</button>
                 <h2>Edit info</h2>
-                {/* <button onClick={onAddEntry}>Done</button> */}
                 <button onClick={updateEntry}>Done</button>
             </header>
 
@@ -32,7 +31,7 @@ export function EditEntry({ entry, onClose, onUpdateEntry }) {
 
                     <div className='to'>
                         <div className="prof">
-                            {userBy.imgUrl && <img src={userBy.imgUrl} className="icon" />}
+                            <UserIcon user={userBy} isLink={false}/>
                             <span className="text first">{userBy.fullname}</span>
                         </div>
                         <textarea name="txt" value={entryToEdit.txt} onChange={handleTxtChange} />
