@@ -1,15 +1,25 @@
 import { Link, NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { EditEntry } from './EditEntry'
-import { onToggleModal } from "../store/actions/app.actions.js"
+import { onToggleModal } from '../store/actions/app.actions.js'
 
 export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
     const user = useSelector(storeState => storeState.userModule.user)
+    const navigate = useNavigate()
+
     const owner = entry.by
     const isOwner = user._id === owner._id
 
     async function removeEntry() {
         await onRemoveEntry(entry._id)
+        onClose()
+    }
+
+    function onIconClick() {
+       
+            navigate(`/entry/${entry._id}`)
+        
         onClose()
     }
 
@@ -33,9 +43,8 @@ export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
             )}
             {isOwner && <button onClick={editEntry}>Edit</button>}
             {!isOwner && <button className="unfollow">Unfollow</button>}
-            <Link className="menu-item" to={`/entry/${entry._id}`}>
-                Go to post
-            </Link>
+
+            <button onClick={onIconClick}>Go to post</button>
             <button>Share to...</button>
             <button>Copy link</button>
             <button>About this account</button>

@@ -15,17 +15,21 @@ export const entryService = {
 window.cs = entryService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
+async function query(filterBy = { txt: '', byId: ''}) {
     var entrys = await storageService.query(STORAGE_KEY)
-    // const { txt, minSpeed, maxPrice, sortField, sortDir } = filterBy
+    const { txt, byId } = filterBy
+
+    // console.log(filterBy);
+    // console.log(filterBy);
+    
 
     // if (txt) {
     //     const regex = new RegExp(filterBy.txt, 'i')
     //     entrys = entrys.filter(entry => regex.test(entry.vendor) || regex.test(entry.description))
     // }
-    // if (minSpeed) {
-    //     entrys = entrys.filter(entry => entry.speed >= minSpeed)
-    // }
+    if (byId) {
+        entrys = entrys.filter(entry => entry.by._id === byId)
+    }
     // if(sortField === 'vendor' || sortField === 'owner'){
     //     entrys.sort((entry1, entry2) => 
     //         entry1[sortField].localeCompare(entry2[sortField]) * +sortDir)

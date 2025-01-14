@@ -1,3 +1,13 @@
+.signup-container{
+    width: rem(350px);
+    height: rem(618px);
+    border: 0.0625rem solid $border-color;
+
+    .logo.custom-size {
+        width: rem(175px);
+        height: ren(51px);
+    }
+}
 .login-form,
 .signup-form {
 	display: grid;

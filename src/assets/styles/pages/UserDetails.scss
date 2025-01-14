@@ -1,7 +1,44 @@
 .user-details {
-    .user-img {
-        height: 200px;
-        width: 200px;
-        background-size: contain;
+    display: grid;
+    justify-content: center;
+  
+    .user-header {
+        display: flex;
+        width: rem(935px);
+        img {
+            border-radius: 50%;
+        }
+        .user-info {
+            .info-top {
+                display: flex;
+                button {
+                    background-color: #efefef;
+                }
+            }
+            .info-midle {
+                display: flex;
+            }
+        }
+    }
+
+    .user-entrys {
+        display: grid;
+        grid-template-columns: repeat(3, rem(307px));
+        gap: rem(4px);
+
+        .square-image {
+            width: rem(307px);
+            height: rem(307px);
+            overflow: hidden;
+            display: inline-block;
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
     }
 }
+
+

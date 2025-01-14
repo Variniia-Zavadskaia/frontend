@@ -4,6 +4,8 @@ import { Link, NavLink } from 'react-router-dom'
 import { entrySvg } from './Svgs'
 import { EntryMenu } from './EntryMenu'
 import { onToggleModal } from '../store/actions/app.actions'
+import React, { useState } from 'react'
+// import { LikeButtom } from './elements/LikeButton'
 
 export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     // const user = useSelector(storeState => storeState.userModule.user)
@@ -18,6 +20,18 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
             },
         })
     }
+
+    const [likes, setLikes] = useState(entry.likes || 0)
+    const [liked, setLiked] = useState(false)
+
+    const handleLike = () => {
+        setLiked(!liked)
+        setLikes(liked ? likes - 1 : likes + 1)
+    }
+    const heartIcon = React.cloneElement(entrySvg.heart, {
+        fill: liked ? 'red' : 'black',
+        // stroke: liked ? 'red' : 'black',
+    })
 
     return (
         <article className="preview">
@@ -37,21 +51,15 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
             {/* {entry.owner && <p>Owner: <span>{entry.owner.fullname}</span></p>} */}
             <div className="entry-info">
                 <div className="actions">
-                    <button className="action like" onClick={() => onUpdateEntry(entry)}>
-                        {entrySvg.heart}
+                    <button className="action like" onClick={handleLike}>
+                        {heartIcon}
                     </button>
-                    <button className="action comment" onClick={() => onUpdateEntry(entry)}>
-                        {entrySvg.comment}
-                    </button>
-                    <button className="action share" onClick={() => onUpdateEntry(entry)}>
-                        {entrySvg.share}
-                    </button>
-                    <button className="action save" onClick={() => onRemoveEntry(entry._id)}>
-                        {entrySvg.save}
-                    </button>
+                    <button className="action comment">{entrySvg.comment}</button>
+                    <button className="action share">{entrySvg.share}</button>
+                    <button className="action save">{entrySvg.save}</button>
                 </div>
 
-                <div className="entry-likes">... likes</div>
+                <div className="entry-likes">{likes} Likes</div>
                 <div className="entry-comment">
                     <p>
                         <NavLink to={`/user/${userBy._id}`}>{userBy.fullname}</NavLink> {entry.txt}

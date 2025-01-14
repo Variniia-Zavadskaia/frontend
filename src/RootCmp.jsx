@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router'
+import { useLocation } from 'react-router-dom';
 
 import { EntryIndex } from './pages/EntryIndex.jsx'
 import { Explore } from './pages/Explore.jsx'
@@ -19,10 +20,14 @@ import { Signup } from './pages/Signup.jsx'
 import { DynamicModal } from './cmps/DynamicModal.jsx'
 
 export function RootCmp() {
+    const location = useLocation();
+    const hideSidebar = location.pathname === '/login' || location.pathname === '/login/signup';
+
+
     return (
         <div className="app">
             {/* <aside className="sidebar"> */}
-                <Sidebar />
+            {!hideSidebar && <Sidebar />}
             {/* </aside> */}
             <main className="container">
                 <UserMsg />

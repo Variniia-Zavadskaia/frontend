@@ -36,7 +36,7 @@ export function Sidebar() {
     async function onLogout() {
         try {
             await logout()
-            navigate('/')
+            navigate('/login')
             showSuccessMsg(`Bye now`)
         } catch (err) {
             showErrorMsg('Cannot logout')
@@ -77,15 +77,14 @@ export function Sidebar() {
                         <span className="text">Create</span>
                     </button>
 
-                    {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
-                    {!user && (
+                    {/* {!user && (
                         <NavLink to="login" className="login-link">
                             Login
                         </NavLink>
-                    )}
+                    )} */}
                     {user && (
                         // <div className="user-info">
-                            <NavLink className="menu-item" to={`user/${user._id}`}>
+                            <NavLink className="menu-item" to={`/user/${user._id}`}>
                                 {user.imgUrl && <img src={user.imgUrl} className='icon' />}{' '}
                                 {/* <img src="src/assets/icons/user.svg" alt="Profile Icon" className="icon regular" /> */}
                                 <span className="text">Profile</span>

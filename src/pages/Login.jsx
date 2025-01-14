@@ -24,7 +24,7 @@ export function Login() {
 
         if (!credentials.username) return
         await login(credentials)
-        navigate('/')
+        navigate('/entry')
     }
 
     function handleChange(ev) {
