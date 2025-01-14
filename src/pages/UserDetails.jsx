@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { loadUser } from '../store/actions/user.actions'
 import { store } from '../store/store'
@@ -41,17 +42,16 @@ export function UserDetails() {
     return (
         <section className="user-details">
             <header className="user-header">
-                <div>
-                    
+                <div className="user-img">
+                    <img src={user.imgUrl} />
                 </div>
-                <img src={user.imgUrl} style={{ width: '150px' }} />
                 <article className="user-info">
                     <div className="info-top">
-                        <p>{user.fullname}</p>
-                        <div className="use-buttons">
+                        <p className="username">{user.username}</p>
+                        <div className="user-buttons">
                             <button>Edit profile</button>
                             <button>View archive</button>
-                            <button>Setting</button>
+                            {/* <button>Setting</button> */}
                         </div>
                     </div>
                     <div className="info-midle">
@@ -61,15 +61,25 @@ export function UserDetails() {
                     </div>
                 </article>
             </header>
-            <div className=""></div>
-            <ul className="user-entrys">
+            <nav class="user-navigation">
+                <NavLink className="nav-item" to="#">
+                    <span>Posts</span>
+                </NavLink>
+                <NavLink className="nav-item" to="#">
+                    <span>Reels</span>
+                </NavLink>
+                <NavLink className="nav-item" to="#">
+                    <span>Tagged</span>
+                </NavLink>
+            </nav>
+            <usection className="user-entrys">
                 {userEntrys.map(entry => (
-                    <li key={entry._id} className="square-image">
+                    <div key={entry._id} className="entry-image">
                         <img src={entry.imgUrl} />
                         {/* <EntryPreview entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry}/> */}
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </usection>
         </section>
     )
 }

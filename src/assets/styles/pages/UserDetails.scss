@@ -1,23 +1,68 @@
 .user-details {
     display: grid;
-    justify-content: center;
-  
+    justify-self: center;
+    width: rem(935px);
+    padding: 0px rem(20px);
+    padding-top: rem(30px);
+
     .user-header {
         display: flex;
-        width: rem(935px);
-        img {
-            border-radius: 50%;
+        justify-content: space-around;
+        .user-img {
+            @include square-image(150px);
+            img {
+                border-radius: 50%;
+            }
         }
         .user-info {
+            width: rem(623px);
             .info-top {
                 display: flex;
-                button {
-                    background-color: #efefef;
+                align-items: center;
+                gap: rem(20px);
+                margin-bottom: rem(20px);
+                .username {
+                    font-size: rem(20px);
+                    line-height: rem(25px);
+                }
+                .user-buttons {
+                    display: flex;
+                    height: rem(32px);
+                    gap: rem(8px);
+                    button {
+                        height: 100%;
+                        background-color: #efefef;
+                        font-size: rem(14px);
+                        padding: 0px rem(16px);
+                        border-radius: rem(8px);
+                    }
                 }
             }
             .info-midle {
                 display: flex;
+                height: rem(18px);
+                margin-bottom: rem(20px);
+                gap: rem(40px);
+                p {
+                    font-size: rem(18px);
+                }
             }
+        }
+    }
+
+    .user-navigation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(52px);
+        gap: rem(60px);
+        .nav-item {
+            color:#737373;
+            line-height: rem(18px);
+            font-size: rem(12px);
+            letter-spacing: rem(1px);
+            margin-left: rem(6px);
+            text-decoration: none;
         }
     }
 
@@ -26,19 +71,8 @@
         grid-template-columns: repeat(3, rem(307px));
         gap: rem(4px);
 
-        .square-image {
-            width: rem(307px);
-            height: rem(307px);
-            overflow: hidden;
-            display: inline-block;
-            img{
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
+        .entry-image {
+            @include square-image(307px);
         }
     }
 }
-
-
