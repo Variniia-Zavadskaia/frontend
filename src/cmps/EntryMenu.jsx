@@ -48,7 +48,7 @@ export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
             <button>Share to...</button>
             <button>Copy link</button>
             <button>About this account</button>
-            <button>Cancel</button>
+            <button onClick={onClose} >Cancel</button>
         </div>
     )
 }
