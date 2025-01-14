@@ -1,6 +1,7 @@
 import { entrySvg } from './Svgs'
 import { useState } from 'react'
 import { UserIcon } from './elements/UserIcon'
+import { UserName } from './elements/UserName'
 
 export function EditEntry({ entry, onClose, onUpdateEntry }) {
     const [txt, setTxt] = useState(entry.txt)
@@ -32,7 +33,8 @@ export function EditEntry({ entry, onClose, onUpdateEntry }) {
                     <div className='to'>
                         <div className="prof">
                             <UserIcon user={userBy} isLink={false}/>
-                            <span className="text first">{userBy.fullname}</span>
+                            <UserName user={userBy} isLink={false}/>
+                            {/* <span className="text first">{userBy.fullname}</span> */}
                         </div>
                         <textarea name="txt" value={entryToEdit.txt} onChange={handleTxtChange} />
                         <div className="text-footer">
