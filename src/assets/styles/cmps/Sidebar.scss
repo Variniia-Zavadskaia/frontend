@@ -2,12 +2,13 @@
     display: grid;
     height: 100vh;
     border-right: 0.0625rem solid $border-color;
-    // padding: rem(25px) rem(12px);
+    padding: rem(15px) 0;
     // width: rem(244px);
     position: fixed;
     top: 0;
     left: 0;
     color: $ig-primory-clr;
+    width: rem(244px);
     // justify-content: center;
     
     nav {
@@ -21,8 +22,9 @@
         
         .logo {
            
-            width: rem(220px);
-            margin: rem(12px);
+            width: rem(196px);
+            height: rem(37px);
+            margin: rem(21px) rem(24px) ;
             color: $ig-primory-clr;
             &:hover {
                 color: $ig-primary-clr2;
@@ -36,7 +38,9 @@
             color: $ig-primory-clr;
             text-decoration: none;
             width: rem(220px);
-            margin-bottom: rem(8px);
+            height: rem(48px);
+            margin: rem(4px) 0px;
+            padding: rem(12px);
             border-radius: 8px;
             cursor: pointer;
             transition: color 0.3s, fill 0.3s background-color 0.3s ease;
@@ -53,12 +57,15 @@
             .icon {
                 width: rem(24px);
                 height: rem(24px);
-                margin: rem(12px);
+                // margin: rem(12px);
                 transition: stroke 0.3s ease, fill 0.3s ease;
                 &.active {
                     stroke: $ig-primory-clr;
                     fill: $ig-primory-clr;
                 }
+            }
+            .text {
+                padding-left: rem(16px);
             }
         }
 

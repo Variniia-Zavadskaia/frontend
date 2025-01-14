@@ -45,7 +45,7 @@ export function Sidebar() {
 
     return (
         <section className="sidebar ">
-            <nav>
+            <nav >
                 <NavLink to="entry" className="logo">
                     <div>{sideBarSvg.logo}</div>
                 </NavLink>
