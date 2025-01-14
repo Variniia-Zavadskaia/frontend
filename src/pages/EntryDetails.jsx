@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { entrySvg } from '../cmps/Svgs'
 import { UserIcon } from '../cmps/elements/UserIcon'
+import { UserName } from '../cmps/elements/UserName'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { loadEntry, addEntryMsg } from '../store/actions/entry.actions'
@@ -42,7 +43,7 @@ export function EntryDetails() {
                     <div className="header-details">
                         <div className="prof-preview">
                             <UserIcon user={userBy} />
-                            <span className="full-name">{userBy.fullname}</span>
+                            <UserName user={userBy} />
                         </div>
                         <button onClick={onOptions}>{entrySvg.option}</button>
                     </div>
@@ -51,7 +52,7 @@ export function EntryDetails() {
                             <UserIcon user={userBy} />
                             <div className="comment-txt">
                                 <p>
-                                    <span className="full-name">{userBy.fullname}</span> {entry.txt}
+                                    <UserName user={userBy} /> {entry.txt}
                                 </p>
                             </div>
 
