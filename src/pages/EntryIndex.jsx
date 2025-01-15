@@ -66,14 +66,14 @@ console.log(entrys);
     return (
         <section className="entry-index">
             <div className="content">
-                <ul className="stories">
+                {/* <ul className="stories">
                     {randomFaces.map((face, idx) => (
                         <li key={idx} className="story">
                             <img src={face} alt={`Random Face ${idx + 1}`} />
                             <span>Name {idx + 1}</span>
                         </li>
                     ))}
-                </ul>
+                </ul> */}
                 {/* {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>} */}
                 <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
             </div>

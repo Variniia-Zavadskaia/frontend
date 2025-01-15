@@ -7,6 +7,9 @@ import { AppFooter } from './AppFooter'
 export function Widgets() {
     const user = useSelector(storeState => storeState.userModule.user)
 
+    console.log(user.username);
+    console.log(user.fullname);
+    
     return (
         <section className="widgets">
             {/* {!user && (
@@ -16,27 +19,25 @@ export function Widgets() {
                        )} */}
             {user && (
                 <div>
-                    <NavLink className="menu-item" to={`user/${user._id}`}>
+                    <NavLink className="menu-item" to={`/user/${user._id}`}>
                         {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                        {user.imgUrl && <img src={user.imgUrl} className='icon' />}{' '}
+                        {user.imgUrl && <img src={user.imgUrl} className="icon" />}{' '}
                         {/* <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" /> */}
                         <div>
-                            <span className="text first">{user.fullname}</span>
+                            <span className="text first">{user.username}</span>
                             <span className="text second">{user.fullname}</span>
                         </div>
-                    <button>Switch</button>
+                        {/* <button>Switch</button> */}
                     </NavLink>
                     {/* <button onClick={onLogout}>logout</button> */}
                 </div>
             )}
             <div>
-
-            <span>Suggested for you</span>
-            <button>See All</button>
+                <span>Suggested for you</span>
+                <button>See All</button>
             </div>
             <div>
                 <NavLink className="menu-item" to={`user/${user._id}`}>
-                    {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
                     <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>
@@ -44,18 +45,8 @@ export function Widgets() {
                     </div>
                     <button>Follow</button>
                 </NavLink>
-                {/* <button onClick={onLogout}>logout</button> */}
+
                 <NavLink className="menu-item" to={`user/${user._id}`}>
-                    {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                    <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
-                    <div>
-                        <span className="text first">{user.fullname}</span>
-                        <span className="text second">{user.fullname}</span>
-                    </div>
-                    <button>Follow</button>
-                </NavLink>
-                <NavLink className="menu-item" to={`user/${user._id}`}>
-                    {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
                     <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>
@@ -64,7 +55,14 @@ export function Widgets() {
                     <button>Follow</button>
                 </NavLink>
                 <NavLink className="menu-item" to={`user/${user._id}`}>
-                    {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
+                    <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
+                    <div>
+                        <span className="text first">{user.fullname}</span>
+                        <span className="text second">{user.fullname}</span>
+                    </div>
+                    <button>Follow</button>
+                </NavLink>
+                <NavLink className="menu-item" to={`user/${user._id}`}>
                     <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>
                         <span className="text first">{user.fullname}</span>

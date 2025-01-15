@@ -45,9 +45,9 @@ export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
             {!isOwner && <button className="unfollow">Unfollow</button>}
 
             <button onClick={onIconClick}>Go to post</button>
-            <button>Share to...</button>
-            <button>Copy link</button>
-            <button>About this account</button>
+            {/* <button>Share to...</button> */}
+            {/* <button>Copy link</button> */}
+            {/* <button>About this account</button> */}
             <button onClick={onClose} >Cancel</button>
         </div>
     )

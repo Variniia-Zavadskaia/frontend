@@ -7,8 +7,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 
 import { onToggleModal } from '../store/actions/app.actions'
-import { addEntry } from '../store/actions/entry.actions'
-import { CreateEntry } from "./CreateEntry.jsx"
+import { CreateEntry } from './CreateEntry.jsx'
 
 import { sideBarSvg } from './Svgs'
 
@@ -19,19 +18,6 @@ export function Sidebar() {
     function onAddEntry() {
         onToggleModal({ cmp: CreateEntry })
     }
-
-    function TestModal() {}
-
-    // async function onAddEntry() {
-    //     const entry = entryService.getEmptyEntry()
-    //     entry.vendor = prompt('Vendor?')
-    //     try {
-    //         const savedEntry = await addEntry(entry)
-    //         showSuccessMsg(`entry added (id: ${savedEntry._id})`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot add entry')
-    //     }
-    // }
 
     async function onLogout() {
         try {
@@ -45,7 +31,7 @@ export function Sidebar() {
 
     return (
         <section className="sidebar ">
-            <nav >
+            <nav>
                 <NavLink to="entry" className="logo">
                     <div>{sideBarSvg.logo}</div>
                 </NavLink>
@@ -83,13 +69,10 @@ export function Sidebar() {
                         </NavLink>
                     )} */}
                     {user && (
-                        // <div className="user-info">
-                            <NavLink className="menu-item" to={`/user/${user._id}`}>
-                                {user.imgUrl && <img src={user.imgUrl} className='icon' />}{' '}
-                                {/* <img src="src/assets/icons/user.svg" alt="Profile Icon" className="icon regular" /> */}
-                                <span className="text">Profile</span>
-                            </NavLink>
-                        // </div>
+                        <NavLink className="menu-item" to={`/user/${user._id}`}>
+                            {user.imgUrl && <img src={user.imgUrl} className="icon" />}{' '}
+                            <span className="text">Profile</span>
+                        </NavLink>
                     )}
                 </ul>
                 <NavLink className="menu-item logout" onClick={onLogout}>

@@ -5,6 +5,8 @@ import { entrySvg } from './Svgs'
 import { EntryMenu } from './EntryMenu'
 import { onToggleModal } from '../store/actions/app.actions'
 import React, { useState } from 'react'
+import { UserIcon } from './elements/UserIcon'
+import { UserName } from './elements/UserName'
 // import { LikeButtom } from './elements/LikeButton'
 
 export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
@@ -36,10 +38,10 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     return (
         <article className="preview">
             <header>
-                <NavLink className="prof-preview" to={`/user/${userBy._id}`}>
-                    {userBy.imgUrl && <img src={userBy.imgUrl} className="icon" />}
-                    <span className="text first">{userBy.fullname}</span>
-                </NavLink>
+                <div className="prof-preview">
+                    <UserIcon user={userBy} />
+                    <UserName calssName="text first" user={userBy} />
+                </div>
                 <button onClick={onOptions}>{entrySvg.option}</button>
             </header>
 

@@ -1,6 +1,7 @@
-.user-img {
-    width: 2rem;
-    height: 2rem;
+.user-icon {
+    @include square-image(32px);
     border-radius: 50%;
-    color: $ig-primory-clr;
+    img {
+        color: $ig-primory-clr;
+    }
 }
