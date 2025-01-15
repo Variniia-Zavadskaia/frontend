@@ -14,11 +14,6 @@ export function Widgets() {
 
     return (
         <section className="widgets">
-            {/* {!user && (
-                           <NavLink to="login" className="login-link">
-                               Login
-                           </NavLink>
-                       )} */}
             {user && (
                 <div className="menu-item">
                     <UserIcon user={user} size={44} />
