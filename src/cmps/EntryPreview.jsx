@@ -39,7 +39,7 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
         <article className="preview">
             <header>
                 <div className="prof-preview">
-                    <UserIcon user={userBy} />
+                    <UserIcon user={userBy} size={32}/>
                     <UserName calssName="text first" user={userBy} />
                 </div>
                 <button onClick={onOptions}>{entrySvg.option}</button>
