@@ -3,13 +3,15 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { AppFooter } from './AppFooter'
+import { UserIcon } from './elements/UserIcon'
+import { UserName } from './elements/UserName'
 
 export function Widgets() {
     const user = useSelector(storeState => storeState.userModule.user)
 
-    console.log(user.username);
-    console.log(user.fullname);
-    
+    console.log(user.username)
+    console.log(user.fullname)
+
     return (
         <section className="widgets">
             {/* {!user && (
@@ -18,18 +20,12 @@ export function Widgets() {
                            </NavLink>
                        )} */}
             {user && (
-                <div>
-                    <NavLink className="menu-item" to={`/user/${user._id}`}>
-                        {/* {user.imgUrl && <img src={user.imgUrl} />} */}{' '}
-                        {user.imgUrl && <img src={user.imgUrl} className="icon" />}{' '}
-                        {/* <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" /> */}
-                        <div>
-                            <span className="text first">{user.username}</span>
-                            <span className="text second">{user.fullname}</span>
-                        </div>
-                        {/* <button>Switch</button> */}
-                    </NavLink>
-                    {/* <button onClick={onLogout}>logout</button> */}
+                <div className="menu-item">
+                    <UserIcon user={user} size={44} />
+                    <div>
+                        <UserName className="text first" user={user} />
+                        <span className="text second">{user.fullname}</span>
+                    </div>
                 </div>
             )}
             <div>
