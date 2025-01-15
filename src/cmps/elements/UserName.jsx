@@ -12,5 +12,5 @@ export function UserName({user, isLink = true}) {
     // console.log(user); 
     
 
-    return <span className="user-name" onClick={onUserNameClick} >{user.fullname}</span>
+    return <span className="user-name" onClick={onUserNameClick} >{user.username}</span>
 }
