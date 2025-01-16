@@ -1,18 +1,35 @@
 .widgets {
-    padding: rem(20px) 2rem;
+    padding: rem(32px) 2rem;
     // width: rem(319px);
-    
+
     .menu-item {
         width: rem(319px);
         display: flex;
         align-items: center;
-        margin-bottom: 2rem;
+        // margin-bottom: 2rem;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        padding: rem(8px) rem(16px);
     }
-    
-    div {
 
+   
+        
+        .widg-txt {
+            font-size: rem(14px);
+            font-weight: bold;
+            color: #737373;
+            margin-top: rem(20px);
+            // padding: rem(4px) rem(16px);
+        }
+    
+        .widg-txt-btn{
+            color: $ig-primory-clr;
+            margin-left: auto;
+            margin-top: rem(20px);
+        }
+
+  
+    div {
         .icon {
             width: 3rem;
             height: 3rem;
@@ -35,6 +52,11 @@
 
         button {
             margin-left: auto;
+            color: #0095f6;
+            font-weight: bold;
+            &:hover {
+                color:#00376b ;
+            }
         }
 
         .text {

@@ -21,13 +21,14 @@ export function Widgets() {
                         <UserName className="text first" user={user} />
                         <span className="text second">{user.fullname}</span>
                     </div>
+                    <button>Switch</button>
                 </div>
             )}
-            <div>
-                <span>Suggested for you</span>
-                <button>See All</button>
+            <div className='menu-item'>
+                <span className='widg-txt'>Suggested for you</span>
+                <button className='widg-txt-btn'>See All</button>
             </div>
-            <div>
+            <div >
                 <NavLink className="menu-item" to={`user/${user._id}`}>
                     <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
                     <div>

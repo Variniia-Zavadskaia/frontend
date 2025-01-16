@@ -36,8 +36,8 @@ export function Sidebar() {
                     <div>{sideBarSvg.logo}</div>
                 </NavLink>
                 <ul className="menu">
-                    <NavLink className={({ isActive }) => (isActive ? 'menu-item active' : 'menu-item')} to="entry">
-                        <div className="icon">{sideBarSvg.home}</div>
+                    <NavLink className="menu-item"  to="entry">
+                        <div className="icon" >{sideBarSvg.home}</div>
                         <span className="text">Home</span>
                     </NavLink>
 

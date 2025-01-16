@@ -76,11 +76,11 @@ console.log(entrys);
                 </ul> */}
                 {/* {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>} */}
                 <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+            <AppFooter />
             </div>
             {/* <EntryFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
 
             <Widgets className="widgets" />
-            <AppFooter />
         </section>
     )
 }
