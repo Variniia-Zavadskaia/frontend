@@ -1,0 +1,48 @@
+.actions {
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    .actions-first {
+        display: flex;
+        .action {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                opacity: 0.8;
+                color: #737373;
+            }
+
+            &.like {
+                padding-right: 0.75rem;
+                // color: #ed4956;
+            }
+
+            &.comment,
+            &.share {
+                padding-right: 0.75rem;
+                // color: #262626;
+            }
+        }
+
+        .action.save {
+            color: #262626;
+            
+
+            &:hover {
+                color: #737373;
+            }
+        }
+    }
+}
+
+.entry-likes {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
