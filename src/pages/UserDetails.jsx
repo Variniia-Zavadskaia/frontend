@@ -61,7 +61,7 @@ export function UserDetails() {
                     </div>
                 </article>
             </header>
-            <nav class="user-navigation">
+            <nav className="user-navigation">
                 <NavLink className="nav-item" to="#">
                     <span>Posts</span>
                 </NavLink>
