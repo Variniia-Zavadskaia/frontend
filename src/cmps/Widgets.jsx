@@ -8,10 +8,7 @@ import { UserName } from './elements/UserName'
 
 export function Widgets() {
     const user = useSelector(storeState => storeState.userModule.user)
-
-    console.log(user.username)
-    console.log(user.fullname)
-
+    
     return (
         <section className="widgets">
             {user && (

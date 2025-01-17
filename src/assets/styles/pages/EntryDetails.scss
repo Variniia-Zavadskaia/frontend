@@ -1,8 +1,11 @@
 .entry-details-container {
-    padding: rem(41px) rem(150px);
+    display: grid;
+    justify-content: center;
+    // align-items: center;
 
     .entry-details {
         display: flex;
+        padding: rem(50px) rem(60px);
         // border: 0.0625rem solid $border-color;
         max-height: rem(601px);
         max-width: rem(935px);
@@ -15,26 +18,29 @@
         .side-details {
             border: 0.0625rem solid $border-color;
             width: rem(335px);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
             .header-details {
                 padding: rem(14px) rem(16px);
-                display: flex;
-                justify-content: space-between;
+                // display: flex;
+                // justify-content: space-between;
                 border-bottom: 0.0625rem solid #dbdbdb;
-                .prof-preview {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-around;
-                    .full-name {
-                        font-size: rem(14px);
-                        font-weight: bold;
-                        text-decoration: none;
-                        color: $ig-primory-clr;
-                        padding-left: rem(12px);
-                    }
-                }
+                // .prof-preview {
+                //     display: flex;
+                //     align-items: center;
+                //     justify-content: space-around;
+                //     .full-name {
+                //         font-size: rem(14px);
+                //         font-weight: bold;
+                //         text-decoration: none;
+                //         color: $ig-primory-clr;
+                //         padding-left: rem(12px);
+                //     }
+                // }
             }
             .comment-container {
                 padding: rem(14px) rem(16px);
+                // flex-grow: 1;
                 .comment {
                     display: flex;
                     flex-direction: row;
@@ -60,6 +66,7 @@
                 }
             }
             .nav-details {
+                height: rem(100px);
                 border-top: 0.0625rem solid #dbdbdb;
                 padding: rem(14px) rem(16px);
             }
@@ -71,6 +78,7 @@
                 justify-content: space-between;
                 border-radius: rem(38px);
                 justify-self: center;
+                align-self: self-end;
                 .icon {
                     width: 2rem;
                     height: 2rem;
@@ -91,7 +99,7 @@
                         font-size: rem(14px);
                         width: rem(226px);
                         line-height: rem(18px);
-                        font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                        font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
                         // font-family: 'Arial', sans-serif;
                         // padding-left: rem(12px);
                         // padding: 8px 0;

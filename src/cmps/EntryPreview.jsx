@@ -1,27 +1,16 @@
-// import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
-import { entrySvg } from './Svgs'
-import { EntryMenu } from './EntryMenu'
-import { onToggleModal } from '../store/actions/app.actions'
 import React, { useState } from 'react'
-import { UserIcon } from './elements/UserIcon'
-import { UserName } from './elements/UserName'
+import { NavLink } from 'react-router-dom'
+
+import { entrySvg } from './Svgs'
+
+
 import { EntryButtons } from './elements/EntryButtons'
+import { EntryHeader } from './elements/EntryHeader'
 
 export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     // const user = useSelector(storeState => storeState.userModule.user)
     const userBy = entry.by
-    function onOptions() {
-        onToggleModal({
-            cmp: EntryMenu,
-            props: {
-                entry,
-                onRemoveEntry,
-                onUpdateEntry,
-            },
-        })
-    }
+
 
     const [likes, setLikes] = useState(entry.likes || 0)
     const [isToggled, setIsToggled] = useState(false)
@@ -33,16 +22,10 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
 
     return (
         <article className="preview">
-            <header>
-                <div className="prof-preview">
-                    <UserIcon user={userBy} size={32} />
-                    <UserName calssName="text first" user={userBy} />
-                </div>
-                <button onClick={onOptions}>{entrySvg.option}</button>
-            </header>
+            <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry}/>
 
             <div className="entry-image">
-                <img src={entry.imgUrl} alt="Post 1" />
+                <img src={entry.imgUrl} alt="Post " />
                 {/* <img src=" https://picsum.photos/300/300" alt="Post 1" /> */}
             </div>
 

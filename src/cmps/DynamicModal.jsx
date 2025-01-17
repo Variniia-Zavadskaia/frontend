@@ -9,12 +9,11 @@ export function DynamicModal() {
 		onToggleModal()
 	}
 
-	console.log('modalData', modalData)
 	if (!modalData) return <></>
 	const Cmp = modalData.cmp
     const props = {...modalData.props}
     props.onClose = onCloseModal
-    console.log(Cmp);
+    // console.log(Cmp);
     
 	return (
 		<div className="dynamic-modal">

@@ -72,14 +72,14 @@ export function UserDetails() {
                     <span>Tagged</span>
                 </NavLink>
             </nav>
-            <usection className="user-entrys">
+            <section className="user-entrys">
                 {userEntrys.map(entry => (
                     <div key={entry._id} className="entry-image">
                         <img src={entry.imgUrl} />
                         {/* <EntryPreview entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry}/> */}
                     </div>
                 ))}
-            </usection>
+            </section>
         </section>
     )
 }

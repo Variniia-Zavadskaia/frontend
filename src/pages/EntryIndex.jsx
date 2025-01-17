@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { loadEntrys, addEntry, updateEntry, removeEntry, addEntryMsg } from '../store/actions/entry.actions'
+import { loadEntrys, addEntry, updateEntry, removeEntry, addEntryComment } from '../store/actions/entry.actions'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { entryService } from '../services/entry'

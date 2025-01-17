@@ -3,23 +3,29 @@ import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { EditEntry } from './EditEntry'
 import { onToggleModal } from '../store/actions/app.actions.js'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { removeEntry } from '../store/actions/entry.actions.js'
 
-export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
+export function EntryMenu({ entry, onUpdateEntry, onClose }) {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
 
     const owner = entry.by
     const isOwner = user._id === owner._id
 
-    async function removeEntry() {
-        await onRemoveEntry(entry._id)
+    async function onRemoveEntry() {
+        try {
+            await removeEntry(entry._id)
+            showSuccessMsg('entry removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove entry')
+        }
         onClose()
     }
 
     function onIconClick() {
-       
-            navigate(`/entry/${entry._id}`)
-        
+        navigate(`/entry/${entry._id}`)
+
         onClose()
     }
 
@@ -37,7 +43,7 @@ export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
     return (
         <div className="options-list">
             {isOwner && (
-                <button className="delete" onClick={removeEntry}>
+                <button className="delete" onClick={onRemoveEntry}>
                     Delete
                 </button>
             )}
@@ -48,7 +54,7 @@ export function EntryMenu({ entry, onRemoveEntry, onUpdateEntry, onClose }) {
             {/* <button>Share to...</button> */}
             {/* <button>Copy link</button> */}
             {/* <button>About this account</button> */}
-            <button onClick={onClose} >Cancel</button>
+            <button onClick={onClose}>Cancel</button>
         </div>
     )
 }

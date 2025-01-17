@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { entrySvg } from '../cmps/Svgs'
 import { UserIcon } from '../cmps/elements/UserIcon'
 import { UserName } from '../cmps/elements/UserName'
+import { EntryButtons } from '../cmps/elements/EntryButtons'
+import { EntryHeader } from '../cmps/elements/EntryHeader'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { loadEntry, addEntryComment } from '../store/actions/entry.actions'
@@ -41,11 +42,7 @@ export function EntryDetails() {
                 <img className="entry-details-img" src={entry.imgUrl} />
                 <div className="side-details">
                     <div className="header-details">
-                        <div className="prof-preview">
-                            <UserIcon user={userBy} />
-                            <UserName user={userBy} />
-                        </div>
-                        <button onClick={onOptions}>{entrySvg.option}</button>
+                        <EntryHeader entry={entry} />
                     </div>
                     <div className="comment-container">
                         <div className="comment">
@@ -62,20 +59,7 @@ export function EntryDetails() {
                         </div>
                     </div>
                     <div className="nav-details">
-                        <div className="actions">
-                            <button className="action like" onClick={() => onUpdateEntry(entry)}>
-                                {entrySvg.heart}
-                            </button>
-                            <button className="action comment" onClick={() => onUpdateEntry(entry)}>
-                                {entrySvg.comment}
-                            </button>
-                            <button className="action share" onClick={() => onUpdateEntry(entry)}>
-                                {entrySvg.share}
-                            </button>
-                            <button className="action save" onClick={() => onRemoveEntry(entry._id)}>
-                                {entrySvg.save}
-                            </button>
-                        </div>
+                        <EntryButtons entry={entry} />
                     </div>
                     <div className="new-comment">
                         <img src={userBy.imgUrl} className="icon" />

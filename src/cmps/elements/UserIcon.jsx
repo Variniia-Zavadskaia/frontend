@@ -2,11 +2,9 @@
 import { useNavigate } from 'react-router'
 
 export function UserIcon({ user, size=60, isLink = true }) {
+
     const navigate = useNavigate()
-
-    console.log(size);
-
-
+    
     function onIconClick() {
         if (isLink) {
             navigate(`/user/${user._id}`)

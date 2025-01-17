@@ -21,37 +21,6 @@
         }
     }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-content: center;
-        padding-bottom: rem(12px);
-
-        .prof-preview {
-            display: flex;
-            align-items: center;
-        }
-        .icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            color: $ig-primory-clr;
-        }
-
-        // button,
-        // a {
-        //     align-self: center;
-        //     font-size: 1rem;
-        //     color: $ig-primory-clr;
-        //     font-weight: bold;
-        //     transition: background-color 0.3s, color 0.3s;
-        //     gap: 1rem;
-        //     &:hover {
-        //         text-decoration: none;
-        //     }
-        // }
-    }
-
     .entry-image {
         position: relative;
         img {
