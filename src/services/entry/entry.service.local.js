@@ -10,7 +10,7 @@ export const entryService = {
     getById,
     save,
     remove,
-    addEntryMsg
+    addEntryComment
 }
 window.cs = entryService
 
@@ -58,6 +58,7 @@ async function save(entry) {
         const entryToSave = {
             _id: entry._id,
             txt: entry.txt,
+            likedBy: entry.likedBy,
         }
         savedEntry = await storageService.put(STORAGE_KEY, entryToSave)
     } else {
@@ -67,7 +68,7 @@ async function save(entry) {
         //     speed: entry.speed,
         //     // Later, owner is set by the backend
         //     owner: userService.getLoggedinUser(),
-        //     msgs: []
+        //     comments: []
         // }
         const entryToSave = {...entry}
         entryToSave.by = userService.getLoggedinUser()
@@ -76,17 +77,17 @@ async function save(entry) {
     return savedEntry
 }
 
-async function addEntryMsg(entryId, txt) {
+async function addEntryComment(entryId, txt) {
     // Later, this is all done by the backend
     const entry = await getById(entryId)
 
-    const msg = {
+    const comment = {
         id: makeId(),
         by: userService.getLoggedinUser(),
         txt
     }
-    entry.msgs.push(msg)
+    entry.comments.push(comment)
     await storageService.put(STORAGE_KEY, entry)
 
-    return msg
+    return comment
 }

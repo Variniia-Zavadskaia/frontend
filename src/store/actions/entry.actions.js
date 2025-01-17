@@ -1,6 +1,6 @@
 import { entryService } from '../../services/entry'
 import { store } from '../store'
-import { ADD_ENTRY, REMOVE_ENTRY, SET_ENTRYS, SET_ENTRY, UPDATE_ENTRY, ADD_ENTRY_MSG } from '../reducers/entry.reducer'
+import { ADD_ENTRY, REMOVE_ENTRY, SET_ENTRYS, SET_ENTRY, UPDATE_ENTRY, ADD_ENTRY_COMMENT } from '../reducers/entry.reducer'
 
 export async function loadEntrys(filterBy) {
     try {
@@ -57,13 +57,13 @@ export async function updateEntry(entry) {
     }
 }
 
-export async function addEntryMsg(entryId, txt) {
+export async function addEntryComment(entryId, txt) {
     try {
-        const msg = await entryService.addEntryMsg(entryId, txt)
-        store.dispatch(getCmdAddEntryMsg(msg))
-        return msg
+        const comment = await entryService.addEntryComment(entryId, txt)
+        store.dispatch(getCmdAddEntryComment(comment))
+        return comment
     } catch (err) {
-        console.log('Cannot add entry msg', err)
+        console.log('Cannot add entry comment', err)
         throw err
     }
 }
@@ -99,10 +99,10 @@ function getCmdUpdateEntry(entry) {
         entry
     }
 }
-function getCmdAddEntryMsg(msg) {
+function getCmdAddEntryComment(comment) {
     return {
-        type: ADD_ENTRY_MSG,
-        msg
+        type: ADD_ENTRY_COMMENT,
+        comment
     }
 }
 
@@ -115,5 +115,5 @@ async function unitTestActions() {
         title: 'Entry-Good',
     })
     await removeEntry('m1oC7')
-    // TODO unit test addEntryMsg
+    // TODO unit test addEntryComment
 }

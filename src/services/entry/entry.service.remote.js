@@ -5,7 +5,7 @@ export const entryService = {
     getById,
     save,
     remove,
-    addEntryMsg
+    addEntryComment
 }
 
 async function query(filterBy = { txt: ''}) {
@@ -29,7 +29,7 @@ async function save(entry) {
     return savedEntry
 }
 
-async function addEntryMsg(entryId, txt) {
-    const savedMsg = await httpService.post(`entry/${entryId}/msg`, {txt})
-    return savedMsg
+async function addEntryComment(entryId, txt) {
+    const savedComment = await httpService.post(`entry/${entryId}/comment`, {txt})
+    return savedComment
 }

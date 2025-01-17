@@ -7,7 +7,7 @@ import { UserIcon } from '../cmps/elements/UserIcon'
 import { UserName } from '../cmps/elements/UserName'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { loadEntry, addEntryMsg } from '../store/actions/entry.actions'
+import { loadEntry, addEntryComment } from '../store/actions/entry.actions'
 
 export function EntryDetails() {
     const { entryId } = useParams()
@@ -20,12 +20,12 @@ export function EntryDetails() {
         loadEntry(entryId)
     }, [entryId])
 
-    async function onAddEntryMsg(entryId) {
+    async function onAddEntryComment(entryId) {
         try {
-            await addEntryMsg(entryId, 'bla bla ' + parseInt(Math.random() * 10))
-            showSuccessMsg(`Entry msg added`)
+            await addEntryComment(entryId, 'bla bla ' + parseInt(Math.random() * 10))
+            showSuccessMsg(`Entry comment added`)
         } catch (err) {
-            showErrorMsg('Cannot add entry msg')
+            showErrorMsg('Cannot add entry comment')
         }
     }
 
