@@ -48,7 +48,7 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
 
             {/* {entry.owner && <p>Owner: <span>{entry.owner.fullname}</span></p>} */}
             <div className="entry-info">
-                <EntryButtons entry={entry} />
+                <EntryButtons entry={entry} onUpdateEntry={onUpdateEntry}/>
                 <div className="entry-comment">
                     <p>
                         <NavLink to={`/user/${userBy._id}`}>{userBy.fullname}</NavLink> {entry.txt}
