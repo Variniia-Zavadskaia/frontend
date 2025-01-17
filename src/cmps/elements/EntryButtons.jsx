@@ -15,9 +15,9 @@ export function EntryButtons({ entry }) {
 
     return (
         <section>
-            <div className="actions">
-                <div>
-                    <div onClick={handleLike} style={{ cursor: 'pointer' }}>
+            <div className="entry-buttons">
+                <div className='like-share'>
+                    <div  onClick={handleLike} style={{ cursor: 'pointer' }}>
                         {isToggled ? (
                             <button className="action like">{entrySvg.fullHeart}</button>
                         ) : (
