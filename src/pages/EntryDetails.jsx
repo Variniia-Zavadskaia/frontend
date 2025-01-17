@@ -30,8 +30,6 @@ export function EntryDetails() {
         }
     }
 
-    function onOptions() {}
-
     if (!entry) return <></>
 
     // console.log(entry);
