@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { entrySvg } from '../Svgs'
+import { addEntryLike, removeEntryLike } from '../../store/actions/entry.actions'
 
 export function EntryButtons({ entry, onUpdateEntry}) {
     //TODO btn comment -> open entry modal
@@ -23,13 +24,16 @@ export function EntryButtons({ entry, onUpdateEntry}) {
         if (isLiked) {
             // Delete like
             updatedLikedBy = likedBy.filter((likedUser) => likedUser._id !== _id);
+            removeEntryLike(entry._id, _id)
         } else {
             // Add like
             updatedLikedBy = [...likedBy, { _id, fullname, imgUrl }];
+            addEntryLike(entry._id, { _id, fullname, imgUrl })
+
         }
         setLikedBy([...updatedLikedBy]);
         
-        onUpdateEntry({...entry, likedBy: updatedLikedBy})
+        // onUpdateEntry({...entry, likedBy: updatedLikedBy})
     }
 
     return (

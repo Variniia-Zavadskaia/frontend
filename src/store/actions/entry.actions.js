@@ -68,6 +68,30 @@ export async function addEntryComment(entryId, txt) {
     }
 }
 
+export async function addEntryLike(entryId, likedUser) {
+    try {
+        let entry = await entryService.getById(entryId)
+        entry.likedBy = [...entry.likedBy, likedUser]
+        await updateEntry(entry)
+        return likedUser
+    } catch (err) {
+        console.log('Cannot add entry like', err)
+        throw err
+    }
+}
+
+export async function removeEntryLike(entryId, userId) {
+    try {
+        let entry = await entryService.getById(entryId)
+
+        entry.likedBy = entry.likedBy.filter((likedUser) => likedUser._id !== userId);
+        await updateEntry(entry)
+    } catch (err) {
+        console.log('Cannot remove entry like', err)
+        throw err
+    }
+}
+
 // Command Creators:
 function getCmdSetEntrys(entrys) {
     return {
