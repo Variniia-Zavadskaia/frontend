@@ -6,6 +6,7 @@ import { entrySvg } from './Svgs'
 
 import { EntryButtons } from './elements/EntryButtons'
 import { EntryHeader } from './elements/EntryHeader'
+import { CreateComment } from './elements/CreateComment'
 
 export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     // const user = useSelector(storeState => storeState.userModule.user)
@@ -39,10 +40,12 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
                 </div>
 
                 {/* <span className="view-comments">View all 20 comments</span> */}
-                <div className="entry-comments">
+                {/* <div className="entry-comments">
                     <textarea name="txt" placeholder="Add a comment..."></textarea>
                     <button>{entrySvg.emoji}</button>
-                </div>
+                </div> */}
+                <CreateComment onSaveComment={(comment) => {console.log(comment)
+                }}/>
             </div>
         </article>
     )
