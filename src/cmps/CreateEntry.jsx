@@ -30,8 +30,10 @@ export function CreateEntry({ onClose }) {
     }
 
     async function onAddEntry() {
+        const entryToSave = {...entry, date: new Date()}
+
         try {
-            const savedEntry = await addEntry(entry)
+            const savedEntry = await addEntry(entryToSave)
             showSuccessMsg(`entry added (id: ${savedEntry._id})`)
         } catch (err) {
             showErrorMsg('Cannot add entry', err)
