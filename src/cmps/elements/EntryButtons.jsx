@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { entrySvg } from '../Svgs'
 import { addEntryLike, removeEntryLike } from '../../store/actions/entry.actions'
+import { LikeButton } from './LikeButton'
 
 export function EntryButtons({ entry, onUpdateEntry}) {
     //TODO btn comment -> open entry modal
@@ -40,11 +41,7 @@ export function EntryButtons({ entry, onUpdateEntry}) {
         <section>
             <div className="entry-buttons">
                 <div className="like-share">
-                    <div onClick={handleLike} style={{ cursor: 'pointer' }}>
-                        <button className={`action like ${isLiked ? 'liked' : ''}`} aria-label="Like button">
-                            {isLiked ? entrySvg.fullHeart : entrySvg.heart}
-                        </button>
-                    </div>
+                    <LikeButton isLiked={isLiked} handleLike={handleLike}/>
                     <button className="action comment">{entrySvg.comment}</button>
                     <button className="action share">{entrySvg.share}</button>
                 </div>

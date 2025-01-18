@@ -20,26 +20,26 @@
                 color: #737373;
             }
 
-            &.like {
-                padding-right: 0.75rem;
-                // color: #ed4956;
-                display: inline-block;
-                transition: transform 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
-            }
-            &.liked {
-                animation: like-animation 0.3s ease forwards;
-            }
-            @keyframes like-animation {
-                0% {
-                    transform: scale(1);
-                }
-                50% {
-                    transform: scale(1.2);
-                }
-                100% {
-                    transform: scale(1);
-                }
-            }
+            // &.like {
+            //     padding-right: 0.75rem;
+            //     // color: #ed4956;
+            //     display: inline-block;
+            //     transition: transform 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+            // }
+            // &.liked {
+            //     animation: like-animation 0.3s ease forwards;
+            // }
+            // @keyframes like-animation {
+            //     0% {
+            //         transform: scale(1);
+            //     }
+            //     50% {
+            //         transform: scale(1.2);
+            //     }
+            //     100% {
+            //         transform: scale(1);
+            //     }
+            // }
 
             &.comment,
             &.share {
