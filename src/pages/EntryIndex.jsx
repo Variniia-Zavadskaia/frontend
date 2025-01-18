@@ -27,12 +27,12 @@ export function EntryIndex() {
     }, [filterBy])
 
     async function onRemoveEntry(entryId) {
-        try {
-            await removeEntry(entryId)
-            showSuccessMsg('entry removed')
-        } catch (err) {
-            showErrorMsg('Cannot remove entry')
-        }
+        // try {
+        //     await removeEntry(entryId)
+        //     showSuccessMsg('entry removed')
+        // } catch (err) {
+        //     showErrorMsg('Cannot remove entry')
+        // }
     }
 
     // async function onAddEntry() {

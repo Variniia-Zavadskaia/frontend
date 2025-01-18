@@ -6,16 +6,19 @@ import { onToggleModal } from '../store/actions/app.actions.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { removeEntry } from '../store/actions/entry.actions.js'
 
-export function EntryMenu({ entry, onUpdateEntry, onClose }) {
+export function EntryMenu({ entry, onUpdateEntry, onRemoveEntry = null, onClose }) {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
 
     const owner = entry.by
     const isOwner = user._id === owner._id
 
-    async function onRemoveEntry() {
+    async function onRemove() {
         try {
             await removeEntry(entry._id)
+            if (onRemoveEntry) {
+                onRemoveEntry()
+            }
             showSuccessMsg('entry removed')
         } catch (err) {
             showErrorMsg('Cannot remove entry')
@@ -43,7 +46,7 @@ export function EntryMenu({ entry, onUpdateEntry, onClose }) {
     return (
         <div className="options-list">
             {isOwner && (
-                <button className="delete" onClick={onRemoveEntry}>
+                <button className="delete" onClick={onRemove}>
                     Delete
                 </button>
             )}
