@@ -4,7 +4,7 @@
 
     .entry-details {
         display: flex;
-        padding: rem(50px) rem(60px);
+        padding: rem(50px) 0;
         max-height: rem(601px);
         max-width: rem(935px);
 
@@ -17,35 +17,15 @@
             border: 0.0625rem solid $border-color;
             width: rem(335px);
             display: grid;
-            grid-template-rows: auto 1fr auto;
+            grid-template-rows: auto 1fr auto auto;
             .header-details {
                 padding: rem(14px) rem(16px);
                 border-bottom: 0.0625rem solid #dbdbdb;
             }
             .comment-container {
                 padding: rem(14px) rem(16px);
+                overflow-y: scroll;
                 // flex-grow: 1;
-                .comment {
-                    display: flex;
-                    flex-direction: row;
-                    align-content: flex-start;
-                    .prof-preview {
-                        display: flex;
-                        .icon {
-                            width: 2rem;
-                            height: 2rem;
-                            border-radius: 50%;
-                            color: $ig-primory-clr;
-                        }
-                    }
-                    .full-name {
-                        font-size: rem(14px);
-                        font-weight: bold;
-                        text-decoration: none;
-                        color: $ig-primory-clr;
-                        padding-left: rem(12px);
-                    }
-                }
             }
             .nav-details {
                 height: rem(100px);
@@ -54,15 +34,14 @@
             }
             .new-comment {
                 display: flex;
-                width: rem(303px);
                 align-items: center;
                 border-radius: rem(38px);
                 padding: rem(14px) rem(16px);
-                gap: 13px;
+                gap: 5px;
                 .new-comment-area {
                     flex:1;
                     border-radius: rem(38px);
-                    // padding: rem(8px) rem(8px);
+                    padding: rem(8px) rem(8px);
                 }
             }
         }

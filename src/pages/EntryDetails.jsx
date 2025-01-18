@@ -1,41 +1,51 @@
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { entrySvg } from '../cmps/Svgs'
 import { CommentList } from '../cmps/CommentList'
 
 import { UserIcon } from '../cmps/elements/UserIcon'
-import { UserName } from '../cmps/elements/UserName'
 import { EntryButtons } from '../cmps/elements/EntryButtons'
 import { EntryHeader } from '../cmps/elements/EntryHeader'
 
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { loadEntry, addEntryComment } from '../store/actions/entry.actions'
+import { loadEntry } from '../store/actions/entry.actions'
 import { CreateComment } from '../cmps/elements/CreateComment'
+import { CommentPreview } from '../cmps/CommentPreview'
 
 export function EntryDetails() {
     const { entryId } = useParams()
     const entry = useSelector(storeState => storeState.entryModule.entry)
     const currentUser = useSelector(storeState => storeState.userModule.user)
+    const [comments, setComments] = useState([])
+    const navigate = useNavigate()
 
-    const userBy = entry ? entry.by : null
-
-    useEffect(() => {
+    useEffect(() => {        
         loadEntry(entryId)
     }, [entryId])
 
-    async function onAddEntryComment(entryId) {
-        try {
-            await addEntryComment(entryId, 'bla bla ' + parseInt(Math.random() * 10))
-            showSuccessMsg(`Entry comment added`)
-        } catch (err) {
-            showErrorMsg('Cannot add entry comment')
-        }
-    }
+    useEffect(() => {
+        setComments(entry ? [...entry.comments] : [])
+    }, [entry])
 
     if (!entry) return <></>
+    
+    console.log(entry);
+    
 
+    const entryMsgComment = {
+        txt: entry.txt,
+        by: entry.by,
+        // date: entry.date || new Date(), 
+        date: entry.date || undefined, 
+    }
     // console.log(entry);
+
+    function onSaveComment(comment) {
+        setComments([comment, ...comments])
+    }
+
+    function onRemoveEntry() {
+        navigate(`/user/${entry.by._id}`)
+    }
 
     return (
         <section className="entry-details-container">
@@ -43,18 +53,11 @@ export function EntryDetails() {
                 <img className="entry-details-img" src={entry.imgUrl} />
                 <div className="side-details">
                     <div className="header-details">
-                        <EntryHeader entry={entry} />
+                        <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} />
                     </div>
                     <div className="comment-container">
-                        <div className="comment">
-                            <UserIcon user={userBy} size={32} />
-                            <div className="comment-txt">
-                                <p>
-                                    <UserName user={userBy} /> {entry.txt}
-                                </p>
-                            </div>
-                        </div>
-                        <CommentList comments={entry.comments} />
+                        <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
+                        <CommentList comments={comments} />
                     </div>
                     <div className="nav-details">
                         <EntryButtons entry={entry} />
@@ -63,9 +66,8 @@ export function EntryDetails() {
                         <UserIcon user={currentUser} size={32} isLink={false} />
                         <div className="new-comment-area">
                             <CreateComment
-                                onSaveComment={comment => {
-                                    console.log(comment)
-                                }}
+                                entryId={entry._id}
+                                onSaveComment={onSaveComment}
                             />
                         </div>
                     </div>
