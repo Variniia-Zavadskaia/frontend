@@ -51,3 +51,31 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export function getElapsedTime(pastDate) {
+    const now = new Date();
+    const past = new Date(pastDate);
+
+    const differenceInMilliseconds = now - past;
+      const seconds = Math.floor(differenceInMilliseconds / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+
+      let elapsedTime = '';
+
+      if (days > 0) {
+        elapsedTime = `${days} day${days > 1 ? 's' : ''}`;
+      } else if (hours > 0) {
+        elapsedTime = `${hours} hour${hours > 1 ? 's' : ''}`;
+      } else if (minutes > 0) {
+        elapsedTime = `${minutes} minute${minutes > 1 ? 's' : ''}`;
+      } else if (seconds > 0) {
+        elapsedTime = `${seconds} second${seconds > 1 ? 's' : ''}`;
+      } else {
+        elapsedTime = 'now'
+      }
+
+      return elapsedTime
+
+}
