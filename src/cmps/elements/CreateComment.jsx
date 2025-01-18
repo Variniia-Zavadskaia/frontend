@@ -36,9 +36,9 @@ export function CreateComment({ onSaveComment }) {
                 value={comment.txt}
                 onChange={handleTextChange}
                 placeholder="Add a comment..."></textarea>
-            <button className="post-btn" onClick={onPostComment}>
+            {comment.txt.length !== 0 && <button className="post-btn" onClick={onPostComment}>
                 Post
-            </button>
+            </button>}
             <div className='emoji-container'>
                 <button className="emoji-btn" onClick={() => setShowPicker(prev => !prev)}>
                     {entrySvg.emoji(24)}
