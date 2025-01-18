@@ -2,4 +2,8 @@
         font-size: 1rem;
         color: $ig-primory-clr;
         font-weight: bold;
+
+        &.linked {
+            cursor: pointer;
+        }
 }

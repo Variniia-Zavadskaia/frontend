@@ -12,7 +12,7 @@ export function UserIcon({ user, size=60, isLink = true }) {
     }
 
     return (
-        <div className="user-icon" onClick={onIconClick} style={{ width: `${size}px`, height: `${size}px`}}>
+        <div className={`user-icon ${isLink ? 'linked' : ''}`} onClick={onIconClick} style={{ width: `${size}px`, height: `${size}px`}}>
             {user.imgUrl && 
                 <img src={user.imgUrl} className="user-img" />}
         </div>

@@ -4,4 +4,8 @@
     img {
         color: $ig-primory-clr;
     }
+
+    &.linked {
+        cursor: pointer;
+    }
 }
