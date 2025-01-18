@@ -59,6 +59,7 @@ async function save(entry) {
             _id: entry._id,
             txt: entry.txt,
             likedBy: entry.likedBy,
+            comments: entry.comments
         }
         savedEntry = await storageService.put(STORAGE_KEY, entryToSave)
     } else {
