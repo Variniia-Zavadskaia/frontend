@@ -1,0 +1,52 @@
+.create-comment {
+    display: flex;
+    align-items: center;
+    // border-radius: rem(38px);
+    // padding: rem(8px) rem(8px);
+    gap: rem(8px);
+
+    textarea {
+        flex: 1;
+        resize: none;
+        border: none;
+        outline: none;
+        font-size: rem(14px);
+        width: rem(226px);
+        line-height: rem(18px);
+        font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .post-btn {
+        font-size: rem(14px);
+        font-weight: bold;
+        color: #0095f6;
+        border-radius: rem(2px);
+        &:hover {
+            color: #00376b;
+        }
+    }
+
+    .emoji-container {
+        position: relative;
+        display: inline-block;
+        .emoji-btn {
+            // position: absolute;
+            // right: 10px;
+            // top: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .emoji-picker {
+            position: absolute;
+            bottom: 40px;
+            transition: left 1s, top 1s;
+            // top: 40px;
+            z-index: 100;
+            // box-shadow: 0 4px 8px #ffffff;
+        }
+    }
+}
+
+// @media (max-width: 600px) { .emoji-picker { left: 0;  top: 40px;  }}
