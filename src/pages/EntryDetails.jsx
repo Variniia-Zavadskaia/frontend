@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { entrySvg } from '../cmps/Svgs'
+import { CommentList } from '../cmps/CommentList'
+
 import { UserIcon } from '../cmps/elements/UserIcon'
 import { UserName } from '../cmps/elements/UserName'
 import { EntryButtons } from '../cmps/elements/EntryButtons'
@@ -9,13 +11,14 @@ import { EntryHeader } from '../cmps/elements/EntryHeader'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { loadEntry, addEntryComment } from '../store/actions/entry.actions'
+import { CreateComment } from '../cmps/elements/CreateComment'
 
 export function EntryDetails() {
     const { entryId } = useParams()
     const entry = useSelector(storeState => storeState.entryModule.entry)
+    const currentUser = useSelector(storeState => storeState.userModule.user)
 
     const userBy = entry ? entry.by : null
-    //   console.log(entry);
 
     useEffect(() => {
         loadEntry(entryId)
@@ -44,26 +47,26 @@ export function EntryDetails() {
                     </div>
                     <div className="comment-container">
                         <div className="comment">
-                            <UserIcon user={userBy} />
+                            <UserIcon user={userBy} size={32} />
                             <div className="comment-txt">
                                 <p>
                                     <UserName user={userBy} /> {entry.txt}
                                 </p>
                             </div>
-
-                            {/* <p>
-                                <NavLink to={`user/${userBy._id}`}>{userBy.fullname}</NavLink> {entry.txt}
-                            </p> */}
                         </div>
+                        <CommentList comments={entry.comments} />
                     </div>
                     <div className="nav-details">
                         <EntryButtons entry={entry} />
                     </div>
                     <div className="new-comment">
-                        <img src={userBy.imgUrl} className="icon" />
-                        <div>
-                            <textarea name="txt" rows="1" placeholder="Add a comment..."></textarea>
-                            <button className="emoji">{entrySvg.emoji}</button>
+                        <UserIcon user={currentUser} size={32} isLink={false} />
+                        <div className="new-comment-area">
+                            <CreateComment
+                                onSaveComment={comment => {
+                                    console.log(comment)
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
