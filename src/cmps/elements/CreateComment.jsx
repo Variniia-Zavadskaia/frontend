@@ -5,8 +5,10 @@ import data from '@emoji-mart/data'
 import { entrySvg } from '../Svgs'
 import { userService } from '../../services/user'
 import { makeId } from '../../services/util.service'
+import { addComment } from '../../store/actions/comment.actions'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
-export function CreateComment({ onSaveComment }) {
+export function CreateComment({ entryId, onSaveComment = null }) {
     const [comment, setComment] = useState({ txt: '', by: userService.getLoggedinUser(), likedBy: []})
     const [showPicker, setShowPicker] = useState(false)
 
@@ -16,15 +18,26 @@ export function CreateComment({ onSaveComment }) {
 
     function handleEmojiSelect(emoji) {
         setComment({ ...comment, txt: comment.txt + emoji.native })
-        // setInputValue(prevValue => prevValue + emoji.native)
         setShowPicker(false)
+    }
+
+    async function addEntryComment(commentToAdd) {
+        try {
+            await addComment(commentToAdd, entryId)
+            showSuccessMsg(`Entry comment added`)
+        } catch (err) {
+            showErrorMsg('Cannot add entry comment')
+        }
     }
 
     function onPostComment() {
         let savedComment = { ...comment }
         savedComment.date = new Date()
         savedComment.id = makeId()
-        onSaveComment(savedComment)
+        addEntryComment(savedComment)
+        if (onSaveComment) {
+            onSaveComment(savedComment)
+        }
         setComment({ ...comment, txt: '' })
     }
 
