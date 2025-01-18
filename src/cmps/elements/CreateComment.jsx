@@ -41,7 +41,7 @@ export function CreateComment({ onSaveComment }) {
             </button>
             <div className='emoji-container'>
                 <button className="emoji-btn" onClick={() => setShowPicker(prev => !prev)}>
-                    {entrySvg.emoji}
+                    {entrySvg.emoji(24)}
                 </button>
                 {showPicker && (
                     <div className="emoji-picker">
