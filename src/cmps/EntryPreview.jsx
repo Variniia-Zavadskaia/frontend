@@ -30,7 +30,7 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
 
                 {/* <span className="view-comments">View all 20 comments</span> */}
 
-                <CreateComment/>
+                <CreateComment entryId={entry._id}/>
             </div>
         </article>
     )
