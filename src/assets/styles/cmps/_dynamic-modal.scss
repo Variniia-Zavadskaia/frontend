@@ -26,6 +26,11 @@
     align-items: center;
     justify-content: center;
     z-index: 999;
+    .modal {
+        border-radius: rem(12px);
+        background-color: #ffffff;
+        overflow: hidden;
+    }
 
     .close-btn {
         position: absolute;

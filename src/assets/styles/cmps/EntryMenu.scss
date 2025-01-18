@@ -2,26 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: rem(20px);
-    background-color: ffffff;
     font-size: rem(14px);
+    width: rem(400px);
 
     button, a {
-        width: rem(400px);
+        display: block;
+        width: 100%;
         height: rem(48px);
         border-bottom: 0.0625rem solid $border-color;
         padding: rem(4px) rem(8px);
-
-        &:first-child {
-            border-radius: rem(12px) rem(12px) 0px 0px;
-        }
-
-        &:last-child {
-            border-radius: 0px 0px rem(12px) rem(12px);
-        }
-
+        cursor: pointer;
     }
-    .delete, .unfollow {
+    .red-button {
         color: red;
         font-weight: bold;
     }

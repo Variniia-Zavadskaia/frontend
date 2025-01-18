@@ -46,12 +46,12 @@ export function EntryMenu({ entry, onUpdateEntry, onRemoveEntry = null, onClose 
     return (
         <div className="options-list">
             {isOwner && (
-                <button className="delete" onClick={onRemove}>
+                <button className="red-button" onClick={onRemove}>
                     Delete
                 </button>
             )}
             {isOwner && <button onClick={editEntry}>Edit</button>}
-            {!isOwner && <button className="unfollow">Unfollow</button>}
+            {!isOwner && <button className="red-button">Unfollow</button>}
 
             <button onClick={onIconClick}>Go to post</button>
             {/* <button>Share to...</button> */}
