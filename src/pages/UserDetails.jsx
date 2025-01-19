@@ -56,13 +56,20 @@ export function UserDetails() {
                         <p>{user.followers.length} followers</p>
                         <p>{user.following.length} following</p>
                     </div>
+                    <div className="info-midle">
+                        <p>{user.fullname}</p>
+                    </div>
                 </article>
             </header>
             <nav className="user-navigation">
-                <NavLink className="nav-item" to="">Posts</NavLink>
-                <NavLink className="nav-item" to="saved">Saved</NavLink>
+                <NavLink className="nav-item" to="">
+                    Posts
+                </NavLink>
+                <NavLink className="nav-item" to="saved">
+                    Saved
+                </NavLink>
             </nav>
-            <Outlet/>
+            <Outlet />
         </section>
     )
 }
@@ -70,7 +77,7 @@ export function UserDetails() {
 export function UserEntrys() {
     const entrys = useSelector(storeState => storeState.userModule.watchedUserEntrys)
 
-    return <UserEntryList entrys={entrys}/>
+    return <UserEntryList entrys={entrys} />
 }
 
 export function SavedUserEntrys() {
