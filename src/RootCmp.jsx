@@ -7,7 +7,6 @@ import { Explore } from './pages/Explore.jsx'
 import { Direct } from './pages/Direct.jsx'
 import { AdminIndex } from './pages/AdminIndex.jsx'
 
-import { EntryDetails } from './pages/EntryDetails'
 import { UserDetails, UserEntrys, SavedUserEntrys } from './pages/UserDetails'
 
 import { Sidebar } from './cmps/Sidebar'
@@ -16,6 +15,8 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { DynamicModal } from './cmps/DynamicModal.jsx'
+import { EntryDetailsModal } from './cmps/EntryDetailsModal.jsx'
+import { EntryDetailsPage } from './pages/EntryDetailsPage.jsx'
 
 export function RootCmp() {
     const location = useLocation()
@@ -31,7 +32,7 @@ export function RootCmp() {
                     <Route path="signup" element={<Signup />} />
                     <Route path="entry" element={<EntryIndex />} />
                     <Route path="explore" element={<Explore />} />
-                    <Route path="entry/:entryId" element={<EntryDetails />} />
+                    <Route path="entry/:entryId" element={<EntryDetailsPage />} />
                     <Route path="user/:id" element={<UserDetails />}>
                         <Route index element={<UserEntrys />} />
                         <Route path="saved" element={<SavedUserEntrys />} />
@@ -41,6 +42,7 @@ export function RootCmp() {
                 </Routes>
             </main>
             <DynamicModal />
+            <EntryDetailsModal/>
             {/* <AppFooter /> */}
         </div>
     )

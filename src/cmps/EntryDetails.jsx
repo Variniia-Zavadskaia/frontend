@@ -1,26 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { CommentList } from '../cmps/CommentList'
+import { CommentList } from './CommentList'
 
-import { UserIcon } from '../cmps/elements/UserIcon'
-import { EntryButtons } from '../cmps/elements/EntryButtons'
-import { EntryHeader } from '../cmps/elements/EntryHeader'
+import { UserIcon } from './elements/UserIcon'
+import { EntryButtons } from './elements/EntryButtons'
+import { EntryHeader } from './elements/EntryHeader'
 
 import { loadEntry } from '../store/actions/entry.actions'
-import { CreateComment } from '../cmps/elements/CreateComment'
-import { CommentPreview } from '../cmps/CommentPreview'
+import { CreateComment } from './elements/CreateComment'
+import { CommentPreview } from './CommentPreview'
 
-export function EntryDetails() {
-    const { entryId } = useParams()
+export function EntryDetails({entryId}) {
     const entry = useSelector(storeState => storeState.entryModule.entry)
     const currentUser = useSelector(storeState => storeState.userModule.user)
     const [comments, setComments] = useState([])
     const navigate = useNavigate()
 
-    useEffect(() => {        
+    useEffect(() => {                
         loadEntry(entryId)
-    }, [entryId])
+    }, [])
 
     useEffect(() => {
         setComments(entry ? [...entry.comments] : [])
@@ -43,12 +42,17 @@ export function EntryDetails() {
         setComments([comment, ...comments])
     }
 
+    function onRemoveComment(commentToRemove) {
+        const updatedComments = comments.filter(comment => comment.id !== commentToRemove.id)
+
+        setComments([...updatedComments])
+    }
+
     function onRemoveEntry() {
         navigate(`/user/${entry.by._id}`)
     }
 
     return (
-        <section className="entry-details-container">
             <div className="entry-details">
                 <img className="entry-details-img" src={entry.imgUrl} />
                 <div className="side-details">
@@ -57,7 +61,7 @@ export function EntryDetails() {
                     </div>
                     <div className="comment-container">
                         <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
-                        <CommentList comments={comments} />
+                        <CommentList comments={comments} onRemoveComment={onRemoveComment}/>
                     </div>
                     <div className="nav-details">
                         <EntryButtons entry={entry} />
@@ -73,6 +77,5 @@ export function EntryDetails() {
                     </div>
                 </div>
             </div>
-        </section>
     )
 }

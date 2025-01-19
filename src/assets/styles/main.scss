@@ -17,12 +17,11 @@
 
 @import "pages/AboutUs";
 @import "pages/EntryIndex";
-@import "pages/EntryDetails";
 @import "pages/Explore";
 @import "pages/CommentIndex";
 @import "pages/UserDetails";
-@import "pages/UserEntryList";
 @import "pages/TaskDetails";
+@import "pages/EntryDetailsPage";
 @import "pages/Login";
 @import "pages/Signup";
 
@@ -44,9 +43,11 @@
 @import "cmps/EditEntry";
 @import "cmps/CreateEntry";
 @import "cmps/UserEntryList";
+@import "cmps/EntryDetails";
 // @import "cmps/EntryPreview";
 
 @import "./cmps/dynamic-modal";
+@import "./cmps/EntryDetailsModal";
 
 //Elements
 @import "./cmps/elements/UserIcon";
