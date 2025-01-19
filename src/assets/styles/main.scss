@@ -21,6 +21,7 @@
 @import "pages/Explore";
 @import "pages/CommentIndex";
 @import "pages/UserDetails";
+@import "pages/UserEntryList";
 @import "pages/TaskDetails";
 @import "pages/Login";
 @import "pages/Signup";
@@ -42,6 +43,7 @@
 @import "cmps/EntryMenu";
 @import "cmps/EditEntry";
 @import "cmps/CreateEntry";
+@import "cmps/UserEntryList";
 // @import "cmps/EntryPreview";
 
 @import "./cmps/dynamic-modal";

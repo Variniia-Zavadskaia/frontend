@@ -1,0 +1,9 @@
+.user-entry-list {
+    display: grid;
+    grid-template-columns: repeat(3, rem(307px));
+    gap: rem(4px);
+
+    .entry-image {
+        @include square-image(307px);
+    }
+}
