@@ -30,6 +30,10 @@
         border-radius: rem(12px);
         background-color: #ffffff;
         overflow: hidden;
+
+        header {
+            height: rem(43px)
+        }
     }
 
     .close-btn {
