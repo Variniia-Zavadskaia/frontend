@@ -5,7 +5,7 @@ import { getElapsedTime } from '../services/util.service'
 import { LikeButton } from './elements/LikeButton'
 import { useState } from 'react'
 
-export function CommentPreview({ comment, isEntryMsg = false }) {
+export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment }) {
     const userBy = comment.by
     const [likedBy, setLikedBy] = useState(comment.likedBy ? [...comment.likedBy] : [])
     const [isLiked, setIsLiked] = useState(false)
