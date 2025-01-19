@@ -13,7 +13,6 @@ export function DynamicModal() {
 	const Cmp = modalData.cmp
     const props = {...modalData.props}
     props.onClose = onCloseModal
-    // console.log(Cmp);
     
 	return (
 		<div className="dynamic-modal">
@@ -23,24 +22,5 @@ export function DynamicModal() {
 			</section>
 		</div>
 	)
-
-    // return (
-    //     <div className="modal-overlay">
-    //         <button className="close-btn" onClick={onCloseModal}>&times;</button>
-    //     <div className="modal">
-    //       <header className="modal-header">
-    //         <h2>Create New Post</h2>
-    //       </header>
-    //       <div className="modal-body">
-    //         <div className="image-upload-area">
-    //          <div>{sideBarSvg.uploade}</div>
-    //           <p>Drag photos and videos here</p>
-    //           <button className="upload-btn">Select from computer</button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-	// )
-
 }
 
