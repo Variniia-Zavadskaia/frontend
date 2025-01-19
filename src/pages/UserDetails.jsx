@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { Outlet } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
-import { loadUser } from '../store/actions/user.actions'
+import { loadUser, loadUserEntrys } from '../store/actions/user.actions'
 import { store } from '../store/store'
 import { showSuccessMsg } from '../services/event-bus.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from '../services/socket.service'
-import { loadEntrys } from '../store/actions/entry.actions'
+// import { loadEntrys } from '../store/actions/entry.actions'
 import { entryService } from '../services/entry'
+import { UserEntryList } from '../cmps/UserEntryList'
 
 export function UserDetails() {
     const { id } = useParams()
     const user = useSelector(storeState => storeState.userModule.watchedUser)
-    const [userEntrys, setUserEntrys] = useState([])
+    const entrysCount = useSelector(storeState => storeState.userModule.watchedUserEntrys.length)
 
     useEffect(() => {
         loadUser(id)
-        loadUserEntrys()
+        loadUserEntrys(id)
 
         socketService.emit(SOCKET_EMIT_USER_WATCH, id)
         socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
@@ -26,11 +28,6 @@ export function UserDetails() {
             socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
         }
     }, [id])
-
-    async function loadUserEntrys() {
-        const entrys = await entryService.query({ byId: id })
-        setUserEntrys(JSON.parse(JSON.stringify(entrys)))
-    }
 
     function onUserUpdate(user) {
         showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
@@ -55,31 +52,27 @@ export function UserDetails() {
                         </div>
                     </div>
                     <div className="info-midle">
-                        <p>{userEntrys.length} posts</p>
+                        <p>{entrysCount} posts</p>
                         <p>{user.followers.length} followers</p>
                         <p>{user.following.length} following</p>
                     </div>
                 </article>
             </header>
             <nav className="user-navigation">
-                <NavLink className="nav-item" to="#">
-                    <span>Posts</span>
-                </NavLink>
-                <NavLink className="nav-item" to="#">
-                    <span>Reels</span>
-                </NavLink>
-                <NavLink className="nav-item" to="#">
-                    <span>Tagged</span>
-                </NavLink>
+                <NavLink className="nav-item" to="">Posts</NavLink>
+                <NavLink className="nav-item" to="saved">Saved</NavLink>
             </nav>
-            <section className="user-entrys">
-                {userEntrys.map(entry => (
-                    <div key={entry._id} className="entry-image">
-                        <img src={entry.imgUrl} />
-                        {/* <EntryPreview entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry}/> */}
-                    </div>
-                ))}
-            </section>
+            <Outlet/>
         </section>
     )
+}
+
+export function UserEntrys() {
+    const entrys = useSelector(storeState => storeState.userModule.watchedUserEntrys)
+
+    return <UserEntryList entrys={entrys}/>
+}
+
+export function SavedUserEntrys() {
+    return <p>Saved User Entrys</p>
 }

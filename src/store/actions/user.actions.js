@@ -4,7 +4,8 @@ import { store } from '../store'
 
 import { showErrorMsg } from '../../services/event-bus.service'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
-import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
+import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER, SET_WATCHED_USER_ENTRYS } from '../reducers/user.reducer'
+import { entryService } from '../../services/entry'
 
 export async function loadUsers() {
     try {
@@ -77,6 +78,16 @@ export async function loadUser(userId) {
         store.dispatch({ type: SET_WATCHED_USER, user })
     } catch (err) {
         showErrorMsg('Cannot load user')
+        console.log('Cannot load user', err)
+    }
+}
+
+export async function loadUserEntrys(userId) {
+    try {
+        const entrys = await entryService.query({ byId: userId })
+        store.dispatch({ type: SET_WATCHED_USER_ENTRYS, entrys })
+    } catch (err) {
+        showErrorMsg('Cannot load user posts')
         console.log('Cannot load user', err)
     }
 }
