@@ -11,7 +11,7 @@
     z-index: 999;
     .modal {
         border-radius: rem(12px);
-        background-color: #ffffff;
+        background-color: $ig-primary-background;
         overflow: hidden;
 
         header {
@@ -26,12 +26,12 @@
         background: none;
         border: none;
         font-size: 2.4rem;
-        color: #fff;
+        color: $ig-primary-background;
         cursor: pointer;
         z-index: 1000;
 
         &:hover {
-            color: #ccc;
+            color: $ig-secondary-clr2;
         }
     }
 }

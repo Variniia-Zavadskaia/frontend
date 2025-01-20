@@ -15,7 +15,7 @@
         grid-template-rows: auto 1fr auto auto;
         .header-details {
             padding: rem(14px) rem(16px);
-            border-bottom: 0.0625rem solid #dbdbdb;
+            border-bottom: 0.0625rem solid $border-color;
         }
         .comment-container {
             padding: rem(14px) rem(16px);
@@ -24,7 +24,7 @@
         }
         .nav-details {
             height: rem(100px);
-            border-top: 0.0625rem solid #dbdbdb;
+            border-top: 0.0625rem solid $border-color;
             padding: rem(14px) rem(16px);
         }
         .new-comment {

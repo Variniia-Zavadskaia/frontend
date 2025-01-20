@@ -10,7 +10,7 @@
     justify-content: center;
     z-index: 500;
     .modal {
-        background-color: #ffffff;
+        background-color: $ig-primary-background;
         overflow: hidden;
 
         header {
@@ -30,7 +30,7 @@
         z-index: 1000;
 
         &:hover {
-            color: #ccc;
+            color: $ig-secondary-clr2;
         }
     }
 }

@@ -1,7 +1,7 @@
 .edit-entry {
     width: rem(800px);
     height: rem(600px);
-    background-color: #fff;
+    background-color: $ig-primary-background;
     border-radius: 1rem;
     overflow: hidden;
     display: flex;
@@ -10,7 +10,7 @@
 
     .edit-entry-header {
         padding: rem(11px);
-        border-bottom: 0.1rem solid #dbdbdb;
+        border-bottom: 0.1rem solid $border-color;
         display: flex;
         // align-items: center;
         justify-content: space-between;
@@ -32,7 +32,7 @@
         .side-edit {
             padding: 1rem;
             width: rem(340px);
-            border-left: 0.1rem solid #dbdbdb;
+            border-left: 0.1rem solid $border-color;
             // border-bottom: 0.1rem solid #dbdbdb;
             // display: flex;
             // flex-direction: column;
@@ -69,10 +69,10 @@
                 .text-footer {
                     display: flex;
                     justify-content: space-between;
-                    border-bottom: 0.1rem solid #dbdbdb;
+                    border-bottom: 0.1rem solid $border-color;
 
                     p {
-                        color: #c7c7c7;
+                        color: $ig-secondary-clr2;
                         font-size: rem(12px);
                         line-height: rem(16px);
                         text-align: end;

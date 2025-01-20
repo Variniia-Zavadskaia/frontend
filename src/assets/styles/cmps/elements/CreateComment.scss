@@ -17,10 +17,10 @@
     .post-btn {
         font-size: rem(14px);
         font-weight: bold;
-        color: #0095f6;
+        color: $ig-primary-clr3;
         border-radius: rem(2px);
         &:hover {
-            color: #00376b;
+            color: $ig-secondary-clr3;
         }
     }
 
@@ -31,6 +31,10 @@
             background: none;
             border: none;
             cursor: pointer;
+            color:$ig-primary-clr2;
+            &:hover {
+                color:$ig-secondary-clr2;
+            }
         }
 
         .emoji-picker {
