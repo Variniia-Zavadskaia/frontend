@@ -11,9 +11,6 @@ import { onToggleModal } from '../store/actions/app.actions'
 export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment }) {
     const userBy = comment.by
     const [likedBy, setLikedBy] = useState(comment.likedBy ? [...comment.likedBy] : [])
-    const [isLiked, setIsLiked] = useState(false)
-
-    function handleLike() {}
 
     function onOptions() {
         onToggleModal({
@@ -23,6 +20,10 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment })
                 onRemoveComment,
             },
         })
+    }
+
+    function updateLikedBy(updatedLikedBy) {
+        setLikedBy(updatedLikedBy)
     }
 
     return (
@@ -45,7 +46,7 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment })
                     </div>
                 )}
             </div>
-            {!isEntryMsg && <LikeButton isLiked={isLiked} handleLike={handleLike} size={16} />}
+            {!isEntryMsg && <LikeButton likedBy={comment.likedBy} updateLikedBy={updateLikedBy} size={16} />}
         </article>
     )
 }
