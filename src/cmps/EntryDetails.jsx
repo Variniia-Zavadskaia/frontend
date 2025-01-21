@@ -70,17 +70,14 @@ export function EntryDetails({ entryId }) {
                 </div>
                 <div className="comment-container">
                     <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
-                    <ul className="comment-list">
-                        {comments.map(comment => (
-                            <li key={comment.id}>
-                                <CommentPreview
-                                    comment={comment}
-                                    onRemoveComment={onRemoveComment}
-                                    onUpdateComment={onUpdateComment}
-                                />
-                            </li>
-                        ))}
-                    </ul>
+                    {comments.map(comment => (
+                        <CommentPreview
+                            key={comment.id}
+                            comment={comment}
+                            onRemoveComment={onRemoveComment}
+                            onUpdateComment={onUpdateComment}
+                        />
+                    ))}
                 </div>
                 <div className="nav-details">
                     <EntryButtons entry={entry} />
