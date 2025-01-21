@@ -24,9 +24,9 @@ export function CreateComment({ entryId, onSaveComment = null }) {
     async function addEntryComment(commentToAdd) {
         try {
             await addComment(commentToAdd, entryId)
-            showSuccessMsg(`Entry comment added`)
+            showSuccessMsg(`Comment added`)
         } catch (err) {
-            showErrorMsg('Cannot add entry comment')
+            showErrorMsg('Cannot add comment')
         }
     }
 
