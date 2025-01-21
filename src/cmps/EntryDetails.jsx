@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { CommentList } from './CommentList'
 
 import { UserIcon } from './elements/UserIcon'
 import { EntryButtons } from './elements/EntryButtons'
@@ -46,7 +45,7 @@ export function EntryDetails({ entryId }) {
         try {
             await removeComment(commentToRemove.id, entryId)
             showSuccessMsg(`Comment removed`)
-            
+
             const updatedComments = comments.filter(comment => comment.id !== commentToRemove.id)
             setComments([...updatedComments])
         } catch (err) {
@@ -57,7 +56,6 @@ export function EntryDetails({ entryId }) {
     function onUpdateComment(commentToUpdate) {
         updateComment(commentToUpdate, entryId)
     }
-
 
     function onRemoveEntry() {
         navigate(`/user/${entry.by._id}`)
@@ -72,7 +70,17 @@ export function EntryDetails({ entryId }) {
                 </div>
                 <div className="comment-container">
                     <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
-                    <CommentList comments={comments} onRemoveComment={onRemoveComment} onUpdateComment={onUpdateComment} />
+                    <ul className="comment-list">
+                        {comments.map(comment => (
+                            <li key={comment.id}>
+                                <CommentPreview
+                                    comment={comment}
+                                    onRemoveComment={onRemoveComment}
+                                    onUpdateComment={onUpdateComment}
+                                />
+                            </li>
+                        ))}
+                    </ul>
                 </div>
                 <div className="nav-details">
                     <EntryButtons entry={entry} />
