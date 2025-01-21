@@ -39,11 +39,9 @@ export async function removeComment(commentId, entryId) {
 }
 
 export async function updateComment(commentToUpdate, entryId) {
-    // console.log('commentToUpdate:', commentToUpdate)
 
     try {
         let entry = await entryService.getById(entryId)
-        // console.log('entry:', entry)
 
         entry.comments = entry.comments.map(comment => (comment.id === commentToUpdate.id ? commentToUpdate : comment))
         await updateEntry(entry)
