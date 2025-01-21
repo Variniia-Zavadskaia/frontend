@@ -16,26 +16,41 @@ import { updateEntry } from './entry.actions'
 // }
 
 export async function addComment(comment, entryId) {
-	try {
+    try {
         let entry = await entryService.getById(entryId)
         entry.comments = [comment, ...entry.comments]
-        
+
         await updateEntry(entry)
-	} catch (err) {
-		console.log('commentActions: err in addComment', err)
-		throw err
-	}
+    } catch (err) {
+        console.log('commentActions: err in addComment', err)
+        throw err
+    }
 }
 
 export async function removeComment(commentId, entryId) {
-	try {
+    try {
         let entry = await entryService.getById(entryId)
         entry.comments = entry.comments.filter(comment => comment.id !== commentId)
         await updateEntry(entry)
-	} catch (err) {
-		console.log('commentActions: err in removeComment', err)
-		throw err
-	}
+    } catch (err) {
+        console.log('commentActions: err in removeComment', err)
+        throw err
+    }
+}
+
+export async function updateComment(commentToUpdate, entryId) {
+    // console.log('commentToUpdate:', commentToUpdate)
+
+    try {
+        let entry = await entryService.getById(entryId)
+        // console.log('entry:', entry)
+
+        entry.comments = entry.comments.map(comment => (comment.id === commentToUpdate.id ? commentToUpdate : comment))
+        await updateEntry(entry)
+    } catch (err) {
+        console.log('commentActions: err in updateCommentLike', err)
+        throw err
+    }
 }
 
 // export async function removeComment(commentId) {

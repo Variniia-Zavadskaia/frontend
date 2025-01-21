@@ -10,7 +10,7 @@ import { EntryHeader } from './elements/EntryHeader'
 import { loadEntry } from '../store/actions/entry.actions'
 import { CreateComment } from './elements/CreateComment'
 import { CommentPreview } from './CommentPreview'
-import { removeComment } from '../store/actions/comment.actions'
+import { removeComment, updateComment } from '../store/actions/comment.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function EntryDetails({ entryId }) {
@@ -54,6 +54,11 @@ export function EntryDetails({ entryId }) {
         }
     }
 
+    function onUpdateComment(commentToUpdate) {
+        updateComment(commentToUpdate, entryId)
+    }
+
+
     function onRemoveEntry() {
         navigate(`/user/${entry.by._id}`)
     }
@@ -67,7 +72,7 @@ export function EntryDetails({ entryId }) {
                 </div>
                 <div className="comment-container">
                     <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
-                    <CommentList comments={comments} onRemoveComment={onRemoveComment} />
+                    <CommentList comments={comments} onRemoveComment={onRemoveComment} onUpdateComment={onUpdateComment} />
                 </div>
                 <div className="nav-details">
                     <EntryButtons entry={entry} />

@@ -17,6 +17,7 @@ export function EntryButtons({ entry }) {
         } catch (err) {
             showErrorMsg('Cannot update post like')
             console.log('Cannot update post like', err)
+            setLikedBy([...likedBy])
         }
     }
 

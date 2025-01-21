@@ -2,12 +2,12 @@ import { userService } from '../services/user'
 
 import { CommentPreview } from './CommentPreview.jsx'
 
-export function CommentList({ comments, onRemoveComment }) {
+export function CommentList({ comments, onRemoveComment, onUpdateComment }) {
     return <section>
         <ul className="comment-list">
             {comments.map(comment =>
                 <li key={comment.id}>
-                    <CommentPreview comment={comment} onRemoveComment={onRemoveComment}/>
+                    <CommentPreview comment={comment} onRemoveComment={onRemoveComment} onUpdateComment={onUpdateComment}/>
                 </li>)
             }
         </ul>

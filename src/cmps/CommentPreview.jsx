@@ -5,10 +5,11 @@ import { getElapsedTime } from '../services/util.service'
 import { LikeButton } from './elements/LikeButton'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { showSuccessMsg } from '../services/event-bus.service'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { onToggleModal } from '../store/actions/app.actions'
+// import { updateCommentLike } from '../store/actions/comment.actions'
 
-export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment }) {
+export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, onUpdateComment }) {
     const userBy = comment.by
     const [likedBy, setLikedBy] = useState(comment.likedBy ? [...comment.likedBy] : [])
 
@@ -22,8 +23,18 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment })
         })
     }
 
-    function updateLikedBy(updatedLikedBy) {
+    async function updateLikedBy(updatedLikedBy) {
         setLikedBy(updatedLikedBy)
+        comment.likedBy = updatedLikedBy
+        onUpdateComment(comment)
+
+        // try {
+        //     await updateCommentLike(entry._id, comment.id, updatedLikedBy)
+        // } catch (err) {
+        //     showErrorMsg('Cannot update comment like')
+        //     console.log('Cannot update comment like', err)
+        //     setLikedBy([...likedBy])
+        // }
     }
 
     return (
