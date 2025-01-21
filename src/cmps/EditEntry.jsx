@@ -34,7 +34,6 @@ export function EditEntry({ entry, onClose, onUpdateEntry }) {
                         <div className="prof">
                             <UserIcon user={userBy} isLink={false}/>
                             <UserName user={userBy} isLink={false}/>
-                            {/* <span className="text first">{userBy.fullname}</span> */}
                         </div>
                         <textarea name="txt" value={entryToEdit.txt} onChange={handleTxtChange} />
                         <div className="text-footer">
@@ -48,13 +47,3 @@ export function EditEntry({ entry, onClose, onUpdateEntry }) {
         </div>
     )
 }
-
-// ;<div className="caption-area">
-//     <textarea
-//         // placeholder="Write a caption..."
-//         value={text}
-//         onChange={handleTextChange}
-//     />
-// </div>
-
-// ;<button>{entrySvg.emoji}</button>

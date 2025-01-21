@@ -1,14 +1,12 @@
 import React from 'react'
-
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
+
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
-
 import { onToggleModal } from '../store/actions/app.actions'
 import { CreateEntry } from './CreateEntry.jsx'
-
 import { sideBarSvg } from './Svgs'
 
 export function Sidebar() {

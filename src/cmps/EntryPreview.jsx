@@ -9,7 +9,6 @@ import { CreateComment } from './elements/CreateComment'
 import { UserName } from './elements/UserName'
 
 export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
-    // const user = useSelector(storeState => storeState.userModule.user)
     const userBy = entry.by
 
     return (
@@ -27,8 +26,6 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
                         <UserName user={userBy}/> {entry.txt}
                     </p>
                 </div>
-
-                {/* <span className="view-comments">View all 20 comments</span> */}
 
                 <CreateComment entryId={entry._id}/>
             </div>

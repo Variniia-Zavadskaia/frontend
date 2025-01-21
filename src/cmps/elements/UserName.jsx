@@ -8,9 +8,6 @@ export function UserName({user, isLink = true}) {
             navigate(`/user/${user._id}`)
         }
     }    
-    
-    // console.log(user); 
-    
 
     return <span className={`user-name ${isLink ? 'linked' : ''}`}  onClick={onUserNameClick} >{user.username}</span>
 }

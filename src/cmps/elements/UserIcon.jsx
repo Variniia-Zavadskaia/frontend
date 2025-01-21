@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 
 export function UserIcon({ user, size=60, isLink = true }) {

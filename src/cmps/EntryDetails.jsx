@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { CommentList } from './CommentList'
 
@@ -34,7 +34,6 @@ export function EntryDetails({ entryId }) {
     const entryMsgComment = {
         txt: entry.txt,
         by: entry.by,
-        // date: entry.date || new Date(),
         date: entry.date || undefined,
     }
     // console.log(entry);

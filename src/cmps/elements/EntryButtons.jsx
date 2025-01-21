@@ -6,7 +6,6 @@ import { LikeButton } from './LikeButton'
 import { onToggleEntryDetailsModal } from '../../store/actions/app.actions'
 
 export function EntryButtons({ entry }) {
-    //TODO btn comment -> open entry modal
     //TODO btn share -> open modal with following
 
     const { _id, fullname, imgUrl } = useSelector(storeState => storeState.userModule.user)

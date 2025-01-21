@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux"
 import { onToggleModal } from "../store/actions/app.actions.js"
-// import { sideBarSvg } from "./Svgs.jsx"
 
 export function DynamicModal() {
 	const modalData = useSelector((storeState) => storeState.appModule.modalData)
@@ -10,6 +9,7 @@ export function DynamicModal() {
 	}
 
 	if (!modalData) return <></>
+    
 	const Cmp = modalData.cmp
     const props = {...modalData.props}
     props.onClose = onCloseModal

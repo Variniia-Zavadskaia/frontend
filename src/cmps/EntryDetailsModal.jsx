@@ -2,7 +2,6 @@ import { useSelector } from "react-redux"
 import { onToggleEntryDetailsModal } from "../store/actions/app.actions.js"
 import { useLocation } from 'react-router-dom'
 import { EntryDetails } from "./EntryDetails.jsx"
-// import { sideBarSvg } from "./Svgs.jsx"
 
 export function EntryDetailsModal() {
 	const watchedEntryId = useSelector((storeState) => storeState.appModule.watchedEntryId)

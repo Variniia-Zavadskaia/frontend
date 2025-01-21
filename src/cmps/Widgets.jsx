@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AppFooter } from './AppFooter'
 import { UserIcon } from './elements/UserIcon'
 import { UserName } from './elements/UserName'

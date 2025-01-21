@@ -2,15 +2,11 @@ import { sideBarSvg } from './Svgs.jsx'
 import { ImgUploader } from './ImgUploader'
 import { useState } from 'react'
 import { entryService } from '../services/entry'
-import { useSelector } from 'react-redux'
 import { addEntry } from '../store/actions/entry.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { onToggleModal } from '../store/actions/app.actions.js'
 
 export function CreateEntry({ onClose }) {
     const [imgData, setImgData] = useState({ imgUrl: null })
-    // const {_id, fullname, imgUrl} = useSelector((storeState) => storeState.userModule.user)
-    // const [entry, setEntry] = useState(entryService.getEmptyEntry({_id, fullname, imgUrl}))
     const [entry, setEntry] = useState(entryService.getEmptyEntry())
     const [showText, setShowText] = useState(false)
     const [text, setText] = useState('')
@@ -38,15 +34,8 @@ export function CreateEntry({ onClose }) {
         } catch (err) {
             showErrorMsg('Cannot add entry', err)
         }
-        // replace by input function
-        // onClose()
         onClose()
-        // onToggleModal()
     }
-
-    console.log(entry)
-
-    // function onUploaded(imgUrl, height, width) {}
 
     return (
         <div className="add-entry">
@@ -84,7 +73,6 @@ export function CreateEntry({ onClose }) {
                         <div className="add-entry__caption-area">
                             <textarea
                                 className="add-entry__textarea"
-                                // placeholder="Write a caption..."
                                 value={text}
                                 onChange={handleTextChange}
                             />

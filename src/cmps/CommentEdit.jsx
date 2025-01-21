@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
-
 import { addComment } from "../store/actions/comment.actions"
-
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 export function CommentEdit() {
