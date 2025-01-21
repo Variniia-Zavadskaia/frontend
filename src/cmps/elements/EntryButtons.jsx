@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { entrySvg } from '../Svgs'
 import { addEntryLike, removeEntryLike } from '../../store/actions/entry.actions'
 import { LikeButton } from './LikeButton'
+import { onToggleEntryDetailsModal } from '../../store/actions/app.actions'
 
 export function EntryButtons({ entry }) {
     //TODO btn comment -> open entry modal
@@ -37,7 +38,7 @@ export function EntryButtons({ entry }) {
             <div className="entry-buttons">
                 <div className="like-share">
                     <LikeButton isLiked={isLiked} handleLike={handleLike} />
-                    <button className="action comment">{entrySvg.comment}</button>
+                    <button onClick={() => {onToggleEntryDetailsModal(entry._id)}} className="action comment">{entrySvg.comment}</button>
                     <button className="action share">{entrySvg.share}</button>
                 </div>
                 <button className="action save">{entrySvg.save}</button>
