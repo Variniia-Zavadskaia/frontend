@@ -24,7 +24,11 @@ export function RootCmp() {
 
     return (
         <div className={`app ${hideSidebar ? 'no-sidebar' : ''}`}>
-            {!hideSidebar && <Sidebar />}
+            {!hideSidebar && (
+                <div callName="sidebar-container">
+                    <Sidebar />
+                </div>
+            )}
             <main className="container">
                 <UserMsg />
                 <Routes>
@@ -42,7 +46,7 @@ export function RootCmp() {
                 </Routes>
             </main>
             <DynamicModal />
-            <EntryDetailsModal/>
+            <EntryDetailsModal />
             {/* <AppFooter /> */}
         </div>
     )

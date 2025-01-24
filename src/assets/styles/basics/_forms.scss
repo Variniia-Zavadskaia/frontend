@@ -7,20 +7,19 @@ button {
 	cursor: pointer;
 }
 
-// form > * {
-// 	display: block;
-// 	// width: 200px;
-// 	margin: 10px 0px;
-// }
-
-.btn-link {
-	// border: 0;
-	// background-color: transparent;
-	// text-decoration: underline;
-	// transition: 0.5s;
+.btn {
+    cursor: pointer;
 }
-.btn-link:hover {
-	// background-color: $clr1;
+
+.modal {
+    border-radius: rem(12px);
+    background-color: $ig-primary-background;
+    overflow: hidden;
+    // border: 1px solid #ccc;
+
+    header {
+        height: rem(43px)
+    }
 }
 
 .options-list {
@@ -36,8 +35,8 @@ button {
         height: rem(48px);
         border-bottom: 0.0625rem solid $border-color;
         padding: rem(4px) rem(8px);
-        cursor: pointer;
     }
+
     .red-button {
         color: red;
         font-weight: bold;

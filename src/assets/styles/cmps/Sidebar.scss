@@ -3,78 +3,78 @@
     height: 100vh;
     border-right: 0.0625rem solid $border-color;
     padding: rem(15px) 0;
-    // width: rem(244px);
-    position: fixed;
-    top: 0;
-    left: 0;
     color: $ig-primory-clr;
     width: rem(244px);
-    // justify-content: center;
-    
-    nav {
-        display: grid;
-        justify-items: center;
-        grid-template-rows: auto 1fr auto;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        
-        .logo {
-           
-            width: rem(196px);
-            height: rem(37px);
-            margin: rem(21px) rem(24px) ;
-            color: $ig-primory-clr;
-            &:hover {
-                color: $ig-primary-clr2;
-            }
+    justify-items: center;
+    grid-template-rows: auto 1fr auto;
+    list-style: none;
+
+    .logo {
+        width: rem(196px);
+        height: rem(37px);
+        margin: rem(21px) rem(24px);
+        color: $ig-primory-clr;
+        &:hover {
+            color: $ig-primary-clr2;
         }
-        .menu-item {
-            font-size: rem(16px);
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            color: $ig-primory-clr;
-            text-decoration: none;
-            width: rem(220px);
-            height: rem(48px);
-            margin: rem(4px) 0px;
-            padding: rem(12px);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: color 0.3s, fill 0.3s background-color 0.3s ease;
+    }
 
-            &:hover {
-                background-color: rgba(0, 0, 0, 0.05);
-                border-radius: rem(8px);
-            }
+    .more-menu-container {
+        position: relative;
+        display: inline-block;
 
-            &.active {
-                font-weight: bold;
-            }
-
-            .icon {
-                width: rem(24px);
-                height: rem(24px);
-                // margin: rem(12px);
-                transition: stroke 0.3s ease, fill 0.3s ease;
-                &.active {
-                    stroke: $ig-primory-clr;
-                    fill: $ig-primory-clr;
-                }
-            }
-            .text {
-                padding-left: rem(16px);
-            }
+        .more-menu {
+            position: absolute;
+            bottom: 50px;
+            transition: left 1s, top 1s;
+            // top: 40px;
+            z-index: 100;
+            box-shadow: 0 4px 8px #c7c7c7;
+            border: 1rem solid 'balck';
+            width: rem(266px);
         }
+    }
+}
 
-        img {
-            border-radius: 50%;
-        }
+.menu-item {
+    font-size: rem(16px);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    color: $ig-primory-clr;
+    text-decoration: none;
+    width: rem(220px);
+    height: rem(48px);
+    margin: rem(4px) 0px;
+    padding: rem(12px);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.3s, fill 0.3s background-color 0.3s ease;
 
-        .menu-item:last-child {
-            margin-top: auto; /* Сдвигает последний элемент вниз */
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: rem(8px);
+    }
+
+    &.active {
+        font-weight: bold;
+    }
+
+    .icon {
+        width: rem(24px);
+        height: rem(24px);
+        // margin: rem(12px);
+        transition: stroke 0.3s ease, fill 0.3s ease;
+        &.active {
+            stroke: $ig-primory-clr;
+            fill: $ig-primory-clr;
         }
+    }
+    .text {
+        padding-left: rem(16px);
+    }
+
+    &:last-child {
+        margin-top: auto;
     }
 }
