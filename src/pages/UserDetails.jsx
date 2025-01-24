@@ -11,6 +11,7 @@ import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from
 // import { loadEntrys } from '../store/actions/entry.actions'
 import { entryService } from '../services/entry'
 import { UserEntryList } from '../cmps/UserEntryList'
+import { entrySvg } from '../cmps/Svgs'
 
 export function UserDetails() {
     const { id } = useParams()
@@ -63,10 +64,12 @@ export function UserDetails() {
             </header>
             <nav className="user-navigation">
                 <NavLink className="nav-item" to="">
-                    Posts
+                    <div className="icon">{entrySvg.grid}</div>
+                    <span className="text">Posts</span>
                 </NavLink>
                 <NavLink className="nav-item" to="saved">
-                    Saved
+                    <div className="icon">{entrySvg.save}</div>
+                    <span className="text">Saved</span>
                 </NavLink>
             </nav>
             <Outlet />
