@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 
@@ -7,12 +7,14 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import { onToggleModal } from '../store/actions/app.actions'
 import { CreateEntry } from './CreateEntry.jsx'
-import { sideBarSvg } from './Svgs'
+import { entrySvg, sideBarSvg } from './Svgs'
 import { UserIcon } from './elements/UserIcon.jsx'
+// import { MoreMenu } from './MoreMenu.jsx'
 
 export function Sidebar() {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
+    const [showMoreMenu, setShowMoreMenu] = useState(false)
 
     function onAddEntry() {
         onToggleModal({ cmp: CreateEntry })
@@ -73,10 +75,46 @@ export function Sidebar() {
                     </NavLink>
                 )}
             </ul>
-            <NavLink className="menu-item logout" onClick={onLogout}>
-                <div className="icon">{sideBarSvg.more}</div>
-                <span className="text">Logout</span>
-            </NavLink>
+            <div className="more-menu-container">
+                {showMoreMenu && (
+                    <div className="more-menu modal">
+                        <MoreMenu />
+                    </div>
+                )}
+                <div
+                    className={`menu-item ${showMoreMenu ? 'active' : ''}`}
+                    onClick={() => setShowMoreMenu(prev => !prev)}>
+                    <div className="icon">{sideBarSvg.more}</div>
+                    <span className="text">More</span>
+                </div>
+            </div>
         </nav>
+    )
+}
+
+function MoreMenu() {
+    const user = useSelector(storeState => storeState.userModule.user)
+    const navigate = useNavigate()
+
+    async function onLogout() {
+        try {
+            await logout()
+            navigate('/login')
+            showSuccessMsg(`Bye now`)
+        } catch (err) {
+            showErrorMsg('Cannot logout')
+        }
+    }
+
+    return (
+        <div className="more-list">
+            <Link className="menu-item" to="/saved">
+                <div className="icon">{entrySvg.save}</div>
+                <span className="text">Saved</span>
+            </Link>
+            <Link className="menu-item" onClick={onLogout}>
+                <span className="text">Log out</span>
+            </Link>
+        </div>
     )
 }

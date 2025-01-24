@@ -18,6 +18,22 @@
             color: $ig-primary-clr2;
         }
     }
+
+    .more-menu-container {
+        position: relative;
+        display: inline-block;
+
+        .more-menu {
+            position: absolute;
+            bottom: 50px;
+            transition: left 1s, top 1s;
+            // top: 40px;
+            z-index: 100;
+            box-shadow: 0 4px 8px #c7c7c7;
+            border: 1rem solid 'balck';
+            width: rem(266px);
+        }
+    }
 }
 
 .menu-item {
