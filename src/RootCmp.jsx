@@ -25,7 +25,7 @@ export function RootCmp() {
     return (
         <div className={`app ${hideSidebar ? 'no-sidebar' : ''}`}>
             {!hideSidebar && (
-                <div callName="sidebar-container">
+                <div className="sidebar-container">
                     <Sidebar />
                 </div>
             )}

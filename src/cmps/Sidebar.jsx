@@ -31,11 +31,11 @@ export function Sidebar() {
     }
 
     return (
-        <nav className="sidebar ">
+        <div className="sidebar ">
             <NavLink to="entry" className="logo">
                 <div>{sideBarSvg.logo}</div>
             </NavLink>
-            <ul className="menu">
+            <div className="menu">
                 <NavLink className="menu-item" to="entry">
                     <div className="icon">{sideBarSvg.home}</div>
                     <span className="text">Home</span>
@@ -74,7 +74,7 @@ export function Sidebar() {
                         <span className="text">Profile</span>
                     </NavLink>
                 )}
-            </ul>
+            </div>
             <div className="more-menu-container">
                 {showMoreMenu && (
                     <div className="more-menu modal">
@@ -88,7 +88,7 @@ export function Sidebar() {
                     <span className="text">More</span>
                 </div>
             </div>
-        </nav>
+        </div>
     )
 }
 

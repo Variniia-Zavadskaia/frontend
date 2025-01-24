@@ -1,14 +1,16 @@
 .sidebar {
-    display: grid;
     height: 100vh;
-    border-right: 0.0625rem solid $border-color;
-    padding: rem(15px) 0;
-    color: $ig-primory-clr;
     width: rem(244px);
-    justify-items: center;
+    padding: rem(8px) rem(12px) rem(20px) rem(12px);
+    color: $ig-primory-clr;
+    display: grid;
     grid-template-rows: auto 1fr auto;
     list-style: none;
 
+    > div {
+        width: calc(100% - rem(24px));
+    }
+    
     .logo {
         width: rem(196px);
         height: rem(37px);
@@ -27,7 +29,6 @@
             position: absolute;
             bottom: 50px;
             transition: left 1s, top 1s;
-            // top: 40px;
             z-index: 100;
             box-shadow: 0 4px 8px #c7c7c7;
             border: 1rem solid 'balck';
@@ -37,29 +38,27 @@
 }
 
 .menu-item {
-    font-size: rem(16px);
-    flex-grow: 1;
     display: flex;
     align-items: center;
     color: $ig-primory-clr;
     text-decoration: none;
-    width: rem(220px);
+    width: 100%;
     height: rem(48px);
     margin: rem(4px) 0px;
     padding: rem(12px);
     border-radius: 8px;
     cursor: pointer;
     transition: color 0.3s, fill 0.3s background-color 0.3s ease;
-
+    
     &:hover {
         background-color: rgba(0, 0, 0, 0.05);
         border-radius: rem(8px);
     }
-
+    
     &.active {
         font-weight: bold;
     }
-
+    
     .icon {
         width: rem(24px);
         height: rem(24px);
@@ -71,6 +70,7 @@
         }
     }
     .text {
+        font-size: rem(16px);
         padding-left: rem(16px);
     }
 

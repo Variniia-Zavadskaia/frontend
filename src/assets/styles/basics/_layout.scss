@@ -3,6 +3,11 @@
     grid-template-columns: auto 1fr;
     height: 100vh;
 
+    .sidebar-container {
+        // width: rem(244px)
+        border-right: 0.0625rem solid $border-color;;
+    }
+    
     .container {
         overflow-y: auto;
     }
