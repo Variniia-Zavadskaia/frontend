@@ -8,6 +8,7 @@ import { logout } from '../store/actions/user.actions'
 import { onToggleModal } from '../store/actions/app.actions'
 import { CreateEntry } from './CreateEntry.jsx'
 import { sideBarSvg } from './Svgs'
+import { UserIcon } from './elements/UserIcon.jsx'
 
 export function Sidebar() {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -67,7 +68,7 @@ export function Sidebar() {
                     )} */}
                 {user && (
                     <NavLink className="menu-item" to={`/user/${user._id}`}>
-                        {user.imgUrl && <img src={user.imgUrl} className="icon" />}{' '}
+                        <UserIcon user={user} size={24} isLink={false}/>
                         <span className="text">Profile</span>
                     </NavLink>
                 )}
