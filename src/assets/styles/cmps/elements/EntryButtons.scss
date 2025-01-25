@@ -20,6 +20,17 @@
         }
     }
 
+    .saved {
+        &:hover {
+            opacity: 1;
+            color: black;
+        }
+
+        svg  polygon {
+            fill : black;
+        }
+    }
+
     // .action.save {
     //     color: #262626;
     //     align-self: end;
