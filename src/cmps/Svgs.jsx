@@ -366,16 +366,16 @@ export const entrySvg = {
         </svg>
     ),
 
-    save: (
+    save: (size = 24) => (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-label="Save"
             className="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
-            height="24"
+            height={`${size}`}
             role="img"
             viewBox="0 0 24 24"
-            width="24">
+            width={`${size}`}>
             <title>Save</title>
             <polygon
                 fill="none"

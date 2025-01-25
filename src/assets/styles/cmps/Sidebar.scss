@@ -100,7 +100,7 @@
 
     &.sidebar-footer .menu {
         justify-content: space-evenly;
-        .search {
+        #search {
             display: none;
         }
     }
@@ -110,7 +110,7 @@
         .sidebar-menu-item {
             display: none;
         }
-        .search {
+        #search {
             display: block;
         }
     }

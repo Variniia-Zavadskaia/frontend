@@ -46,29 +46,29 @@ export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
                 </div>
             </Link>
             <div className="menu">
-                <NavLink className="sidebar-item sidebar-menu-item home" to="entry">
+                <NavLink className="sidebar-item sidebar-menu-item" id="home" to="entry">
                     <div className="icon">{sideBarSvg.home}</div>
                     <span className="text">Home</span>
                 </NavLink>
 
-                <button className="sidebar-item sidebar-menu-item search">
+                <button className="sidebar-item sidebar-menu-item" id="search">
                     <div className="icon">{sideBarSvg.search}</div>
                     <span className="text">Search</span>
                 </button>
 
-                <NavLink className="sidebar-item sidebar-menu-item explore" to="explore">
+                <NavLink className="sidebar-item sidebar-menu-item" id="explore" to="explore">
                     <div className="icon">{sideBarSvg.explore}</div>
                     <span className="text">Explore</span>
                 </NavLink>
 
                 {/* <NavLink to="review">Reels</NavLink> */}
-                <NavLink className="sidebar-item sidebar-menu-item message" to="direct">
+                <NavLink className="sidebar-item sidebar-menu-item" id="message" to="direct">
                     <div className="icon">{sideBarSvg.messages}</div>
                     <span className="text">Messages</span>
                 </NavLink>
 
                 {/* <NavLink to="review">Notification</NavLink> */}
-                <button className="sidebar-item sidebar-menu-item create" onClick={onAddEntry}>
+                <button className="sidebar-item sidebar-menu-item" id="create" onClick={onAddEntry}>
                     <div className="icon">{sideBarSvg.create}</div>
                     <span className="text">Create</span>
                 </button>
@@ -79,7 +79,7 @@ export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
                         </NavLink>
                     )} */}
                 {user && (
-                    <NavLink className="sidebar-item sidebar-menu-item profile" to={`/user/${user._id}`}>
+                    <NavLink className="sidebar-item sidebar-menu-item" id="profile" to={`/user/${user._id}`}>
                         <UserIcon user={user} size={24} isLink={false} />
                         <span className="text">Profile</span>
                     </NavLink>

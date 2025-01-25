@@ -8,6 +8,7 @@ import { showErrorMsg } from '../../services/event-bus.service'
 export function EntryButtons({ entry }) {
     //TODO btn share -> open modal with following
     const [likedBy, setLikedBy] = useState([...entry.likedBy])
+    const [showMoreMenu, setShowMoreMenu] = useState(false)
 
     async function updateLikedBy(updatedLikedBy) {
         setLikedBy(updatedLikedBy)
@@ -24,11 +25,19 @@ export function EntryButtons({ entry }) {
         <section>
             <div className="entry-buttons">
                 <div className="like-share">
-                    <LikeButton likedBy={likedBy} updateLikedBy={updateLikedBy} />
-                    <button onClick={() => {onToggleEntryDetailsModal(entry._id)}} className="action comment">{entrySvg.comment}</button>
-                    <button className="action share">{entrySvg.share}</button>
+                    <div className="action" id="like">
+                        <LikeButton likedBy={likedBy} updateLikedBy={updateLikedBy} />
+                    </div>
+                    <button
+                        onClick={() => {
+                            onToggleEntryDetailsModal(entry._id)
+                        }}
+                        className="action" id="comment">
+                        {entrySvg.comment}
+                    </button>
+                    <button className="action" id="share">{entrySvg.share}</button>
                 </div>
-                <button className="action save">{entrySvg.save}</button>
+                <button className="action" id="save">{entrySvg.save()}</button>
             </div>
 
             {likedBy.length !== 0 && (

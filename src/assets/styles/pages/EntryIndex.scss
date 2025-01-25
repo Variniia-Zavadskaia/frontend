@@ -1,31 +1,32 @@
 .entry-index {
     display: flex;
     justify-content: center;
+    max-width: 100%;
    
     .content {
-        grid-column: 1;
-        ul {
+        .feed {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            // gap: 1rem;
         }
-        .story {
-            flex: 0 0 auto;
-            width: 4rem;
-            text-align: center;
+        // .story {
+        //     flex: 0 0 auto;
+        //     width: 4rem;
+        //     text-align: center;
 
-            img {
-                width: 100%;
-                height: auto;
-                border-radius: 50%;
-            }
+        //     img {
+        //         width: 100%;
+        //         height: auto;
+        //         border-radius: 50%;
+        //     }
 
-            span {
-                display: block;
-                margin-top: 0.5rem;
-                font-size: 0.8rem;
-            }
-        }
+        //     span {
+        //         display: block;
+        //         margin-top: 0.5rem;
+        //         font-size: 0.8rem;
+        //     }
+        // }
         
     }
     .widgets-container {

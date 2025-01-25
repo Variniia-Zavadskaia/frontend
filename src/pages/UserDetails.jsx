@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Outlet } from 'react-router'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 import { loadUser, loadUserEntrys } from '../store/actions/user.actions'
 import { store } from '../store/store'
@@ -62,13 +61,14 @@ export function UserDetails() {
                     </div>
                 </article>
             </header>
+
             <nav className="user-navigation">
-                <NavLink className="nav-item" to="">
+                <NavLink className="nav-item" to="." end>
                     <div className="icon">{entrySvg.grid}</div>
                     <span className="text">Posts</span>
                 </NavLink>
                 <NavLink className="nav-item" to="saved">
-                    <div className="icon">{entrySvg.save}</div>
+                    <div className="icon">{entrySvg.save(12)}</div>
                     <span className="text">Saved</span>
                 </NavLink>
             </nav>

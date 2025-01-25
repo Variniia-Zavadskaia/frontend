@@ -27,7 +27,7 @@ export function LikeButton({likedBy=[], updateLikedBy, size = 24}) {
     }
 
     return <div className='like-button' onClick={handleLike} style={{ cursor: 'pointer' }}>
-        <button className={`action like ${isLiked ? 'liked' : ''}`} aria-label="Like button">
+        <button className={`like ${isLiked ? 'liked' : ''}`} aria-label="Like button">
             {isLiked ? entrySvg.fullHeart(size) : entrySvg.heart(size)}
         </button>
     </div>

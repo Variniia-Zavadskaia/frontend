@@ -12,22 +12,27 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     const userBy = entry.by
 
     return (
-        <article className="preview">
-            <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+        <article className="entry-preview">
+            <div className="header">
+                <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+            </div>
 
             <div className="entry-image">
                 <img src={entry.imgUrl} alt="Post " />
             </div>
 
             <div className="entry-info">
-                <EntryButtons entry={entry} />
+                <div className="buttons">
+                    <EntryButtons entry={entry} />
+                </div>
                 <div className="entry-comment">
                     <p>
-                        <UserName user={userBy}/> {entry.txt}
+                        <UserName user={userBy} /> {entry.txt}
                     </p>
                 </div>
-
-                <CreateComment entryId={entry._id}/>
+                <div className="new-comment">
+                    <CreateComment entryId={entry._id} />
+                </div>
             </div>
         </article>
     )

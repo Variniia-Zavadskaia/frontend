@@ -1,0 +1,42 @@
+.entry-preview {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: rem(20px);
+    padding-bottom: rem(16px);
+    border-bottom: 1px solid $border-color;
+    width: 100%;
+
+    .header {
+        padding-left: rem(4px);
+        padding-bottom: rem(12px);
+    }
+
+    .entry-image {
+        position: relative;
+        border: 1px solid $border-color;
+        overflow: hidden;
+
+        img {
+            width: calc(-2px + min(470px, 100vw));
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+    }
+
+    .entry-info {
+        @media (max-width: 480px) {
+            padding: 0 rem(16px);
+            .new-comment {
+                display: none;
+            }
+        }
+
+        .buttons {
+            margin-left: -8px;
+        }
+        .entry-comment {
+            margin-top: rem(8px);
+        }
+    }
+}

@@ -83,7 +83,9 @@ export function EntryDetails({ entryId }) {
                     <EntryButtons entry={entry} />
                 </div>
                 <div className="new-comment">
-                    <UserIcon user={currentUser} size={32} isLink={false} />
+                    <div className="new-comment-uicon">
+                        <UserIcon user={currentUser} size={32} isLink={false} />
+                    </div>
                     <div className="new-comment-area">
                         <CreateComment entryId={entry._id} onSaveComment={onSaveComment} />
                     </div>

@@ -1,36 +1,22 @@
 .entry-buttons {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    // align-items: center;
-    // align-items: flex-start;
-    margin-bottom: 0.5rem;
+    margin: rem(4px) 0;
     .like-share {
         display: flex;
-        .action {
-            // flex: 1;
-            background: none;
-            border: none;
-            cursor: pointer;
-            // font-size: 1.25rem;
-            display: flex;
-            // align-items: center;
+    }
+    .action {
+        // flex: 1;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        padding: rem(8px);
 
-            &:hover {
-                opacity: 0.8;
-                color: $ig-primary-clr2;
-            }
-
-            &.comment,
-            &.share {
-                padding-right: 0.75rem;
-                // color: #262626;
-            }
-
-            &.save {
-                align-self: end;
-                color: #262626;
-                padding: 0;
-            }
+        &:hover {
+            opacity: 0.8;
+            color: $ig-primary-clr2;
         }
     }
 
@@ -45,6 +31,7 @@
 }
 
 .entry-likes {
+    padding-left: rem(12px);
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    // margin-bottom: 0.5rem;
 }

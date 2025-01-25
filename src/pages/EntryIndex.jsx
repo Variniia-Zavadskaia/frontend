@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { loadEntrys, addEntry, updateEntry, removeEntry, addEntryComment } from '../store/actions/entry.actions'
+import { loadEntrys, updateEntry } from '../store/actions/entry.actions'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { entryService } from '../services/entry'
 import { userService } from '../services/user'
 
-import { EntryList } from '../cmps/EntryList'
 import { EntryFilter } from '../cmps/EntryFilter'
 import { Widgets } from '../cmps/Widgets'
 import { AppFooter } from '../cmps/AppFooter'
+import { EntryPreview } from '../cmps/EntryPreview'
 
 export function EntryIndex() {
     const [filterBy, setFilterBy] = useState(entryService.getDefaultFilter())
@@ -74,7 +74,14 @@ export function EntryIndex() {
                     ))}
                 </ul> */}
                 {/* {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>} */}
-                <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+                {/* <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} /> */}
+                <ul className="feed">
+                    {entrys.map(entry => (
+                        <li key={entry._id}>
+                            <EntryPreview entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+                        </li>
+                    ))}
+                </ul>
                 <AppFooter />
             </div>
             {/* <EntryFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
