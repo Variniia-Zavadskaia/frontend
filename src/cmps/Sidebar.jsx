@@ -32,33 +32,38 @@ export function Sidebar() {
 
     return (
         <div className="sidebar ">
-            <NavLink to="entry" className="logo">
-                <div>{sideBarSvg.logo}</div>
-            </NavLink>
+            <Link to="entry" className="logo">
+                <div className="full-logo">
+                    <div className="logo-text">{sideBarSvg.logo}</div>
+                </div>
+                <div className="icon-logo">
+                    <div className="sidebar-item">{sideBarSvg.logoMini}</div>
+                </div>
+            </Link>
             <div className="menu">
-                <NavLink className="menu-item" to="entry">
+                <NavLink className="sidebar-item sidebar-menu-item" to="entry">
                     <div className="icon">{sideBarSvg.home}</div>
                     <span className="text">Home</span>
                 </NavLink>
 
-                <button className="menu-item">
+                <button className="sidebar-item sidebar-menu-item">
                     <div className="icon">{sideBarSvg.search}</div>
                     <span className="text">Search</span>
                 </button>
 
-                <NavLink className="menu-item" to="explore">
+                <NavLink className="sidebar-item sidebar-menu-item" to="explore">
                     <div className="icon">{sideBarSvg.explore}</div>
                     <span className="text">Explore</span>
                 </NavLink>
 
                 {/* <NavLink to="review">Reels</NavLink> */}
-                <NavLink className="menu-item" to="direct">
+                <NavLink className="sidebar-item sidebar-menu-item" to="direct">
                     <div className="icon">{sideBarSvg.messages}</div>
                     <span className="text">Messages</span>
                 </NavLink>
 
                 {/* <NavLink to="review">Notification</NavLink> */}
-                <button className="menu-item" onClick={onAddEntry}>
+                <button className="sidebar-item sidebar-menu-item" onClick={onAddEntry}>
                     <div className="icon">{sideBarSvg.create}</div>
                     <span className="text">Create</span>
                 </button>
@@ -69,8 +74,8 @@ export function Sidebar() {
                         </NavLink>
                     )} */}
                 {user && (
-                    <NavLink className="menu-item" to={`/user/${user._id}`}>
-                        <UserIcon user={user} size={24} isLink={false}/>
+                    <NavLink className="sidebar-item sidebar-menu-item" to={`/user/${user._id}`}>
+                        <UserIcon user={user} size={24} isLink={false} />
                         <span className="text">Profile</span>
                     </NavLink>
                 )}
@@ -82,7 +87,7 @@ export function Sidebar() {
                     </div>
                 )}
                 <div
-                    className={`menu-item ${showMoreMenu ? 'active' : ''}`}
+                    className={`sidebar-item sidebar-menu-item ${showMoreMenu ? 'active' : ''}`}
                     onClick={() => setShowMoreMenu(prev => !prev)}>
                     <div className="icon">{sideBarSvg.more}</div>
                     <span className="text">More</span>
@@ -108,11 +113,11 @@ function MoreMenu() {
 
     return (
         <div className="more-list">
-            <Link className="menu-item" to="/saved">
+            <Link className="sidebar-item more-item" to="/saved">
                 <div className="icon">{entrySvg.save}</div>
                 <span className="text">Saved</span>
             </Link>
-            <Link className="menu-item" onClick={onLogout}>
+            <Link className="sidebar-item more-item" onClick={onLogout}>
                 <span className="text">Log out</span>
             </Link>
         </div>

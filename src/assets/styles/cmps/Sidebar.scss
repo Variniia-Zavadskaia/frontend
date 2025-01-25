@@ -1,25 +1,57 @@
 .sidebar {
     height: 100vh;
-    width: rem(244px);
+    width: rem(72px);
     padding: rem(8px) rem(12px) rem(20px) rem(12px);
     color: $ig-primory-clr;
     display: grid;
     grid-template-rows: auto 1fr auto;
     list-style: none;
 
-    > div {
-        width: calc(100% - rem(24px));
+    @include for-wide-layout {
+        width: rem(244px);
     }
-    
+
     .logo {
-        width: rem(196px);
-        height: rem(37px);
-        margin: rem(21px) rem(24px);
-        color: $ig-primory-clr;
-        &:hover {
-            color: $ig-primary-clr2;
+        .full-logo {
+            display: none;
+            // width: rem(196px);
+            // height: rem(37px);
+            padding: rem(25px) rem(12px) rem(12px) rem(16px);
+            margin-bottom: rem(19px);
+            width: 100%;
+
+            // margin: rem(21px) rem(24px);
+            color: $ig-primory-clr;
+            &:hover {
+                color: $ig-primary-clr2;
+            }
+
+            .logo-text {
+                height: rem(29px);
+                margin-top: rem(8px);
+            }
+
+        }
+
+        .icon-logo{
+            padding-bottom: rem(23px);
+            margin-top: rem(12px);
+            bottom: -16px;
+        }
+
+        @include for-wide-layout {
+            .full-logo {
+                display: block;
+            }
+            .icon-logo {
+                display: none;
+            }
         }
     }
+
+    // .menu {
+    //     // gap: 8px;
+    // }
 
     .more-menu-container {
         position: relative;
@@ -37,7 +69,12 @@
     }
 }
 
-.menu-item {
+.more-list {
+    width: 100%;
+    padding: 8px;
+}
+
+.sidebar-item {
     display: flex;
     align-items: center;
     color: $ig-primory-clr;
@@ -49,16 +86,16 @@
     border-radius: 8px;
     cursor: pointer;
     transition: color 0.3s, fill 0.3s background-color 0.3s ease;
-    
+
     &:hover {
         background-color: rgba(0, 0, 0, 0.05);
         border-radius: rem(8px);
     }
-    
+
     &.active {
         font-weight: bold;
     }
-    
+
     .icon {
         width: rem(24px);
         height: rem(24px);
@@ -70,11 +107,21 @@
         }
     }
     .text {
+        // display: block;
         font-size: rem(16px);
         padding-left: rem(16px);
     }
 
-    &:last-child {
-        margin-top: auto;
+    // &:last-child {
+    //     margin-top: auto;
+    // }
+}
+
+.sidebar-menu-item {
+    .text {
+        display: none;
+        @include for-wide-layout {
+            display: block;
+        }
     }
 }
