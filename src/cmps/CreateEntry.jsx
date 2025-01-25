@@ -26,7 +26,7 @@ export function CreateEntry({ onClose }) {
     }
 
     async function onAddEntry() {
-        const entryToSave = {...entry, date: new Date()}
+        const entryToSave = { ...entry, date: new Date() }
 
         try {
             const savedEntry = await addEntry(entryToSave)
@@ -37,9 +37,22 @@ export function CreateEntry({ onClose }) {
         onClose()
     }
 
+    function onBack() {
+        if (showText) {
+            setShowText(false)
+        } else if (imgData.imgUrl) {
+            setImgData({ imgUrl: null })
+        }
+    }
+
     return (
         <div className="add-entry">
             <header className="add-entry__header">
+                {imgData.imgUrl && (
+                    <button className="back" onClick={onBack}>
+                        &lt;--
+                    </button>
+                )}
                 <h2>Create New Post</h2>
                 {imgData.imgUrl && !showText && (
                     <button className="add-entry__btn" onClick={onSetShowText}>
@@ -61,9 +74,8 @@ export function CreateEntry({ onClose }) {
                         <div>
                             <div className="add-entry__upload-icon">{sideBarSvg.uploade}</div>
                             <p className="add-entry__upload-text">Drag photos and videos here</p>
-                            
-                                <ImgUploader className="upload-btn " onUploaded={onUploaded}></ImgUploader>
-                            
+
+                            <ImgUploader className="upload-btn " onUploaded={onUploaded}></ImgUploader>
                         </div>
                     )}
                 </div>
@@ -71,11 +83,7 @@ export function CreateEntry({ onClose }) {
                 <div>
                     {showText && (
                         <div className="add-entry__caption-area">
-                            <textarea
-                                className="add-entry__textarea"
-                                value={text}
-                                onChange={handleTextChange}
-                            />
+                            <textarea className="add-entry__textarea" value={text} onChange={handleTextChange} />
                         </div>
                     )}
                 </div>

@@ -18,7 +18,8 @@ button {
     // border: 1px solid #ccc;
 
     header {
-        height: rem(43px)
+        height: rem(44px);
+        border-bottom: 1px solid $border-color;
     }
 }
 

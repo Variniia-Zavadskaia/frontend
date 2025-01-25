@@ -3,21 +3,15 @@
     flex-direction: column;
     align-items: center;
     background-color: $ig-primary-background;
-    // border: 1px solid #dbdbdb;
-    // width: rem(600px);
     max-height: 90vh;
-    // height: rem(855px);
     border-radius: 1rem;
-    margin: 20px auto;
 
     &__header {
-        display: grid;
-        grid-template-rows: auto;
+        display: flex;
+        // grid-template-rows: auto;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 11px;
-        border-bottom: 1px solid $border-color;
         text-align: center;
 
         h2 {
@@ -27,7 +21,7 @@
         }
 
         button {
-            margin-left: auto;
+            padding: rem(16px);
         }
     }
 
