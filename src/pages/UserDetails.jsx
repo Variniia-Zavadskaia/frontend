@@ -43,24 +43,22 @@ export function UserDetails() {
                 <div className="user-img">
                     <img src={user.imgUrl} />
                 </div>
-                <article className="user-info">
-                    <div className="info-top">
-                        <p className="username">{user.username}</p>
-                        <div className="user-buttons">
-                            <button>Edit profile</button>
-                            <button>View archive</button>
-                            {/* <button>Setting</button> */}
-                        </div>
+                <div className="info-top">
+                    <p className="username">{user.username}</p>
+                    <div className="user-buttons">
+                        <button>Edit profile</button>
+                        <button>View archive</button>
+                        {/* <button>Setting</button> */}
                     </div>
-                    <div className="info-midle">
-                        <p>{entrysCount} posts</p>
-                        <p>{user.followers.length} followers</p>
-                        <p>{user.following.length} following</p>
-                    </div>
-                    <div className="info-midle">
-                        <p>{user.fullname}</p>
-                    </div>
-                </article>
+                </div>
+                <div className="info-midle">
+                    <p>{entrysCount} posts</p>
+                    <p>{user.followers.length} followers</p>
+                    <p>{user.following.length} following</p>
+                </div>
+                <div className="info-bottom">
+                    <p>{user.fullname}</p>
+                </div>
             </header>
 
             <nav className="user-navigation">
@@ -68,12 +66,12 @@ export function UserDetails() {
                     <div className="icon">{entrySvg.grid}</div>
                     <span className="text">Posts</span>
                 </NavLink>
-                { logedInUser._id === user._id && 
+                {logedInUser._id === user._id && (
                     <NavLink className="nav-item" to="saved">
                         <div className="icon">{entrySvg.save(12)}</div>
                         <span className="text">Saved</span>
                     </NavLink>
-                }
+                )}
             </nav>
             <Outlet />
         </section>
