@@ -22,7 +22,7 @@ export const sideBarSvg = {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-label="Instagram"
-            class="x1lliihq x1n2onr6 x5n08af"
+            className="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
             height="24"
             role="img"
@@ -407,7 +407,7 @@ export const entrySvg = {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-label=""
-            class="x1lliihq x1n2onr6 x5n08af"
+            className="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
             height="12"
             role="img"
