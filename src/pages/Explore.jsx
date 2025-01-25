@@ -38,7 +38,7 @@ export function Explore() {
   
     return (
       <section>
-        <div className="explore">
+        <div className="explore-index">
           {images.map((img, idx) => (
             <div key={idx} className={`item ${img.className}`}>
               <img src={img.url} alt={img.alt} />

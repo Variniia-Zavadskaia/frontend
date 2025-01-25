@@ -1,18 +1,37 @@
 .app {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    // grid-template-columns: auto 1fr;
+    flex-direction: column;
     height: 100vh;
-
-    .sidebar-container {
-        // width: rem(244px)
-        border-right: 0.0625rem solid $border-color;;
+    .sidebar-container-regular {
+        display:none;
     }
-    
+
     .container {
+        flex: 1;
         overflow-y: auto;
+    }
+
+    @include for-normal-layout {
+        flex-direction: row;
+
+        .sidebar-container-header,
+        .sidebar-container-footer {
+            display: none;
+        }
+        .sidebar-container-regular {
+            display:block;
+        }
     }
 }
 
-.app.no-sidebar .container {
-    margin-left: 0;
+.app.no-sidebar {
+    // grid-template-columns: 1fr;
+    .sidebar-container {
+        display: none;
+    }
+    .container {
+        justify-self: center;
+        flex:1;
+    }
 }

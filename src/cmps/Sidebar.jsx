@@ -11,7 +11,11 @@ import { entrySvg, sideBarSvg } from './Svgs'
 import { UserIcon } from './elements/UserIcon.jsx'
 // import { MoreMenu } from './MoreMenu.jsx'
 
-export function Sidebar() {
+export const SIDEBAR_TYPE_REGULAR = 'regular'
+export const SIDEBAR_TYPE_FOOTER = 'footer'
+export const SIDEBAR_TYPE_HEADER = 'header'
+
+export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
     const [showMoreMenu, setShowMoreMenu] = useState(false)
@@ -29,10 +33,11 @@ export function Sidebar() {
             showErrorMsg('Cannot logout')
         }
     }
+    
 
     return (
-        <div className="sidebar ">
-            <Link to="entry" className="logo">
+        <div className={`sidebar sidebar-${type}`}>
+            <Link to="entry" className={`logo ${type !== SIDEBAR_TYPE_REGULAR ? 'sidebar-item' : ''}`}>
                 <div className="full-logo">
                     <div className="logo-text">{sideBarSvg.logo}</div>
                 </div>
@@ -41,29 +46,29 @@ export function Sidebar() {
                 </div>
             </Link>
             <div className="menu">
-                <NavLink className="sidebar-item sidebar-menu-item" to="entry">
+                <NavLink className="sidebar-item sidebar-menu-item home" to="entry">
                     <div className="icon">{sideBarSvg.home}</div>
                     <span className="text">Home</span>
                 </NavLink>
 
-                <button className="sidebar-item sidebar-menu-item">
+                <button className="sidebar-item sidebar-menu-item search">
                     <div className="icon">{sideBarSvg.search}</div>
                     <span className="text">Search</span>
                 </button>
 
-                <NavLink className="sidebar-item sidebar-menu-item" to="explore">
+                <NavLink className="sidebar-item sidebar-menu-item explore" to="explore">
                     <div className="icon">{sideBarSvg.explore}</div>
                     <span className="text">Explore</span>
                 </NavLink>
 
                 {/* <NavLink to="review">Reels</NavLink> */}
-                <NavLink className="sidebar-item sidebar-menu-item" to="direct">
+                <NavLink className="sidebar-item sidebar-menu-item message" to="direct">
                     <div className="icon">{sideBarSvg.messages}</div>
                     <span className="text">Messages</span>
                 </NavLink>
 
                 {/* <NavLink to="review">Notification</NavLink> */}
-                <button className="sidebar-item sidebar-menu-item" onClick={onAddEntry}>
+                <button className="sidebar-item sidebar-menu-item create" onClick={onAddEntry}>
                     <div className="icon">{sideBarSvg.create}</div>
                     <span className="text">Create</span>
                 </button>
@@ -74,7 +79,7 @@ export function Sidebar() {
                         </NavLink>
                     )} */}
                 {user && (
-                    <NavLink className="sidebar-item sidebar-menu-item" to={`/user/${user._id}`}>
+                    <NavLink className="sidebar-item sidebar-menu-item profile" to={`/user/${user._id}`}>
                         <UserIcon user={user} size={24} isLink={false} />
                         <span className="text">Profile</span>
                     </NavLink>

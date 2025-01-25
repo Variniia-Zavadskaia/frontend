@@ -9,7 +9,7 @@ import { AdminIndex } from './pages/AdminIndex.jsx'
 
 import { UserDetails, UserEntrys, SavedUserEntrys } from './pages/UserDetails'
 
-import { Sidebar } from './cmps/Sidebar'
+import { Sidebar, SIDEBAR_TYPE_FOOTER, SIDEBAR_TYPE_REGULAR, SIDEBAR_TYPE_HEADER } from './cmps/Sidebar'
 import { AppFooter } from './cmps/AppFooter'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { Login } from './pages/Login.jsx'
@@ -24,11 +24,12 @@ export function RootCmp() {
 
     return (
         <div className={`app ${hideSidebar ? 'no-sidebar' : ''}`}>
-            {!hideSidebar && (
-                <div className="sidebar-container">
-                    <Sidebar />
-                </div>
-            )}
+            <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_REGULAR}`}>
+                <Sidebar type={SIDEBAR_TYPE_REGULAR}/>
+            </div>
+            <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_HEADER}`}>
+                <Sidebar type={SIDEBAR_TYPE_HEADER}/>
+            </div>
             <main className="container">
                 <UserMsg />
                 <Routes>
@@ -45,6 +46,9 @@ export function RootCmp() {
                     <Route path="admin" element={<AdminIndex />} />
                 </Routes>
             </main>
+            <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_FOOTER}`}>
+                <Sidebar type={SIDEBAR_TYPE_FOOTER}/>
+            </div>
             <DynamicModal />
             <EntryDetailsModal />
             {/* <AppFooter /> */}

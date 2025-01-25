@@ -1,26 +1,43 @@
 .sidebar {
-    height: 100vh;
-    width: rem(72px);
-    padding: rem(8px) rem(12px) rem(20px) rem(12px);
-    color: $ig-primory-clr;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    list-style: none;
 
-    @include for-wide-layout {
-        width: rem(244px);
+    //common view section
+    list-style: none;
+    display: flex;
+
+    &.sidebar-regular {
+        height: 100vh;
+        width: rem(73px);
+        padding: rem(8px) rem(12px) rem(20px) rem(12px);
+        color: $ig-primory-clr;
+        flex-direction: column;
+        border-right: 0.0625rem solid $border-color;
+
+        @include for-wide-layout {
+            width: rem(245px);
+        }
     }
 
+    &.sidebar-footer,
+    &.sidebar-header {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &.sidebar-header {
+        height: rem(61px);
+        padding: 0 rem(16px);
+        border-bottom: 0.0625rem solid $border-color;
+    }
+
+    &.sidebar-footer {
+        border-top: 0.0625rem solid $border-color;
+    }
+    //common view section end
+
+    // logo section
     .logo {
         .full-logo {
-            display: none;
-            // width: rem(196px);
-            // height: rem(37px);
-            padding: rem(25px) rem(12px) rem(12px) rem(16px);
-            margin-bottom: rem(19px);
-            width: 100%;
-
-            // margin: rem(21px) rem(24px);
             color: $ig-primory-clr;
             &:hover {
                 color: $ig-primary-clr2;
@@ -30,13 +47,37 @@
                 height: rem(29px);
                 margin-top: rem(8px);
             }
-
         }
 
-        .icon-logo{
+        .icon-logo {
             padding-bottom: rem(23px);
             margin-top: rem(12px);
             bottom: -16px;
+        }
+    }
+
+    &.sidebar-header .logo {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-start;
+        .full-logo {
+            display: block;
+        }
+        .icon-logo {
+            display: none;
+        }
+    }
+
+    &.sidebar-footer .logo {
+        display: none;
+    }
+
+    &.sidebar-regular .logo {
+        .full-logo {
+            display: none;
+            padding: rem(25px) rem(12px) rem(12px) rem(16px);
+            margin-bottom: rem(19px);
+            width: 100%;
         }
 
         @include for-wide-layout {
@@ -48,11 +89,34 @@
             }
         }
     }
+    // logo section end
 
-    // .menu {
-    //     // gap: 8px;
-    // }
+    // menu section
+    .menu {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: inherit;
+    }
 
+    &.sidebar-footer .menu {
+        justify-content: space-evenly;
+        .search {
+            display: none;
+        }
+    }
+
+    &.sidebar-header .menu {
+        justify-content: flex-end;
+        .sidebar-menu-item {
+            display: none;
+        }
+        .search {
+            display: block;
+        }
+    }
+    // menu section end
+
+    // more-menu section
     .more-menu-container {
         position: relative;
         display: inline-block;
@@ -67,6 +131,14 @@
             width: rem(266px);
         }
     }
+
+    &.sidebar-footer,
+    &.sidebar-header {
+        .more-menu-container {
+            display: none;
+        }
+    }
+    //more-menu section end
 }
 
 .more-list {
@@ -79,15 +151,17 @@
     align-items: center;
     color: $ig-primory-clr;
     text-decoration: none;
-    width: 100%;
+    .sidebar-regular & {
+        width: 100%;
+        margin: rem(4px) 0px;
+    }
     height: rem(48px);
-    margin: rem(4px) 0px;
     padding: rem(12px);
     border-radius: 8px;
     cursor: pointer;
     transition: color 0.3s, fill 0.3s background-color 0.3s ease;
 
-    &:hover {
+    .sidebar-regular &:hover {
         background-color: rgba(0, 0, 0, 0.05);
         border-radius: rem(8px);
     }
@@ -99,7 +173,6 @@
     .icon {
         width: rem(24px);
         height: rem(24px);
-        // margin: rem(12px);
         transition: stroke 0.3s ease, fill 0.3s ease;
         &.active {
             stroke: $ig-primory-clr;
@@ -107,14 +180,9 @@
         }
     }
     .text {
-        // display: block;
         font-size: rem(16px);
         padding-left: rem(16px);
     }
-
-    // &:last-child {
-    //     margin-top: auto;
-    // }
 }
 
 .sidebar-menu-item {
