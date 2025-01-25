@@ -51,7 +51,7 @@ export function EntryIndex() {
         // if (speed === 0 || speed === entry.speed) return
 
         // const entryToSave = { ...entry, speed }
-        const entryToSave = { ...entry}
+        const entryToSave = { ...entry }
         try {
             const savedEntry = await updateEntry(entryToSave)
             showSuccessMsg(`entry updated`)
@@ -60,8 +60,7 @@ export function EntryIndex() {
         }
     }
 
-console.log(entrys);
-
+    console.log(entrys)
 
     return (
         <section className="entry-index">
@@ -76,11 +75,13 @@ console.log(entrys);
                 </ul> */}
                 {/* {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>} */}
                 <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
-            <AppFooter />
+                <AppFooter />
             </div>
             {/* <EntryFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
 
-            <Widgets className="widgets" />
+            <div className="widgets-container">
+                <Widgets className="widgets-container" />
+            </div>
         </section>
     )
 }
