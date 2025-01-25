@@ -14,9 +14,11 @@ $border-color: #dbdbdb;
 
 
 // Breakpoints
-$mobile-breakpoint: 460px;
-$narrow-breakpoint: 720px;
-$normal-breakpoint: 960px;
+$mobile-breakpoint: 468px;
+$normal-breakpoint: 768px;
+// $narrow-breakpoint: 768px;
+// $normal-breakpoint: 1160px;
+$wide-breakpoint: 1264px;
 
 $sidebar-width: 20rem;
 $widgets-width: 25rem;
