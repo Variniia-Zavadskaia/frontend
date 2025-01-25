@@ -119,7 +119,7 @@ function MoreMenu() {
     return (
         <div className="more-list">
             <Link className="sidebar-item more-item" to="/saved">
-                <div className="icon">{entrySvg.save}</div>
+                <div className="icon">{entrySvg.save()}</div>
                 <span className="text">Saved</span>
             </Link>
             <Link className="sidebar-item more-item" onClick={onLogout}>
