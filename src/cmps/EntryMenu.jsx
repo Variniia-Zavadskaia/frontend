@@ -7,11 +7,11 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { removeEntry } from '../store/actions/entry.actions.js'
 
 export function EntryMenu({ entry, onUpdateEntry, onRemoveEntry = null, onClose }) {
-    const user = useSelector(storeState => storeState.userModule.user)
+    const userID = useSelector(storeState => storeState.userModule.user._id)
     const navigate = useNavigate()
 
     const owner = entry.by
-    const isOwner = user._id === owner._id
+    const isOwner = userID === owner._id
 
     async function onRemove() {
         try {

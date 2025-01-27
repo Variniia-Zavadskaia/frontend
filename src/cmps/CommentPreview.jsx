@@ -63,9 +63,9 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
 }
 
 function commentMenu({ comment, onRemoveComment, onClose }) {
-    const user = useSelector(storeState => storeState.userModule.user)
+    const userId = useSelector(storeState => storeState.userModule.user._id)
     const owner = comment.by
-    const isOwner = user._id === owner._id
+    const isOwner = userId === owner._id
 
     function onReport() {
         // console.log('report')

@@ -21,16 +21,25 @@ import { EntryDetailsPage } from './pages/EntryDetailsPage.jsx'
 export function RootCmp() {
     const location = useLocation()
     const hideSidebar = location.pathname === '/login' || location.pathname === '/signup'
-    
+
+    function SideBarContainer({ type = SIDEBAR_TYPE_REGULAR }) {
+        return (
+            <div className={`sidebar-container sidebar-container-${type}`}>
+                {!hideSidebar && <Sidebar type={type} />}
+            </div>
+        )
+    }
 
     return (
         <div className={`app ${hideSidebar ? 'no-sidebar' : ''}`}>
-            <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_REGULAR}`}>
-                <Sidebar type={SIDEBAR_TYPE_REGULAR}/>
-            </div>
-            <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_HEADER}`}>
-                <Sidebar type={SIDEBAR_TYPE_HEADER}/>
-            </div>
+            <SideBarContainer type={SIDEBAR_TYPE_REGULAR} />
+            <SideBarContainer type={SIDEBAR_TYPE_HEADER} />
+            {/* <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_REGULAR}`}>
+                <Sidebar type={SIDEBAR_TYPE_REGULAR} />
+            </div> */}
+            {/* <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_HEADER}`}>
+                <Sidebar type={SIDEBAR_TYPE_HEADER} />
+            </div> */}
             <main className="container">
                 <UserMsg />
                 <Routes>
@@ -47,9 +56,10 @@ export function RootCmp() {
                     <Route path="admin" element={<AdminIndex />} />
                 </Routes>
             </main>
-            <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_FOOTER}`}>
-                <Sidebar type={SIDEBAR_TYPE_FOOTER}/>
-            </div>
+            <SideBarContainer type={SIDEBAR_TYPE_FOOTER} />
+            {/* <div className={`sidebar-container sidebar-container-${SIDEBAR_TYPE_FOOTER}`}>
+                <Sidebar type={SIDEBAR_TYPE_FOOTER} />
+            </div> */}
             <DynamicModal />
             <EntryDetailsModal />
             {/* <AppFooter /> */}

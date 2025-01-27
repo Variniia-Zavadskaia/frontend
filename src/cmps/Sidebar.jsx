@@ -15,8 +15,10 @@ export const SIDEBAR_TYPE_REGULAR = 'regular'
 export const SIDEBAR_TYPE_FOOTER = 'footer'
 export const SIDEBAR_TYPE_HEADER = 'header'
 
-export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
-    const user = useSelector(storeState => storeState.userModule.user)
+export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
+    // const user = useSelector(storeState => storeState.userModule.user)
+    const currUserId = useSelector(storeState => storeState.userModule.user._id)
+    const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
     const navigate = useNavigate()
     const [showMoreMenu, setShowMoreMenu] = useState(false)
 
@@ -24,16 +26,15 @@ export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
         onToggleModal({ cmp: CreateEntry })
     }
 
-    async function onLogout() {
-        try {
-            await logout()
-            navigate('/login')
-            showSuccessMsg(`Bye now`)
-        } catch (err) {
-            showErrorMsg('Cannot logout')
-        }
-    }
-    
+    // async function onLogout() {
+    //     try {
+    //         await logout()
+    //         navigate('/login')
+    //         showSuccessMsg(`Bye now`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot logout')
+    //     }
+    // }
 
     return (
         <div className={`sidebar sidebar-${type}`}>
@@ -78,12 +79,10 @@ export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
                             Login
                         </NavLink>
                     )} */}
-                {user && (
-                    <NavLink className="sidebar-item sidebar-menu-item" id="profile" to={`/user/${user._id}`}>
-                        <UserIcon user={user} size={24} isLink={false} />
-                        <span className="text">Profile</span>
-                    </NavLink>
-                )}
+                <NavLink className="sidebar-item sidebar-menu-item" id="profile" to={`/user/${currUserId}`}>
+                    <UserIcon user={{ _id: currUserId, imgUrl: curUserImg }} size={24} isLink={false} />
+                    <span className="text">Profile</span>
+                </NavLink>
             </div>
             <div className="more-menu-container">
                 {showMoreMenu && (
@@ -103,7 +102,6 @@ export function Sidebar({type = SIDEBAR_TYPE_REGULAR}) {
 }
 
 function MoreMenu() {
-    const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
 
     async function onLogout() {

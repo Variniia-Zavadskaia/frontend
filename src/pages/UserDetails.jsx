@@ -15,7 +15,7 @@ import { entrySvg } from '../cmps/Svgs'
 export function UserDetails() {
     const { id } = useParams()
     const user = useSelector(storeState => storeState.userModule.watchedUser)
-    const logedInUser = useSelector(storeState => storeState.userModule.user)
+    const logedInUserId = useSelector(storeState => storeState.userModule.user._id)
     const entrysCount = useSelector(storeState => storeState.userModule.watchedUserEntrys.length)
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export function UserDetails() {
                     <div className="icon">{entrySvg.grid}</div>
                     <span className="text">Posts</span>
                 </NavLink>
-                {logedInUser._id === user._id && (
+                {logedInUserId === user._id && (
                     <NavLink className="nav-item" to="saved">
                         <div className="icon">{entrySvg.save(12)}</div>
                         <span className="text">Saved</span>

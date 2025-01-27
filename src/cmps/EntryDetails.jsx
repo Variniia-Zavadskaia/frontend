@@ -14,7 +14,9 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function EntryDetails({ entryId }) {
     const entry = useSelector(storeState => storeState.entryModule.entry)
-    const currentUser = useSelector(storeState => storeState.userModule.user)
+    // const currentUser = useSelector(storeState => storeState.userModule.user)
+    const currUserId = useSelector(storeState => storeState.userModule.user._id)
+    const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
     const [comments, setComments] = useState([])
     const navigate = useNavigate()
 
@@ -84,7 +86,7 @@ export function EntryDetails({ entryId }) {
                 </div>
                 <div className="new-comment">
                     <div className="new-comment-uicon">
-                        <UserIcon user={currentUser} size={32} isLink={false} />
+                        <UserIcon user={{ _id: currUserId, imgUrl: curUserImg }} size={32} isLink={false} />
                     </div>
                     <div className="new-comment-area">
                         <CreateComment entryId={entry._id} onSaveComment={onSaveComment} />
