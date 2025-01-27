@@ -3,10 +3,12 @@
     flex-direction: column;
     align-items: center;
     background-color: $ig-primary-background;
-    max-height: 90vh;
-    border-radius: 1rem;
+    // max-height: 840px;
+    // max-width: 797px;
+    // min-height:391px;
+    // min-width:348px;
 
-    &__header {
+    .add-header{
         display: flex;
         // grid-template-rows: auto;
         justify-content: space-between;
@@ -25,21 +27,21 @@
         }
     }
 
-    &__body {
+    .add-body{
         // height: rem(794px);
         width: rem(794px);
         // padding: 2rem;
         display: flex;
         flex-direction: column;
-            align-items: center;
+        align-items: center;
         justify-content: center;
         // flex-grow: 1;
         overflow: hidden;
     }
 
-    &__upload-area {
+    .add-upload-area {
         width: 100%;
-        min-height: calc(90vh - rem(150px));
+        // min-height: calc(90vh - rem(150px));
         margin: auto;
         // max-width: 60%;
         display: flex;
@@ -79,14 +81,11 @@
         }
     }
 
-    &__image {
-        max-width: 100%;
-        // max-height: calc(
-        //     90vh - 80px
-        // );
-        object-fit: contain;
-        // border-radius: 0.8rem;
-    }
+    // img {
+    //     max-width: 100%;
+    //     height: auto;
+    //     object-fit: cover;
+    // }
 
     &__caption-area {
         width: 100%;
@@ -100,7 +99,7 @@
             border-radius: 0.4rem;
             resize: none;
             height: 100px;
-            font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
     }
 }

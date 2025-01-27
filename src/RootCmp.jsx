@@ -21,6 +21,7 @@ import { EntryDetailsPage } from './pages/EntryDetailsPage.jsx'
 export function RootCmp() {
     const location = useLocation()
     const hideSidebar = location.pathname === '/login' || location.pathname === '/signup'
+    
 
     return (
         <div className={`app ${hideSidebar ? 'no-sidebar' : ''}`}>

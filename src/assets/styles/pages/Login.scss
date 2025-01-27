@@ -1,28 +1,28 @@
-body {
-    // font-family: 'Arial', sans-serif;
-    // background: #fafafa;
-    display: grid;
-    justify-content: center;
-    // align-items: center;
-    min-height: 100vh;
-  }
-  
 .login-container {
-    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    // margin-top: 12px;
+    // max-width: 350px;
 
     .login-box {
+    text-align: center;
+     
         background: #fff;
         border: 1px solid $border-color;
         padding: 20px;
         width: 350px;
-        // margin: 20px auto;
-        // border-radius: 8px;
+        margin: 0 0 10px;
+        padding: 30px;
+        // position: relative;
+
         .logo {
-            // font-family: 'Billabong', sans-serif;
+            svg {
+            // height: 51px;
             font-size: 3rem;
+            }
+            // font-family: 'Billabong', sans-serif;
             color: #262626;
             margin-bottom: 20px;
         }
@@ -30,6 +30,19 @@ body {
             display: flex;
             flex-direction: column;
             gap: 10px;
+
+            input {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+                border: 1px solid $border-color;
+                border-radius: 5px;
+                background: #fafafa;
+
+                &:focus {
+                    outline: none;
+                }
+            }
         }
         .login-btn {
             background-color: #0095f6;
@@ -81,7 +94,7 @@ body {
         margin-top: 10px;
 
         &:hover {
-            text-decoration: underline;
+            // text-decoration: underline;
         }
     }
 
@@ -92,7 +105,7 @@ body {
 
         &:hover {
             cursor: pointer;
-            text-decoration: underline;
+            // text-decoration: underline;
         }
     }
     .signup-box {
@@ -109,7 +122,7 @@ body {
             text-decoration: none;
 
             &:hover {
-                text-decoration: underline;
+                // text-decoration: underline;
             }
         }
     }

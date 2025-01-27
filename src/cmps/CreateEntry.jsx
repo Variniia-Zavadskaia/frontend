@@ -47,7 +47,7 @@ export function CreateEntry({ onClose }) {
 
     return (
         <div className="add-entry">
-            <header className="add-entry__header">
+            <header className="add-header">
                 {imgData.imgUrl && (
                     <button className="back" onClick={onBack}>
                         &lt;--
@@ -55,25 +55,25 @@ export function CreateEntry({ onClose }) {
                 )}
                 <h2>Create New Post</h2>
                 {imgData.imgUrl && !showText && (
-                    <button className="add-entry__btn" onClick={onSetShowText}>
+                    <button className="add-entry-btn" onClick={onSetShowText}>
                         Next
                     </button>
                 )}
                 {showText && (
-                    <button className="add-entry__btn" onClick={onAddEntry}>
+                    <button className="add-entry-btn" onClick={onAddEntry}>
                         Share
                     </button>
                 )}
             </header>
 
-            <div className="add-entry__body">
-                <div className="add-entry__upload-area">
+            <div className="add-body">
+                <div className="add-upload-area">
                     {imgData.imgUrl ? (
-                        <img className="add-entry__image" src={imgData.imgUrl} alt="Uploaded content" />
+                        <img  src={imgData.imgUrl} alt="Uploaded content" />
                     ) : (
                         <div>
-                            <div className="add-entry__upload-icon">{sideBarSvg.uploade}</div>
-                            <p className="add-entry__upload-text">Drag photos and videos here</p>
+                            <div className="add-upload-icon">{sideBarSvg.uploade}</div>
+                            <p className="add-upload-text">Drag photos and videos here</p>
 
                             <ImgUploader className="upload-btn " onUploaded={onUploaded}></ImgUploader>
                         </div>
@@ -82,8 +82,8 @@ export function CreateEntry({ onClose }) {
 
                 <div>
                     {showText && (
-                        <div className="add-entry__caption-area">
-                            <textarea className="add-entry__textarea" value={text} onChange={handleTextChange} />
+                        <div className="add-caption-area">
+                            <textarea className="add-textarea" value={text} onChange={handleTextChange} />
                         </div>
                     )}
                 </div>

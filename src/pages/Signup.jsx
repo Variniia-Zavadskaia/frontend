@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { signup } from '../store/actions/user.actions'
 
 import { ImgUploader } from '../cmps/ImgUploader'
 import { userService } from '../services/user'
 import { sideBarSvg } from '../cmps/Svgs'
+import { AppFooter } from '../cmps/AppFooter'
 
 export function Signup() {
     const [credentials, setCredentials] = useState(userService.getEmptyUser())
@@ -37,37 +39,51 @@ export function Signup() {
     }
 
     return (
-        <div className='signup-container'>
-            <div className='logo custom-size'>{sideBarSvg.logo}</div>
-            <p>Sign up to see photos and videos<br/>from your friends.</p>
-            <form className="signup-form" onSubmit={onSignup}>
-                <input
-                    type="text"
-                    name="fullname"
-                    value={credentials.fullname}
-                    placeholder="Fullname"
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="username"
-                    value={credentials.username}
-                    placeholder="Username"
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={credentials.password}
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                />
-                <ImgUploader onUploaded={onUploaded} />
-                <button>Sign up</button>
-            </form>
+        
+        <div className="signup-container">
+            <div className="signup-box">
+                <div className="logo ">{sideBarSvg.logo}</div>
+                <p>
+                    Sign up to see photos and videos
+                    <br />
+                    from your friends.
+                </p>
+                <form className="signup-form" onSubmit={onSignup}>
+                    <input
+                        type="text"
+                        name="fullname"
+                        value={credentials.fullname}
+                        placeholder="Full Name"
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="username"
+                        value={credentials.username}
+                        placeholder="Username"
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        placeholder="Password"
+                        onChange={handleChange}
+                        required
+                    />
+                    <ImgUploader onUploaded={onUploaded} />
+                    <button type="submit" className="submit-btn">Sign up</button>
+                </form>
+            </div>
+            <div className="login-box">
+                <p>
+                    Don't have an account? <Link to="/login">Log in</Link>
+                </p>
+            </div>
+          <AppFooter />
         </div>
+         
     )
 }

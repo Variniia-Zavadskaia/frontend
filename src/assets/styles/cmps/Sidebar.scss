@@ -168,6 +168,15 @@
 
     &.active {
         font-weight: bold;
+        svg path{
+            fill:black;
+            // fill-rule: ;
+            // stroke: white;
+        }
+        svg polygon {
+            fill-rule:black;
+            // stroke: white;
+        }
     }
 
     .icon {

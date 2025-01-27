@@ -16,6 +16,7 @@ button {
     background-color: $ig-primary-background;
     overflow: hidden;
     // border: 1px solid #ccc;
+    max-height: calc(100hv - 40px);
 
     header {
         height: rem(44px);

@@ -35,11 +35,29 @@ export function Login() {
         setCredentials({ ...credentials, [field]: value })
     }
 
+    console.log('gggg')
+
     return (
         <div className="login-container">
             <div className="login-box">
-                <div className='logo'>{sideBarSvg.logo}</div>
+                <div className="logo">{sideBarSvg.logo}</div>
                 <form className="login-form" onSubmit={onLogin}>
+                    <input
+                        type="text"
+                        name="username"
+                        value={credentials.username}
+                        placeholder="Username"
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        placeholder="Password"
+                        onChange={handleChange}
+                        required
+                    />
                     <select name="username" value={credentials.username} onChange={handleChange}>
                         <option value="">Select User</option>
                         {users.map(user => (

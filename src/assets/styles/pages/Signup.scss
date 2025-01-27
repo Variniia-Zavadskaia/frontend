@@ -1,57 +1,84 @@
 .signup-container {
-    width: rem(350px);
-    height: rem(618px);
-    border: 0.0625rem solid $border-color;
-
-    .logo.custom-size {
-        width: rem(175px);
-        height: ren(51px);
-    }
-}
-.login-form,
-.signup-form {
-    display: grid;
-    width: min(80%, 300px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     margin: auto;
 
-    padding: 1em;
-    // background-color: $clr4;
-}
+    .signup-box {
+        width: 350px;
+        background-color: #fff;
+        border: 1px solid $border-color;
+        padding: 20px;
+        text-align: center;
 
-.signup-form {
-    input {
-        width: 100%;
-    }
+        .logo {
+            font-size: 3rem;
+            color: #262626;
+            margin-bottom: 20px;
+        }
 
-    .admin-toggle {
-        display: flex;
-        align-items: center;
-        justify-self: start;
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
-        span {
-            font-size: 0.8em;
+            input {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+                border: 1px solid $border-color;
+                border-radius: 5px;
+                background: #fafafa;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .submit-btn {
+            background-color: #0095f6;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: darken(#0095f6, 10%);
+            }
+
+            &:disabled {
+                background-color: lighten(#0095f6, 30%);
+                cursor: not-allowed;
+            }
         }
     }
-}
 
-.login-page nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2em;
+    .login-box {
+        background: #fff;
+        border: 1px solid $border-color;
+        padding: 20px;
+        width: 350px;
+        text-align: center;
+        font-size: 14px;
 
-    margin-block: 100px 0.5em;
+        a {
+            color: #0095f6;
+            font-weight: bold;
+            text-decoration: none;
 
-    a {
-        font-size: 0.8em;
-        color: $ig-primory-clr;
-
-        &:hover {
-            color: $ig-secondary-clr;
+            &:hover {
+                // text-decoration: underline;
+            }
         }
     }
-    a.active {
-        text-decoration: underline;
-        color: $ig-primory-clr;
+    .signup-container:last-child {
+        margin-top: auto; 
     }
 }
+// }
