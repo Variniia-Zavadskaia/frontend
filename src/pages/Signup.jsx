@@ -28,6 +28,12 @@ export function Signup() {
     async function onSignup(ev = null) {
         if (ev) ev.preventDefault()
 
+        console.log(credentials);
+        
+        if (credentials.imgUrl === "src/assets/icons/user.svg") {
+            console.log("wrong img");
+            return;
+        }
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         await signup(credentials)
         clearState()
