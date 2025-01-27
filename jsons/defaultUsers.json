@@ -1,0 +1,26 @@
+[
+    {
+        "username": "nuna",
+        "fullname": "Nuna Pho",
+        "imgUrl": "https://res.cloudinary.com/vanilla-test-images/image/upload/v1738004994/xejhnealnng37sla40qw.jpg",
+        "following": [],
+        "followers": [],
+        "_id": "LmAYJ"
+    },
+    {
+        "username": "muki",
+        "fullname": "Muki Jo",
+        "imgUrl": "https://res.cloudinary.com/vanilla-test-images/image/upload/v1738004834/bztkjqnd2fj0vukg3kgy.jpg",
+        "following": [],
+        "followers": [],
+        "_id": "BoSMj"
+    },
+    {
+        "username": "alice",
+        "fullname": "Alice Pa",
+        "imgUrl": "https://res.cloudinary.com/vanilla-test-images/image/upload/v1738004712/fttxulmuzsuaurdfzc5a.jpg",
+        "following": [],
+        "followers": [],
+        "_id": "1IBSJ"
+    }
+]
