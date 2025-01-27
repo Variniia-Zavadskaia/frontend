@@ -63,7 +63,7 @@ export async function logout() {
         await userService.logout()
         store.dispatch({
             type: SET_USER,
-            user: null
+            user: userService.getEmptyUser()
         })
         socketService.logout()
     } catch (err) {
