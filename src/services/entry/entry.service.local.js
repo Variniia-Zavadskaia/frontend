@@ -63,16 +63,13 @@ async function save(entry) {
         }
         savedEntry = await storageService.put(STORAGE_KEY, entryToSave)
     } else {
-        // const entryToSave = {
-        //     vendor: entry.vendor,
-        //     price: entry.price,
-        //     speed: entry.speed,
-        //     // Later, owner is set by the backend
-        //     owner: userService.getLoggedinUser(),
-        //     comments: []
-        // }
-        const entryToSave = {...entry}
-        entryToSave.by = userService.getLoggedinUser()
+        const loggedInUser = userService.getLoggedinUser()
+        let entryToSave = {...entry}
+
+        // console.log(entryToSave);
+        
+        entryToSave.by = {_id: loggedInUser._id, username: loggedInUser.username, imgUrl: loggedInUser.imgUrl}
+        entryToSave.date = new Date()
         savedEntry = await storageService.post(STORAGE_KEY, entryToSave)
     }
     return savedEntry

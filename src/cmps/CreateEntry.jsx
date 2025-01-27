@@ -26,7 +26,7 @@ export function CreateEntry({ onClose }) {
     }
 
     async function onAddEntry() {
-        const entryToSave = { ...entry, date: new Date() }
+        const entryToSave = { ...entry }
 
         try {
             const savedEntry = await addEntry(entryToSave)
