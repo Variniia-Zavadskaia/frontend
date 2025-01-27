@@ -5,7 +5,6 @@ import { loadEntrys, updateEntry } from '../store/actions/entry.actions'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { entryService } from '../services/entry'
-import { userService } from '../services/user'
 
 import { EntryFilter } from '../cmps/EntryFilter'
 import { Widgets } from '../cmps/Widgets'
@@ -73,8 +72,6 @@ export function EntryIndex() {
                         </li>
                     ))}
                 </ul> */}
-                {/* {userService.getLoggedinUser() && <button onClick={onAddEntry}>Add a entry</button>} */}
-                {/* <EntryList entrys={entrys} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} /> */}
                 <ul className="feed">
                     {entrys.map(entry => (
                         <li key={entry._id}>
