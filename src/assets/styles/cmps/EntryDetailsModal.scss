@@ -12,7 +12,8 @@
     .modal {
         background-color: $ig-primary-background;
         overflow: hidden;
-
+        height: calc(100% - 5%);
+        // width: calc(100% - 25%);
         header {
             height: rem(43px)
         }
@@ -20,14 +21,16 @@
 
     .close-btn {
         position: absolute;
-        top: 2rem;
-        right: 2rem;
+        top: 1rem;
+        right: 1rem;
         background: none;
         border: none;
-        font-size: 2.4rem;
+        font-size: 2rem;
         color: #fff;
         cursor: pointer;
         z-index: 1000;
+        font-weight: lighter; 
+        line-height: 1;
 
         &:hover {
             color: $ig-secondary-clr2;

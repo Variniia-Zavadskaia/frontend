@@ -37,6 +37,13 @@
         }
         .entry-comment {
             margin-top: rem(8px);
+            width: calc(-2px + min(470px, 100vw));
+        }
+        .new-comment{
+            margin-top: rem(8px);
+        }
+        .count-comment{
+            margin-top: rem(8px);
         }
     }
 }

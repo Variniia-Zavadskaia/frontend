@@ -1,7 +1,8 @@
 .entry-buttons {
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin: rem(4px) 0;
     .like-share {
         display: flex;
@@ -21,6 +22,7 @@
     }
 
     .saved {
+        align-self: end;
         &:hover {
             opacity: 1;
             color: black;
@@ -31,14 +33,6 @@
         }
     }
 
-    // .action.save {
-    //     color: #262626;
-    //     align-self: end;
-
-    //     &:hover {
-    //         color: #737373;
-    //     }
-    // }
 }
 
 .entry-likes {

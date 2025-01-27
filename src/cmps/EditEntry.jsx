@@ -1,13 +1,14 @@
-import { entrySvg } from './Svgs'
+import { entrySvg } from '../cmps/Svgs'
 import { useState } from 'react'
 import { UserIcon } from './elements/UserIcon'
 import { UserName } from './elements/UserName'
 
 export function EditEntry({ entry, onClose, onUpdateEntry }) {
     const [txt, setTxt] = useState(entry.txt)
-    const [entryToEdit, setEntryToEdit] = useState({...entry})
+    const maxChars = 2200
+    const [entryToEdit, setEntryToEdit] = useState({ ...entry })
     const userBy = entry.by
-    
+
     function handleTxtChange(ev) {
         setTxt(ev.target.value)
         setEntryToEdit(prevEntry => ({ ...prevEntry, txt: ev.target.value }))
@@ -29,19 +30,27 @@ export function EditEntry({ entry, onClose, onUpdateEntry }) {
             <section className="edit-entry-body">
                 <img src={entryToEdit.imgUrl} />
                 <div className="side-edit">
-
-                    <div className='to'>
+                    <div className="to">
                         <div className="prof">
-                            <UserIcon user={userBy} isLink={false}/>
-                            <UserName user={userBy} isLink={false}/>
+                            <UserIcon className="user-icon-edit" user={userBy} size={24} isLink={false} />
+                            <UserName className="user-name-edit" user={userBy} isLink={false} />
                         </div>
-                        <textarea name="txt" value={entryToEdit.txt} onChange={handleTxtChange} />
+                        <div className="textarea-container">
+                            <textarea
+                                name="txt"
+                                value={entryToEdit.txt}
+                                onChange={handleTxtChange}
+                                maxLength={maxChars}
+                            />
+                        </div>
                         <div className="text-footer">
-                            <button>{entrySvg.emoji}</button>
-                            <p>.../2,200</p>
+                            <button>{entrySvg.emoji(20)}</button>
+                            <div className="counter">
+                                {entryToEdit.txt.length}/{maxChars}
+                            </div>
+                            
                         </div>
                     </div>
-
                 </div>
             </section>
         </div>

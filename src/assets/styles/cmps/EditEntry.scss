@@ -1,9 +1,9 @@
 .edit-entry {
     width: rem(800px);
-    height: rem(600px);
+    // height: rem(600px);
     background-color: $ig-primary-background;
-    border-radius: 1rem;
-    overflow: hidden;
+    // border-radius: 1rem;
+    // overflow: hidden;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.2);
@@ -31,7 +31,7 @@
         // justify-content: center;
         .side-edit {
             padding: 1rem;
-            width: rem(340px);
+            width: rem(324px);
             border-left: 0.1rem solid $border-color;
             // border-bottom: 0.1rem solid #dbdbdb;
             // display: flex;
@@ -41,40 +41,46 @@
                 .prof {
                     display: flex;
                     align-items: center;
-                    .icon {
-                        width: 2rem;
-                        height: 2rem;
-                        border-radius: 50%;
-                        color: $ig-primory-clr;
+                    margin-bottom: rem(14px);
+
+                    .user-icon-edit {
+                        margin-left: rem(12px);
                     }
-                    span {
-                        align-self: center;
-                        // font-size: 1rem;
-                        // color: $ig-primory-clr;
-                        // font-weight: bold;
-                        // padding: 1rem;
+
+                    .user-name-edit {
+                        font-weight: normal;
                     }
                 }
-                textarea {
-                    // flex: 1;
-                    // resize: none;
-                    height: rem(168px);
-                    border: none;
-                    outline: none;
-                    font-size: 14px;
-                    padding: 8px 0;
-                    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                    // color:$ig-primary-clr3;
+                .textarea-container {
+                    position: relative;
+                    max-width: 400px;
+                    margin: 0 auto;
+
+                    textarea {
+                        width: 100%;
+                        height: rem(168px);
+                        resize: none;
+                        border: none;
+                        // padding: 8px 0;
+                        font-size: 14px;
+                        outline: none;
+                        font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                    }
                 }
                 .text-footer {
                     display: flex;
                     justify-content: space-between;
                     border-bottom: 0.1rem solid $border-color;
+                    padding: rem(4px) rem(8px);
 
-                    p {
+                    button {
                         color: $ig-secondary-clr2;
-                        font-size: rem(12px);
+                    }
+
+                    .counter {
                         line-height: rem(16px);
+                        font-size: rem(12px);
+                        color: $ig-secondary-clr2;
                         text-align: end;
                     }
                 }
