@@ -39,7 +39,9 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
 
     return (
         <article className="comment-preview">
-            <UserIcon user={userBy} size={32} />
+            <div className='comment-icon'>
+                <UserIcon user={userBy} size={32} />
+            </div>
             <div className="comment-body">
                 <div className="body-top" style={{ gap: `${isEntryMsg ? 8 : 4}px` }}>
                     <UserName user={userBy} />

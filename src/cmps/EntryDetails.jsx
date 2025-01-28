@@ -65,21 +65,25 @@ export function EntryDetails({ entryId }) {
 
     return (
         <div className="entry-details">
-            <img className="entry-details-img" src={entry.imgUrl} />
+            <div className="img-container">
+                <img className="entry-details-img" src={entry.imgUrl} />
+            </div>
             <div className="side-details">
                 <div className="header-details">
                     <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} />
                 </div>
                 <div className="comment-container">
-                    <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
-                    {comments.map(comment => (
-                        <CommentPreview
-                            key={comment.id}
-                            comment={comment}
-                            onRemoveComment={onRemoveComment}
-                            onUpdateComment={onUpdateComment}
-                        />
-                    ))}
+                    <div className="comment-list">
+                        <CommentPreview comment={entryMsgComment} isEntryMsg={true} />
+                        {comments.map(comment => (
+                            <CommentPreview
+                                key={comment.id}
+                                comment={comment}
+                                onRemoveComment={onRemoveComment}
+                                onUpdateComment={onUpdateComment}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <div className="nav-details">
                     <EntryButtons entry={entry} />

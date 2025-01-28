@@ -20,7 +20,7 @@ export function EntryDetailsModal() {
 	return (
 		<div className="entry-details-modal">
 			<button className="close-btn" onClick={onCloseModal}>&times;</button>
-			<section className="modal">
+			<section className="entry-modal">
 				<EntryDetails entryId={watchedEntryId}/>
 			</section>
 		</div>

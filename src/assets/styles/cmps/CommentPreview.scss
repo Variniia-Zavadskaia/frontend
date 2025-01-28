@@ -1,7 +1,12 @@
 .comment-preview {
     display: flex;
-    gap: rem(8px);
+    // gap: rem(8px);
     padding: rem(12px) 0;
+
+    .comment-icon {
+        margin-right: 8px;
+    }
+
     .comment-body {
         flex-grow:1;
         display: flex;

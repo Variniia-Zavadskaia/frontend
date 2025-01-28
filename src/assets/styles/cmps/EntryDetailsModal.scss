@@ -9,14 +9,18 @@
     align-items: center;
     justify-content: center;
     z-index: 500;
-    .modal {
+    .entry-modal {
         background-color: $ig-primary-background;
         overflow: hidden;
-        height: calc(100% - 5%);
+        max-height: calc(100hv - 40px);
+        max-width: calc(100% - 64px - 64px);
+        margin: 0 64px;
+        // height: calc(100% - 5%);
+        border-radius: 4px;
         // width: calc(100% - 25%);
-        header {
-            height: rem(43px)
-        }
+        // header {
+        //     height: rem(43px)
+        // }
     }
 
     .close-btn {
