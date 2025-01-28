@@ -11,6 +11,7 @@ function getEmptyUser() {
         imgUrl: 'src/assets/icons/user.svg',
         following:[],
         followers:[],
+        savedEntryIds:[],
     }
 }
 

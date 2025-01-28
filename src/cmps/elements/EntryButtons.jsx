@@ -5,17 +5,19 @@ import { LikeButton } from './LikeButton'
 import { onToggleEntryDetailsModal } from '../../store/actions/app.actions'
 import { showErrorMsg } from '../../services/event-bus.service'
 import { useSelector } from 'react-redux'
+import { userUpdate } from '../../store/actions/user.actions'
 
 export function EntryButtons({ entry }) {
     //TODO btn share -> open modal with following
     const [likedBy, setLikedBy] = useState([...entry.likedBy])
-    const user = useSelector(storeState => storeState.userModule.user)
+    const user = useSelector(storeState => storeState.userModule.user)        
+    const userId = useSelector(storeState => storeState.userModule.user._id)
+    const savedEntryIds = useSelector(storeState => storeState.userModule.user.savedEntryIds)
     const [saved, setSaved] = useState(false)
 
     useEffect(() => {
-        if (user.savedEntryIds)
-            setSaved(user.savedEntryIds.some(savedId => savedId === entry._id))
-    }, [user])
+        setSaved(savedEntryIds.some(savedId => savedId === entry._id))
+    }, [savedEntryIds])
 
     
     
@@ -31,19 +33,30 @@ export function EntryButtons({ entry }) {
     }
     
     
-    function onSaveEntry() {
-        let updatedUser = user
+    async function onSaveEntry() {
+        let updatedEntryIds = [...savedEntryIds]
         
         if (!saved) {
-            if (!updatedUser.savedEntryIds) updatedUser.savedEntryIds = []
-            updatedUser.savedEntryIds.unshift(entry._id)
+            updatedEntryIds.unshift(entry._id)
         } else {
-            updatedUser.savedEntryIds.filter(savedId => savedId !== entry._id)
+            updatedEntryIds = updatedEntryIds.filter(savedId => savedId !== entry._id)
+
+            console.log(updatedEntryIds);
+            
         }
         setSaved(!saved)
+
+
+        try {
+            await userUpdate(userId, 'savedEntryIds', updatedEntryIds)
+        } catch (err) {
+            showErrorMsg('Cannot update user saved')
+            console.log('Cannot update user saved', err)
+        }
+
     }
     
-    console.log(saved);
+    // console.log(saved);
     
     return (
         <section>

@@ -60,13 +60,11 @@ function getLoggedinUser() {
 }
 
 function saveLoggedinUser(user) {
-	user = { 
-        _id: user._id, 
-        fullname: user.fullname,
-        username: user.username,
-        imgUrl: user.imgUrl, 
-        // isAdmin: user.isAdmin 
-    }
-	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-	return user
+    const loggedInUser = {...user}
+
+    delete loggedInUser.password
+
+	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
+    
+	return loggedInUser
 }

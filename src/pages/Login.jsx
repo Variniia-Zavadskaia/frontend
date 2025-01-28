@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { userService } from '../services/user'
-import { login } from '../store/actions/user.actions'
+import { loadUsers, login } from '../store/actions/user.actions'
 import { sideBarSvg } from '../cmps/Svgs'
 
 export function Login() {
-    const [users, setUsers] = useState([])
+    const users = useSelector(storeState => storeState.userModule.users)
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
 
     const navigate = useNavigate()
@@ -15,11 +15,6 @@ export function Login() {
     useEffect(() => {
         loadUsers()
     }, [])
-
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        setUsers(users)
-    }
 
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()

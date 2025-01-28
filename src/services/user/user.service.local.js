@@ -31,9 +31,11 @@ function remove(userId) {
     return storageService.remove(STORAGE_KEY_USER, userId)
 }
 
-async function update({ _id, score }) {
+async function update(_id, field, val) {
     const user = await storageService.get(STORAGE_KEY_USER, _id)
-    user.score = score
+
+    user[field] = val
+
     await storageService.put(STORAGE_KEY_USER, user)
 
 	// When admin updates other user's details, do not update loggedinUser
@@ -51,8 +53,6 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-
-
     const users = await storageService.query(STORAGE_KEY_USER)
     const userExists = users.some(user => user.username === userCred.username)
 
@@ -74,14 +74,13 @@ function getLoggedinUser() {
 }
 
 function saveLoggedinUser(user) {
-	user = { 
-        _id: user._id, 
-        username: user.username, 
-        fullname: user.fullname, 
-        imgUrl: user.imgUrl,
-    }
-	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-	return user
+	const loggedInUser = {...user}
+
+    delete loggedInUser.password
+
+	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
+    
+	return loggedInUser
 }
 
 // To quickly create an admin user, uncomment the next line
