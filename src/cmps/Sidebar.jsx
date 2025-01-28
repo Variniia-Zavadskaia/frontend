@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,6 @@ import { onToggleModal } from '../store/actions/app.actions'
 import { CreateEntry } from './CreateEntry.jsx'
 import { entrySvg, sideBarSvg } from './Svgs'
 import { UserIcon } from './elements/UserIcon.jsx'
-// import { MoreMenu } from './MoreMenu.jsx'
 
 export const SIDEBAR_TYPE_REGULAR = 'regular'
 export const SIDEBAR_TYPE_FOOTER = 'footer'
@@ -35,6 +34,10 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
     //         showErrorMsg('Cannot logout')
     //     }
     // }
+
+    function onCloseMoreMenu() {
+        setShowMoreMenu(false)
+    }
 
     return (
         <div className={`sidebar sidebar-${type}`}>
@@ -87,7 +90,7 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
             <div className="more-menu-container">
                 {showMoreMenu && (
                     <div className="more-menu modal">
-                        <MoreMenu />
+                        <MoreMenu onClose={onCloseMoreMenu} />
                     </div>
                 )}
                 <div
@@ -101,8 +104,30 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
     )
 }
 
-function MoreMenu() {
+function MoreMenu({ onClose }) {
     const navigate = useNavigate()
+    const menuRef = useRef(null)
+    
+
+    useEffect(() => {
+        const handleOutsideClick = event => {
+            // console.log('Event Target:', event.target)
+            // console.log('Menu Ref Current:', menuRef.current)
+
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                // console.log('Click is outside the menu.')
+                onClose()
+            } else {
+                // console.log('Click is inside the menu.')
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick)
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick)
+        }
+    }, [onClose])
 
     async function onLogout() {
         try {
@@ -111,11 +136,13 @@ function MoreMenu() {
             showSuccessMsg(`Bye now`)
         } catch (err) {
             showErrorMsg('Cannot logout')
+        } finally {
+            onClose()
         }
     }
 
     return (
-        <div className="more-list">
+        <div ref={menuRef} className="more-list">
             <Link className="sidebar-item more-item" to="/saved">
                 <div className="icon">{entrySvg.save()}</div>
                 <span className="text">Saved</span>
