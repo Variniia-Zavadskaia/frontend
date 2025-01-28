@@ -58,8 +58,7 @@ async function signup(userCred) {
 
     if (userExists) throw new Error("username already exists");
     
-
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    if (!userCred.imgUrl) userCred.imgUrl = 'https://res.cloudinary.com/dqfzhhtfh/image/upload/v1738007970/user_ojp9xs.svg'
 
     const user = await storageService.post(STORAGE_KEY_USER, userCred)
     return saveLoggedinUser(user)
