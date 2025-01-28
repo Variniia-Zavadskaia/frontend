@@ -25,6 +25,7 @@ function getDefaultFilter() {
 }
 
 const service = VITE_LOCAL === 'true' ? local : remote
+// const service = remote
 export const entryService = { getEmptyEntry, getDefaultFilter, ...service }
 
 // Easy access to this service from the dev tools console

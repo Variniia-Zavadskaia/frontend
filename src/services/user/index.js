@@ -8,7 +8,7 @@ function getEmptyUser() {
         username: '', 
         password: '', 
         fullname: '',
-        imgUrl: 'src/assets/icons/user.svg',
+        imgUrl: 'https://res.cloudinary.com/dqfzhhtfh/image/upload/v1738007970/user_ojp9xs.svg',
         following:[],
         followers:[],
         savedEntryIds:[],
@@ -16,6 +16,9 @@ function getEmptyUser() {
 }
 
 const service = VITE_LOCAL === 'true' ? local : remote
+
+// const service = remote
+
 export const userService = { ...service, getEmptyUser }
 
 // Easy access to this service from the dev tools console
