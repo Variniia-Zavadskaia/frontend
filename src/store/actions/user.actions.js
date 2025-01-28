@@ -98,6 +98,8 @@ export async function loadUser(userId) {
 export async function loadUserEntrys(userId) {
     try {
         const entrys = await entryService.query({ byId: userId })
+        // console.log(entrys);
+        
         store.dispatch({ type: SET_WATCHED_USER_ENTRYS, entrys })
     } catch (err) {
         showErrorMsg('Cannot load user posts')

@@ -9,6 +9,8 @@ export const entryService = {
 }
 
 async function query(filterBy = { txt: ''}) {
+    // console.log(filterBy);
+    
     return httpService.get(`entry`, filterBy)
 }
 

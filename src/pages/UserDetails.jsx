@@ -18,9 +18,9 @@ export function UserDetails() {
     const logedInUserId = useSelector(storeState => storeState.userModule.user._id)
     const entrysCount = useSelector(storeState => storeState.userModule.watchedUserEntrys.length)
 
-    useEffect(() => {
+    useEffect(() => {     
         loadUser(id)
-        loadUserEntrys(id)
+        loadUserEntrys(id)      
 
         socketService.emit(SOCKET_EMIT_USER_WATCH, id)
         socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
@@ -37,6 +37,11 @@ export function UserDetails() {
 
     if (!user) return <></>
 
+    console.log(user);
+
+    const numOfFollowers = user.followers ? user.followers.length : 0
+    const numOfFollowings = user.followers ? user.following.length : 0
+
     return (
         <section className="user-details">
             <header className="user-header">
@@ -52,9 +57,9 @@ export function UserDetails() {
                     </div>
                 </div>
                 <div className="info-midle">
-                    <p>{entrysCount} posts</p>
-                    <p>{user.followers.length} followers</p>
-                    <p>{user.following.length} following</p>
+                    <p>{entrysCount} post{entrysCount === 1 ? '' : 's'}</p>
+                    <p>{numOfFollowers} follower{numOfFollowers === 1 ? '' : 's'}</p>
+                    <p>{numOfFollowings} following{numOfFollowings === 1 ? '' : 's'}</p>
                 </div>
                 <div className="info-bottom">
                     <p>{user.fullname}</p>
