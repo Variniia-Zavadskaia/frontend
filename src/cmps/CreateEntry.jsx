@@ -1,6 +1,6 @@
 import { sideBarSvg } from './Svgs.jsx'
 import { ImgUploader } from './ImgUploader'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { entryService } from '../services/entry'
 import { addEntry } from '../store/actions/entry.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
@@ -11,6 +11,21 @@ export function CreateEntry({ onClose }) {
     const [entry, setEntry] = useState(entryService.getEmptyEntry())
     const [showText, setShowText] = useState(false)
     const [text, setText] = useState('')
+    const [modalWidth, setModalWidth] = useState(50)
+
+    useEffect(() => {
+        const updateModalWidth = () => {
+            const modalHeight = document.querySelector('.add-body').offsetHeight
+            setModalWidth(modalHeight) // Set width equal to height
+        }
+
+        updateModalWidth() // Initial call to set width
+        window.addEventListener('resize', updateModalWidth) // Update on resize
+
+        return () => {
+            window.removeEventListener('resize', updateModalWidth) // Clean up the event listener
+        }
+    }, [])
 
     function onUploaded(imgUrl, height, width) {
         setImgData({ imgUrl: imgUrl, width, height })
@@ -51,7 +66,7 @@ export function CreateEntry({ onClose }) {
             <header className="add-header">
                 {imgData.imgUrl && (
                     <button className="back" onClick={onBack}>
-                       {entrySvg.arrow}
+                        {entrySvg.arrow}
                     </button>
                 )}
                 <h2>Create New Post</h2>
@@ -67,12 +82,12 @@ export function CreateEntry({ onClose }) {
                 )}
             </header>
 
-            <section className="add-body">
+            <section className="add-body" style={{ width: `${modalWidth}px` }}>
                 <div className="add-upload-area">
                     {imgData.imgUrl ? (
-                        <img  src={imgData.imgUrl} alt="Uploaded content" />
+                        <img src={imgData.imgUrl} alt="Uploaded content" />
                     ) : (
-                        <div className='add-first'>
+                        <div className="add-first">
                             <div className="add-upload-icon">{sideBarSvg.uploade}</div>
                             <p className="add-upload-text">Drag photos and videos here</p>
 

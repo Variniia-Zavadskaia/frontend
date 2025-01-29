@@ -6,7 +6,6 @@
 
     .add-header {
         display: flex;
-        // grid-template-rows: auto;
         justify-content: space-between;
         align-items: center;
         width: 100%;
@@ -14,6 +13,7 @@
         // position: relative;
 
         h2 {
+            flex-grow:1;
             font-size: 16px;
             font-weight: 600;
             // justify-self: center;
@@ -24,9 +24,8 @@
         }
 
         button {
-            padding: rem(14px);
+            padding: rem(16px);
         }
-
         .add-entry-btn {
             color: #0095f6;
             &:hover {
@@ -38,57 +37,58 @@
     .add-body {
         display: grid;
         grid-template-columns: 1fr auto;
-        width: rem(794px);
-    }
 
-    .add-upload-area {
-        width: 100%;
-        min-height: calc(90vh - rem(350px));
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        //from insta
+        // height: calc(100vmin - var(--creation-padding-y) - var(--creation-header-height) - var(--creation-padding-x));
+        // --creation-padding-x: 64px;
+        // --creation-padding-y: 112px;
+        height: calc(100vmin - $modal-header-height - 64px - 112px);
 
-        .add-first {
-            display: grid;
-            justify-items: center;
-            gap: rem(24px);
-        }
+        .add-upload-area {
+            width: 100%;
+            min-height: calc(90vh - rem(350px));
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-        .icon {
-            width: 5rem;
-            height: 5rem;
-            align-self: center;
-            // margin-bottom: 1.6rem;
-            // margin-bottom: 16px;
-        }
+            .add-first {
+                display: grid;
+                justify-items: center;
+                gap: rem(24px);
+            }
 
-        p {
-            font-size: rem(20px);
-            margin-bottom: rem(10px);
-        }
+            .icon {
+                width: 5rem;
+                height: 5rem;
+                align-self: center;
+            }
 
-        .upload-btn {
-            // margin-top: rem(25px);
-            padding: rem(7px) rem(16px);
-            font-size: rem(14px);
-            font-weight: 600;
-            color: #fff;
-            background-color: $ig-primary-clr3;
-            border: none;
-            border-radius: 0.4rem;
-            cursor: pointer;
+            p {
+                font-size: rem(20px);
+                margin-bottom: rem(10px);
+            }
 
-            &:hover {
-                background-color: #007bb5;
+            .upload-btn {
+                padding: rem(7px) rem(16px);
+                font-size: rem(14px);
+                font-weight: 600;
+                color: #fff;
+                background-color: $ig-primary-clr3;
+                border: none;
+                border-radius: 0.4rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #007bb5;
+                }
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                object-fit: cover;
             }
         }
-        img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-    }
 
     .add-caption-area {
         width: 100%;
@@ -96,13 +96,18 @@
 
         .add-entry__textarea {
             width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid $border-color;
-            border-radius: 0.4rem;
-            resize: none;
-            height: 100px;
-            font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin-top: 20px;
+
+            .add-entry__textarea {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+                border: 1px solid $border-color;
+                border-radius: 0.4rem;
+                resize: none;
+                height: 100px;
+                font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            }
         }
     }
 }
