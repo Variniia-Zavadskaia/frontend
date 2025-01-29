@@ -1,9 +1,9 @@
 .entry-details {
     display: flex;
-    border: 0.0625rem solid $border-color;
+    // border: 0.0625rem solid $border-color;
 
     .img-container {
-        border-right: 0.0625rem solid $border-color;
+        // border-right: 0.0625rem solid $border-color;
         min-height: 450px;
         max-width: 599px;
         flex-grow: 1;
@@ -16,7 +16,7 @@
     }
 
     .side-details {
-        // border: 0.0625rem solid $border-color;
+        border: 0.0625rem solid $border-color;
         width: rem(335px);
         display: grid;
         grid-template-rows: auto 1fr auto auto;

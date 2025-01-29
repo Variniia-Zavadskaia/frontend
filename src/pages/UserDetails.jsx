@@ -11,6 +11,7 @@ import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from
 import { entryService } from '../services/entry'
 import { UserEntryList } from '../cmps/UserEntryList'
 import { entrySvg } from '../cmps/Svgs'
+import { AppFooter } from '../cmps/AppFooter'
 
 export function UserDetails() {
     const { id } = useParams()
@@ -57,9 +58,9 @@ export function UserDetails() {
                     </div>
                 </div>
                 <div className="info-midle">
-                    <p>{entrysCount} post{entrysCount === 1 ? '' : 's'}</p>
-                    <p>{numOfFollowers} follower{numOfFollowers === 1 ? '' : 's'}</p>
-                    <p>{numOfFollowings} following{numOfFollowings === 1 ? '' : 's'}</p>
+                    <p><span>{entrysCount}</span>  post{entrysCount === 1 ? '' : 's'}</p>
+                    <p><span>{numOfFollowers}</span> follower{numOfFollowers === 1 ? '' : 's'}</p>
+                    <p><span>{numOfFollowings}</span>  following{numOfFollowings === 1 ? '' : 's'}</p>
                 </div>
                 <div className="info-bottom">
                     <p>{user.fullname}</p>
@@ -79,6 +80,7 @@ export function UserDetails() {
                 )}
             </nav>
             <Outlet />
+            {/* <AppFooter /> */}
         </section>
     )
 }

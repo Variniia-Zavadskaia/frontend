@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { entryService } from '../services/entry'
 import { addEntry } from '../store/actions/entry.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { entrySvg } from './Svgs.jsx'
 
 export function CreateEntry({ onClose }) {
     const [imgData, setImgData] = useState({ imgUrl: null })
@@ -50,7 +51,7 @@ export function CreateEntry({ onClose }) {
             <header className="add-header">
                 {imgData.imgUrl && (
                     <button className="back" onClick={onBack}>
-                        &lt;--
+                       {entrySvg.arrow}
                     </button>
                 )}
                 <h2>Create New Post</h2>
@@ -66,12 +67,12 @@ export function CreateEntry({ onClose }) {
                 )}
             </header>
 
-            <div className="add-body">
+            <section className="add-body">
                 <div className="add-upload-area">
                     {imgData.imgUrl ? (
                         <img  src={imgData.imgUrl} alt="Uploaded content" />
                     ) : (
-                        <div>
+                        <div className='add-first'>
                             <div className="add-upload-icon">{sideBarSvg.uploade}</div>
                             <p className="add-upload-text">Drag photos and videos here</p>
 
@@ -87,7 +88,7 @@ export function CreateEntry({ onClose }) {
                         </div>
                     )}
                 </div>
-            </div>
+            </section>
         </div>
     )
 }

@@ -30,11 +30,11 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
                         <UserName user={userBy} /> {entry.txt}
                     </p>
                 </div>
-                <div className='count-comment'>
+                {/* <div className='count-comment'>
                     <p>
                         View all ... comment/s
                     </p>
-                </div>
+                </div> */}
                 <div className="new-comment">
                     <CreateComment entryId={entry._id} />
                 </div>

@@ -10,7 +10,9 @@ import { userUpdate } from '../../store/actions/user.actions'
 export function EntryButtons({ entry }) {
     //TODO btn share -> open modal with following
     const [likedBy, setLikedBy] = useState([...entry.likedBy])
-    const user = useSelector(storeState => storeState.userModule.user)        
+    const user = useSelector(storeState => storeState.userModule.user)     
+    // console.log(user);
+       
     const userId = useSelector(storeState => storeState.userModule.user._id)
     const savedEntryIds = useSelector(storeState => storeState.userModule.user.savedEntryIds)
     const [saved, setSaved] = useState(false)

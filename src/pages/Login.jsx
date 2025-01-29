@@ -16,6 +16,9 @@ export function Login() {
         loadUsers()
     }, [])
 
+    console.log(JSON.stringify(users));
+    
+
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()
 

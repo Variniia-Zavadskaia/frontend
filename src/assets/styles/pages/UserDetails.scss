@@ -1,5 +1,6 @@
 .user-details {
     display: grid;
+    grid-template-rows: auto 1fr auto;
     justify-self: center;
     width: calc(100% - 40px);
     max-width: rem(975px);
@@ -22,7 +23,7 @@
             grid-row-start: 1;
             grid-row-end: 5;
             margin-right: 28px;
-            align-items: center;
+            justify-self: center;
 
             @include square-image(150px);
             img {
@@ -62,13 +63,22 @@
             height: rem(18px);
             margin-bottom: rem(20px);
             gap: rem(40px);
+
             p {
-                font-size: rem(18px);
+                font-size: rem(16px);
+                span {
+                    font-weight: bold;
+                }
             }
         }
         .info-bottom {
             grid-column-start: 2;
             grid-row-start: 3;
+
+            p{
+                font-size: rem(14px);
+                font-weight: bold;
+            }
         }
     }
 
