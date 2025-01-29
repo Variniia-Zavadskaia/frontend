@@ -2,27 +2,43 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    // width: 100%;
+    // height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 500;
+    // z-index: 500;
     .entry-modal {
         background-color: $ig-primary-background;
+        display: flex;
+        // max-width: 900px;
+        // width: 90%;
+        border-radius: 4px;
         overflow: hidden;
+        position: relative;
+        // width: 80%;
+        // height: 80%;
+        max-width: none;
+        max-height: none;
+
         max-height: calc(100% - 40px);
         max-width: calc(100% - 64px - 64px);
         // width: calc(100% - 40px);
         // max-width: calc(935px + 20px + 20px);
-        margin: 0 64px;
+        // margin: 0 64px;
         // height: calc(100% - 5%);
-        border-radius: 4px;
         // width: calc(100% - 25%);
         // header {
         //     height: rem(43px)
         // }
+
+        img{
+            // width: 500px;
+            height: auto;
+        }
     }
 
     .close-btn {

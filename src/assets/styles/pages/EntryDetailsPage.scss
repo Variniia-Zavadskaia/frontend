@@ -8,4 +8,9 @@
     display: grid;
     justify-content: center;
     justify-self: center;
+    max-height: rem(599px);
+
+    .img-container {
+        max-width: rem(599px);
+    }
 }

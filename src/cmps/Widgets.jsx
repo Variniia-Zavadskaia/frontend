@@ -11,14 +11,15 @@ export function Widgets() {
     const currUserId = useSelector(storeState => storeState.userModule.user._id)
     const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
     const currUserName = useSelector(storeState => storeState.userModule.user.username)
+    const currUserFull = useSelector(storeState => storeState.userModule.user.fullname)
 
     return (
         <section className="widgets">
                 <div className="menu-item">
                     <UserIcon user={{ _id: currUserId, imgUrl: curUserImg }} size={44} />
                     <div>
-                        <UserName className="text first" user={{ _id: currUserId, imgUrl: curUserImg }} />
-                        <span className="text second">{currUserName}</span>
+                        <UserName className="text first" user={{ _id: currUserId, username: currUserName }} />
+                        <span className="text second">{currUserFull}</span>
                     </div>
                     <button>Switch</button>
                 </div>
