@@ -11,6 +11,7 @@ import { CreateComment } from './elements/CreateComment'
 import { CommentPreview } from './CommentPreview'
 import { removeComment, updateComment } from '../store/actions/comment.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { getElapsedTime } from '../services/util.service'
 
 export function EntryDetails({ entryId }) {
     const entry = useSelector(storeState => storeState.entryModule.entry)
@@ -87,6 +88,7 @@ export function EntryDetails({ entryId }) {
                 </div>
                 <div className="nav-details">
                     <EntryButtons entry={entry} />
+                    {entry.date && <p>{getElapsedTime(entry.date)}</p>}
                 </div>
                 <div className="new-comment">
                     <div className="new-comment-uicon">

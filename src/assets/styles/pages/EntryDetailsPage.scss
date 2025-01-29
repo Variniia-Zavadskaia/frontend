@@ -1,16 +1,12 @@
 .entry-details-container {
     width: calc(100% - 40px);
     max-width: calc(935px + 20px + 20px);
-    // height: rem(559px);
+    max-height: rem(559px);
     padding: 0 20px;
     padding-top: calc(4vh);
     margin-bottom: 16px;
     display: grid;
     justify-content: center;
     justify-self: center;
-    max-height: rem(599px);
 
-    .img-container {
-        max-width: rem(599px);
-    }
 }

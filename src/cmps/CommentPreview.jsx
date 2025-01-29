@@ -50,6 +50,7 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
                 <p> {comment.txt} </p>
                 {!isEntryMsg && (
                     <div className="body-bottom">
+                        {comment.date && <p>{getElapsedTime(comment.date)}</p>}
                         {likedBy.length !== 0 && (
                             <button>
                                 {likedBy.length} like{likedBy.length === 1 ? '' : 's'}

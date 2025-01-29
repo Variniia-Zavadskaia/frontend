@@ -19,13 +19,17 @@
     .body-bottom {
         display: flex;
         gap: rem(20px);
-        align-content: center;
+        align-items: center;
+        font-size: rem(12px);
 
-        button {
+        button, p {
             color: $ig-primary-clr2;
-            
-            svg{
-    align-self: center;
+
+            svg {
+              color: $ig-primary-background;
+              &:hover{
+                color: $ig-secondary-clr2;
+              }
             }
         }
     }

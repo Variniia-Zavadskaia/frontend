@@ -1,57 +1,72 @@
 .entry-details {
     display: flex;
+    max-height: inherit;
     // border: 0.0625rem solid $border-color;
-    
-    // max-height: rem(599px);
+
+    // max-height: 100%;
+
     .img-container {
-        // border-right: 0.0625rem solid $border-color;
-        min-height: 450px;
-        // max-width: 599px;
-        flex-grow: 1;
         display: flex;
+        justify-content: center;
         align-items: center;
-        // height:100%;
+        overflow: hidden;
+        height: auto;
+        min-height: 450px;
+        border-right: 0.0625rem solid $border-color;
+
         .entry-details-img {
-            max-height: 100%;
+            height: auto;
+            width: 100%;
+            object-fit: cover;
         }
     }
 
     .side-details {
         border: 0.0625rem solid $border-color;
+        border-left: none;
         width: rem(335px);
-        display: grid;
-        grid-template-rows: auto 1fr auto auto;
-        height:100%;
+        display: flex;
+        flex-direction: column;
+        // grid-template-rows: auto 1fr auto auto;
+        max-height: 100%;
         .header-details {
             padding: rem(14px) rem(16px);
             border-bottom: 0.0625rem solid $border-color;
         }
         .comment-container {
-            overflow-y: scroll;
+            // overflow:hidden;
+            flex-grow: 1;
+            overflow-y: auto;
             .comment-list {
                 padding: rem(14px) rem(16px);
             }
-            // flex-grow: 1;
         }
         .nav-details {
             // height: rem(100px);
             border-top: 0.0625rem solid $border-color;
             padding: rem(6px) rem(16px);
             margin-bottom: 16px;
+            p {
+                color: $ig-secondary-clr2;
+                font-size: rem(12px);
+            }
         }
         .new-comment {
             padding: rem(8px) 0;
+
             .new-comment-uicon {
                 .entry-details-modal & {
                     display: none;
                 }
             }
+
             display: flex;
             align-items: center;
             border-radius: rem(38px);
             // padding: rem(14px) rem(16px);
             margin: 0 16px;
             gap: 5px;
+
             .new-comment-area {
                 flex: 1;
                 border-radius: rem(38px);
