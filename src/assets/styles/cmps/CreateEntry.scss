@@ -1,3 +1,4 @@
+
 .add-entry {
     display: flex;
     flex-direction: column;
@@ -10,13 +11,11 @@
         align-items: center;
         width: 100%;
         text-align: center;
-        // position: relative;
 
         h2 {
-            flex-grow:1;
+            flex-grow: 1;
             font-size: 16px;
             font-weight: 600;
-            // justify-self: center;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -25,9 +24,15 @@
 
         button {
             padding: rem(16px);
+            overflow-y: visible;
+            background-color: transparent;
         }
-        .add-entry-btn {
+        
+        .next-button {
             color: #0095f6;
+            font-weight: 600;
+            font-size: .875rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             &:hover {
                 color: #00376b;
             }
@@ -35,24 +40,35 @@
     }
 
     .add-body {
-        display: grid;
-        grid-template-columns: 1fr auto;
-
-        //from insta
-        // height: calc(100vmin - var(--creation-padding-y) - var(--creation-header-height) - var(--creation-padding-x));
-        // --creation-padding-x: 64px;
-        // --creation-padding-y: 112px;
-        height: calc(100vmin - $modal-header-height - 64px - 112px);
-
-        .add-upload-area {
+        display: flex;
+        overflow: hidden;
+        max-width: calc(100vmin - $modal-header-height - 64px - 112px);
+        align-items: stretch;
+        transition: all $edit-modal-expand-time ease-in-out;
+        
+        .img-container {
+            //from insta
+            // height: calc(100vmin - var(--creation-padding-y) - var(--creation-header-height) - var(--creation-padding-x));
+            // --creation-padding-x: 64px;
+            // --creation-padding-y: 112px;
+            height: calc(100vmin - $modal-header-height - 64px - 112px);
             width: 100%;
-            min-height: calc(90vh - rem(350px));
+            min-height: calc(391px - $modal-header-height);
+            max-height: calc(898px - $modal-header-height);
+            
             margin: auto;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
 
-            .add-first {
+            .preview-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .add-upload-area {
                 display: grid;
                 justify-items: center;
                 gap: rem(24px);
@@ -90,24 +106,72 @@
             }
         }
 
-    .add-caption-area {
-        width: 100%;
-        margin-top: 20px;
+        &.expanded {
+            max-width: calc(100vmin - $modal-header-height - 64px - 112px + 324px);
 
-        .add-entry__textarea {
-            width: 100%;
-            margin-top: 20px;
+            .side-edit {
+                opacity: 1;
+            }
+        }
 
-            .add-entry__textarea {
-                width: 100%;
-                padding: 10px;
-                font-size: 14px;
-                border: 1px solid $border-color;
-                border-radius: 0.4rem;
-                resize: none;
-                height: 100px;
-                font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        .side-edit {
+            padding: 1rem;
+            width: 324px;
+            border-left: 0.1rem solid $border-color;
+            transition: width $edit-modal-expand-time ease-in-out, opacity 0.2s ease-in-out;
+            // border-bottom: 0.1rem solid #dbdbdb;
+            // display: flex;
+            // flex-direction: column;
+
+            .to {
+                .prof {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: rem(14px);
+
+                    .user-icon-edit {
+                        margin-left: rem(12px);
+                    }
+
+                    .user-name-edit {
+                        font-weight: normal;
+                    }
+                }
+                .textarea-container {
+                    position: relative;
+                    max-width: 400px;
+                    margin: 0 auto;
+
+                    textarea {
+                        width: 100%;
+                        height: rem(168px);
+                        resize: none;
+                        border: none;
+                        // padding: 8px 0;
+                        font-size: 14px;
+                        outline: none;
+                        font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                    }
+                }
+                .text-footer {
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: 0.1rem solid $border-color;
+                    padding: rem(4px) rem(8px);
+
+                    button {
+                        color: $ig-secondary-clr2;
+                    }
+
+                    .counter {
+                        line-height: rem(16px);
+                        font-size: rem(12px);
+                        color: $ig-secondary-clr2;
+                        text-align: end;
+                    }
+                }
             }
         }
     }
 }
+

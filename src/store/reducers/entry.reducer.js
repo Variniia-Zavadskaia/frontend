@@ -32,9 +32,6 @@ export function entryReducer(state = initialState, action) {
         case UPDATE_ENTRY:
             entrys = state.entrys.map(entry => (entry._id === action.entry._id ? action.entry : entry))
             newState = { ...state, entrys }
-            // if (state.entry && (action.entry._id === state.entry._id)) {
-            //     newState = { ...state, entry: action.entry }
-            // }
             break
         case ADD_ENTRY_COMMENT:
             newState = {

@@ -2,20 +2,28 @@ import { sideBarSvg } from './Svgs.jsx'
 import { ImgUploader } from './ImgUploader'
 import { useEffect, useState } from 'react'
 import { entryService } from '../services/entry'
-import { addEntry } from '../store/actions/entry.actions.js'
+import { addEntry, updateEntry } from '../store/actions/entry.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { entrySvg } from './Svgs.jsx'
+import { useSelector } from 'react-redux'
+import { UserIcon } from './elements/UserIcon.jsx'
+import { UserName } from './elements/UserName.jsx'
 
-export function CreateEntry({ onClose }) {
-    const [imgData, setImgData] = useState({ imgUrl: null })
-    const [entry, setEntry] = useState(entryService.getEmptyEntry())
-    const [showText, setShowText] = useState(false)
-    const [text, setText] = useState('')
+export function CreateEntry({ onClose, entry = null }) {
+    const isEditMode = entry !== null
+    const [step, setStep] = useState(isEditMode ? 'text' : 'img')
+    const [imgData, setImgData] = useState({ imgUrl: isEditMode ? entry.imgUrl : null })
+    const [entryToSave, setEntryToSave] = useState(isEditMode ? { ...entry } : entryService.getEmptyEntry())
+    const [text, setText] = useState(isEditMode ? entry.txt : '')
     const [modalWidth, setModalWidth] = useState(50)
+    const maxChars = 2200
+    const currUserId = useSelector(storeState => storeState.userModule.user._id)
+    const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
+    const curUserName = useSelector(storeState => storeState.userModule.user.username)
 
     useEffect(() => {
         const updateModalWidth = () => {
-            const modalHeight = document.querySelector('.add-body').offsetHeight
+            const modalHeight = document.querySelector('.add-body .img-container').offsetHeight
             setModalWidth(modalHeight) // Set width equal to height
         }
 
@@ -29,80 +37,131 @@ export function CreateEntry({ onClose }) {
 
     function onUploaded(imgUrl, height, width) {
         setImgData({ imgUrl: imgUrl, width, height })
-        setEntry({ ...entry, imgUrl: imgUrl })
-    }
-
-    function onSetShowText() {
-        setShowText(true)
+        setEntryToSave({ ...entryToSave, imgUrl: imgUrl })
     }
 
     function handleTextChange(ev) {
         setText(ev.target.value)
-        setEntry({ ...entry, txt: ev.target.value })
+        setEntryToSave({ ...entryToSave, txt: ev.target.value })
     }
 
-    async function onAddEntry() {
-        const entryToSave = { ...entry }
+    // async function onAddEntry() {
 
+    //     try {
+    //         const savedEntry = await addEntry(entryToSave)
+    //         showSuccessMsg(`entry added (id: ${savedEntry._id})`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot add entry', err)
+    //     }
+    //     onClose()
+    // }
+
+    async function onSave() {
         try {
-            const savedEntry = await addEntry(entryToSave)
-            showSuccessMsg(`entry added (id: ${savedEntry._id})`)
+            let savedEntry
+            if (isEditMode) {
+                savedEntry = await updateEntry(entryToSave)
+            } else {
+                savedEntry = await addEntry(entryToSave)
+            }
+
+            showSuccessMsg(`Entry ${isEditMode ? 'saved' : 'added'}`)
         } catch (err) {
-            showErrorMsg('Cannot add entry', err)
+            console.log(`${isEditMode ? 'save' : 'add'} entry error`, err)
+            showErrorMsg(`Cannot ${isEditMode ? 'save' : 'add'} entry`)
         }
+
         onClose()
     }
 
-    function onBack() {
-        if (showText) {
-            setShowText(false)
+    function BackButton() {
+        if (isEditMode) {
+            return <button onClick={onclose}>Cancel</button>
+        } else if (step === 'text') {
+            return (
+                <button
+                    onClick={() => {
+                        setStep('img')
+                    }}>
+                    {entrySvg.arrow}
+                </button>
+            )
         } else if (imgData.imgUrl) {
-            setImgData({ imgUrl: null })
+            return (
+                <button
+                    onClick={() => {
+                        setImgData({ imgUrl: null })
+                    }}>
+                    {entrySvg.arrow}
+                </button>
+            )
+        } else {
+            return null
+        }
+    }
+
+    function NextButton() {
+        if (step === 'text') {
+            return <button className='next-button' onClick={onSave}>{isEditMode ? 'Done' : 'Share'}</button>
+        } else if (imgData.imgUrl) {
+            return (
+                <button className='next-button'
+                    onClick={() => {
+                        setStep('text')
+                    }}>
+                    Next
+                </button>
+            )
+        } else {
+            return null
         }
     }
 
     return (
         <div className="add-entry">
             <header className="add-header">
-                {imgData.imgUrl && (
-                    <button className="back" onClick={onBack}>
-                        {entrySvg.arrow}
-                    </button>
-                )}
+                <BackButton />
                 <h2>Create New Post</h2>
-                {imgData.imgUrl && !showText && (
-                    <button className="add-entry-btn" onClick={onSetShowText}>
-                        Next
-                    </button>
-                )}
-                {showText && (
-                    <button className="add-entry-btn" onClick={onAddEntry}>
-                        Share
-                    </button>
-                )}
+                <NextButton />
             </header>
 
-            <section className="add-body" style={{ width: `${modalWidth}px` }}>
-                <div className="add-upload-area">
+            <section className={`add-body ${step === 'text' ? 'expanded' : ''}`} style={{ minWidth: `${modalWidth}px` }}>
+                <div className="img-container" style={{ width: `${modalWidth}px` }}>
                     {imgData.imgUrl ? (
-                        <img src={imgData.imgUrl} alt="Uploaded content" />
+                        <img className="preview-image" src={imgData.imgUrl} />
                     ) : (
-                        <div className="add-first">
+                        <div className="add-upload-area">
                             <div className="add-upload-icon">{sideBarSvg.uploade}</div>
                             <p className="add-upload-text">Drag photos and videos here</p>
-
                             <ImgUploader className="upload-btn " onUploaded={onUploaded}></ImgUploader>
                         </div>
                     )}
                 </div>
 
-                <div>
-                    {showText && (
-                        <div className="add-caption-area">
-                            <textarea className="add-textarea" value={text} onChange={handleTextChange} />
+                {step === 'text' && (
+                    <div className="side-edit">
+                        <div className="to">
+                            <div className="prof">
+                                <UserIcon className="user-icon-edit" user={{ _id: currUserId, imgUrl: curUserImg }} size={24} isLink={false} />
+                                <UserName className="user-name-edit" user={{_id: currUserId, username: curUserName}} isLink={false} />
+                            </div>
+                            <div className="textarea-container">
+                                <textarea
+                                    name="txt"
+                                    value={text}
+                                    onChange={handleTextChange}
+                                    maxLength={maxChars}
+                                />
+                            </div>
+                            <div className="text-footer">
+                                <button>{entrySvg.emoji(20)}</button>
+                                <div className="counter">
+                                    {text.length}/{maxChars}
+                                </div>
+                            </div>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </section>
         </div>
     )
