@@ -14,31 +14,13 @@
     .entry-modal {
         background-color: $ig-primary-background;
         display: flex;
-        // max-width: 900px;
-        // width: 90%;
         border-radius: 4px;
         overflow: hidden;
         position: relative;
-        // width: 80%;
-        // height: 80%;
         max-width: none;
         max-height: none;
-
         max-height: calc(100% - 40px);
         max-width: calc(100% - 64px - 64px);
-        // width: calc(100% - 40px);
-        // max-width: calc(935px + 20px + 20px);
-        // margin: 0 64px;
-        // height: calc(100% - 5%);
-        // width: calc(100% - 25%);
-        // header {
-        //     height: rem(43px)
-        // }
-
-        img{
-            // width: 500px;
-            height: auto;
-        }
     }
 
     .close-btn {
