@@ -5,13 +5,15 @@ import { onToggleModal } from '../store/actions/app.actions.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { removeEntry } from '../store/actions/entry.actions.js'
 import { CreateEntry } from './CreateEntry.jsx'
+import { follow } from '../store/actions/user.actions.js'
+import { userService } from '../services/user/user.service.local.js'
 
 export function EntryMenu({ entry, onRemoveEntry = null, onClose }) {
-    const userID = useSelector(storeState => storeState.userModule.user._id)
+    const loggedInUser = userService.getLoggedinUser()
     const navigate = useNavigate()
-
     const owner = entry.by
-    const isOwner = userID === owner._id
+    const isOwner = loggedInUser._id === owner._id
+    const following = !isOwner && loggedInUser.following.some(followed => followed._id == owner._id)
 
     async function onRemove() {
         try {
@@ -37,9 +39,20 @@ export function EntryMenu({ entry, onRemoveEntry = null, onClose }) {
             cmp: CreateEntry,
             props: {
                 entry,
-                onClose
+                onClose,
             },
         })
+    }
+
+    async function onUnfollow() {
+        onClose()
+
+        try {
+            await follow(owner._id, false)
+            showSuccessMsg('Unfollowing successful')
+        } catch (err) {
+            showErrorMsg('Failed to unfollow')
+        }
     }
 
     return (
@@ -50,7 +63,11 @@ export function EntryMenu({ entry, onRemoveEntry = null, onClose }) {
                 </button>
             )}
             {isOwner && <button onClick={editEntry}>Edit</button>}
-            {!isOwner && <button className="red-button">Unfollow</button>}
+            {!isOwner && following && (
+                <button className="red-button" onClick={onUnfollow}>
+                    Unfollow
+                </button>
+            )}
 
             <button onClick={onIconClick}>Go to post</button>
             {/* <button>Share to...</button> */}

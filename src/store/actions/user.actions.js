@@ -7,12 +7,11 @@ import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER, SET_WATCHED_USER_ENTRYS } from '../reducers/user.reducer'
 import { entryService } from '../../services/entry'
 
-
 export async function loadUsers() {
     try {
         store.dispatch({ type: LOADING_START })
-        const users = await userService.getUsers()        
-        
+        const users = await userService.getUsers()
+
         store.dispatch({ type: SET_USERS, users })
     } catch (err) {
         console.log('UserActions: err in loadUsers', err)
@@ -35,8 +34,7 @@ export async function login(credentials) {
         const loggedInUser = await userService.login(credentials)
         const user = await userService.getById(loggedInUser._id)
 
-        console.log(user);
-        
+        console.log(user)
 
         store.dispatch({
             type: SET_USER,
@@ -99,7 +97,7 @@ export async function loadUserEntrys(userId) {
     try {
         const entrys = await entryService.query({ byId: userId })
         // console.log(entrys);
-        
+
         store.dispatch({ type: SET_WATCHED_USER_ENTRYS, entrys })
     } catch (err) {
         showErrorMsg('Cannot load user posts')
@@ -119,6 +117,29 @@ export async function userUpdate(_id, field, val) {
         return updatedUser
     } catch (err) {
         console.log('Cannot update user', err)
+        throw err
+    }
+}
+
+export async function follow(followedID, follow) {
+    try {
+        const { followedUser, followingUser } = await userService.follow(
+            userService.getLoggedinUser()._id,
+            followedID,
+            follow,
+        )
+        if (store.getState().userModule.watchedUser?._id === followedUser._id) {
+            store.dispatch({ type: SET_WATCHED_USER, user: followedUser })
+        }
+
+        store.dispatch({
+            type: SET_USER,
+            user: followingUser,
+        })
+        return followingUser
+    } catch (err) {
+        const followStr = follow ? 'follow' : 'unfollow'
+        console.log('Cannot ' + followStr + 'user', err)
         throw err
     }
 }

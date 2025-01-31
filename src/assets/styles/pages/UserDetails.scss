@@ -53,6 +53,19 @@
                     font-size: rem(14px);
                     padding: 0px rem(16px);
                     border-radius: rem(8px);
+                    font-weight: 600;
+                    letter-spacing: normal;
+                    text-overflow: ellipsis;
+                    font-family: $font-family-system;
+                }
+                
+                .follow-btn {
+                    color: #fff;
+                    background-color: $ig-primary-clr3;
+
+                    &:hover {
+                        background-color: #007bb5;
+                    }
                 }
             }
         }
@@ -75,7 +88,7 @@
             grid-column-start: 2;
             grid-row-start: 3;
 
-            p{
+            p {
                 font-size: rem(14px);
                 font-weight: bold;
             }

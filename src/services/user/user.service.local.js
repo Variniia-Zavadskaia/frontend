@@ -13,6 +13,7 @@ export const userService = {
     update,
     getLoggedinUser,
     saveLoggedinUser,
+    follow,
 }
 
 async function getUsers() {
@@ -80,6 +81,39 @@ function saveLoggedinUser(user) {
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
     
 	return loggedInUser
+}
+
+async function follow(followerId, followedId, follow) {
+    const followedUser = await storageService.get(STORAGE_KEY_USER, followedId)
+    const followingUser = await storageService.get(STORAGE_KEY_USER, followerId)
+
+    if (follow) {
+        if (!followedUser.followers) followedUser.followers = []
+        if (!followedUser.followers.some(follower => follower._id === followerId)) {
+            followedUser.followers.push({_id: followerId, username: followingUser.username, imgUrl: followingUser.imgUrl})
+        }
+
+        if (!followingUser.following) followingUser.following = []
+        if (!followingUser.following.some(followed => followed._id === followedId)) {
+            followingUser.following.push({_id: followedId, username: followedUser.username, imgUrl: followedUser.imgUrl})
+        }
+    } else {
+        if (followedUser.followers) {
+            followedUser.followers = followedUser.followers.filter(follower => follower._id !== followerId)
+        }
+        if (followingUser.following) {
+            followingUser.following = followingUser.following.filter(followed => followed._id !== followedId)
+        }
+    }
+
+    await storageService.put(STORAGE_KEY_USER, followedUser)
+    await storageService.put(STORAGE_KEY_USER, followingUser)
+
+	// When admin updates other user's details, do not update loggedinUser
+    const loggedinUser = getLoggedinUser()
+    if (loggedinUser._id === followingUser._id) saveLoggedinUser(followingUser)
+
+    return {followedUser, followingUser}
 }
 
 // To quickly create an admin user, uncomment the next line

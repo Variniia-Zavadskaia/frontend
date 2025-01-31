@@ -19,6 +19,17 @@
             margin-left: 14px; //add dot svg with apropriate style
         }
 
+        .follow-button {
+            font-size: rem(14px);
+            color: #0095f6;
+            font-weight: 600;
+            font-family: $font-family-system;
+            &:hover {
+                color: #00376b;
+            }
+            margin-left: 14px; //add dot svg with apropriate style
+        }
+
     }
     // .icon {
     //     width: 3rem;
