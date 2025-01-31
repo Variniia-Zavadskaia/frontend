@@ -20,6 +20,7 @@ export function CreateEntry({ onClose, entry = null }) {
     const currUserId = useSelector(storeState => storeState.userModule.user._id)
     const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
     const curUserName = useSelector(storeState => storeState.userModule.user.username)
+    const [isTransitioning, setIsTransitioning] = useState(false)
 
     useEffect(() => {
         const updateModalWidth = () => {
@@ -34,6 +35,16 @@ export function CreateEntry({ onClose, entry = null }) {
             window.removeEventListener('resize', updateModalWidth) // Clean up the event listener
         }
     }, [])
+
+    useEffect(() => {
+        if (step === 'text') {
+            setIsTransitioning(true)
+        } else {
+            // Wait for the transition time before changing step to 'img'
+            const timeoutId = setTimeout(() => setIsTransitioning(false), 1000) // Adjust time to match the CSS transition time
+            return () => clearTimeout(timeoutId)
+        }
+    }, [step])
 
     function onUploaded(imgUrl, height, width) {
         setImgData({ imgUrl: imgUrl, width, height })
@@ -102,10 +113,15 @@ export function CreateEntry({ onClose, entry = null }) {
 
     function NextButton() {
         if (step === 'text') {
-            return <button className='next-button' onClick={onSave}>{isEditMode ? 'Done' : 'Share'}</button>
+            return (
+                <button className="next-button" onClick={onSave}>
+                    {isEditMode ? 'Done' : 'Share'}
+                </button>
+            )
         } else if (imgData.imgUrl) {
             return (
-                <button className='next-button'
+                <button
+                    className="next-button"
                     onClick={() => {
                         setStep('text')
                     }}>
@@ -125,7 +141,9 @@ export function CreateEntry({ onClose, entry = null }) {
                 <NextButton />
             </header>
 
-            <section className={`add-body ${step === 'text' ? 'expanded' : ''}`} style={{ minWidth: `${modalWidth}px` }}>
+            <section
+                className={`add-body ${step === 'text' ? 'expanded' : ''}`}
+                style={{ minWidth: `${modalWidth}px` }}>
                 <div className="img-container" style={{ width: `${modalWidth}px` }}>
                     {imgData.imgUrl ? (
                         <img className="preview-image" src={imgData.imgUrl} />
@@ -138,20 +156,24 @@ export function CreateEntry({ onClose, entry = null }) {
                     )}
                 </div>
 
-                {step === 'text' && (
-                    <div className="side-edit">
+                {(step === 'text' || isTransitioning) && (
+                    <div className={`side-edit ${isTransitioning ? 'expanded' : ''}`}>
                         <div className="to">
                             <div className="prof">
-                                <UserIcon className="user-icon-edit" user={{ _id: currUserId, imgUrl: curUserImg }} size={24} isLink={false} />
-                                <UserName className="user-name-edit" user={{_id: currUserId, username: curUserName}} isLink={false} />
+                                <UserIcon
+                                    className="user-icon-edit"
+                                    user={{ _id: currUserId, imgUrl: curUserImg }}
+                                    size={24}
+                                    isLink={false}
+                                />
+                                <UserName
+                                    className="user-name-edit"
+                                    user={{ _id: currUserId, username: curUserName }}
+                                    isLink={false}
+                                />
                             </div>
                             <div className="textarea-container">
-                                <textarea
-                                    name="txt"
-                                    value={text}
-                                    onChange={handleTextChange}
-                                    maxLength={maxChars}
-                                />
+                                <textarea name="txt" value={text} onChange={handleTextChange} maxLength={maxChars} />
                             </div>
                             <div className="text-footer">
                                 <button>{entrySvg.emoji(20)}</button>

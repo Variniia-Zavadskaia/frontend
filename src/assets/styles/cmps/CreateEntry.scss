@@ -52,6 +52,7 @@
             // --creation-padding-x: 64px;
             // --creation-padding-y: 112px;
             height: calc(100vmin - $modal-header-height - 64px - 112px);
+            // max-height: 855px;
             width: 100%;
             min-height: calc(391px - $modal-header-height);
             max-height: calc(898px - $modal-header-height);
@@ -116,12 +117,20 @@
 
         .side-edit {
             padding: 1rem;
-            width: 324px;
+            max-width: 324px;
+            width: 0;
+            opacity: 0;
             border-left: 0.1rem solid $border-color;
             transition: width $edit-modal-expand-time ease-in-out, opacity 0.2s ease-in-out;
+            will-change: width, opacity;
             // border-bottom: 0.1rem solid #dbdbdb;
             // display: flex;
             // flex-direction: column;
+
+            &.expanded {
+                opacity: 1;
+                width: 324px;  // When expanded
+            }
 
             .to {
                 .prof {
