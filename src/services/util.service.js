@@ -52,6 +52,40 @@ export function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
+// export function getElapsedTime(pastDate, shortFormat = false) {
+//     const now = new Date();
+//     const past = new Date(pastDate);
+//     const timeStr = {
+//         d: `d${shortFormat ? '' : 'ay'}`,
+//         h: `h${shortFormat ? '' : 'our'}`,
+//         m: `m${shortFormat ? '' : 'inute'}`,
+//         s: `s${shortFormat ? '' : 'econd'}`,
+//     }
+
+//     const differenceInMilliseconds = now - past;
+//       const seconds = Math.floor(differenceInMilliseconds / 1000);
+//       const minutes = Math.floor(seconds / 60);
+//       const hours = Math.floor(minutes / 60);
+//       const days = Math.floor(hours / 24);
+
+//       let elapsedTime = '';
+
+//       if (days > 0) {
+//         elapsedTime = `${days} ${timeStr['d']}${!shortFormat && days > 1 ? 's' : ''}`;
+//       } else if (hours > 0) {
+//         elapsedTime = `${hours} ${timeStr['h']}${!shortFormat && hours > 1 ? 's' : ''}`;
+//       } else if (minutes > 0) {
+//         elapsedTime = `${minutes} ${timeStr['m']}${!shortFormat && minutes > 1 ? 's' : ''}`;
+//       } else if (seconds > 0) {
+//         elapsedTime = `${seconds} ${timeStr['s']}${!shortFormat && seconds > 1 ? 's' : ''}`;
+//       } else {
+//         elapsedTime = 'now'
+//       }
+
+//       return elapsedTime
+
+// }
+
 export function getElapsedTime(pastDate) {
     const now = new Date();
     const past = new Date(pastDate);
@@ -65,13 +99,13 @@ export function getElapsedTime(pastDate) {
       let elapsedTime = '';
 
       if (days > 0) {
-        elapsedTime = `${days} day${days > 1 ? 's' : ''}`;
+        elapsedTime = `${days}d`;
       } else if (hours > 0) {
-        elapsedTime = `${hours} hour${hours > 1 ? 's' : ''}`;
+        elapsedTime = `${hours}h`;
       } else if (minutes > 0) {
-        elapsedTime = `${minutes} minute${minutes > 1 ? 's' : ''}`;
+        elapsedTime = `${minutes}m`;
       } else if (seconds > 0) {
-        elapsedTime = `${seconds} second${seconds > 1 ? 's' : ''}`;
+        elapsedTime = `${seconds}s`;
       } else {
         elapsedTime = 'now'
       }
