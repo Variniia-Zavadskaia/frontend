@@ -1,12 +1,12 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
-import { EditEntry } from './EditEntry'
 import { onToggleModal } from '../store/actions/app.actions.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { removeEntry } from '../store/actions/entry.actions.js'
+import { CreateEntry } from './CreateEntry.jsx'
 
-export function EntryMenu({ entry, onUpdateEntry, onRemoveEntry = null, onClose }) {
+export function EntryMenu({ entry, onRemoveEntry = null, onClose }) {
     const userID = useSelector(storeState => storeState.userModule.user._id)
     const navigate = useNavigate()
 
@@ -34,11 +34,10 @@ export function EntryMenu({ entry, onUpdateEntry, onRemoveEntry = null, onClose 
 
     function editEntry() {
         onToggleModal({
-            cmp: EditEntry,
+            cmp: CreateEntry,
             props: {
                 entry,
-                onClose,
-                onUpdateEntry,
+                onClose
             },
         })
     }

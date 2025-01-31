@@ -76,7 +76,7 @@ export function CreateEntry({ onClose, entry = null }) {
 
     function BackButton() {
         if (isEditMode) {
-            return <button onClick={onclose}>Cancel</button>
+            return <button onClick={onClose}>Cancel</button>
         } else if (step === 'text') {
             return (
                 <button
