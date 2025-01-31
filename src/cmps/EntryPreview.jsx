@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { entrySvg } from './Svgs'
 
@@ -7,14 +7,20 @@ import { EntryButtons } from './elements/EntryButtons'
 import { EntryHeader } from './elements/EntryHeader'
 import { CreateComment } from './elements/CreateComment'
 import { UserName } from './elements/UserName'
+import { onToggleEntryDetailsModal } from '../store/actions/app.actions'
 
-export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
+export function EntryPreview({ entry, onRemoveEntry }) {
     const userBy = entry.by
+    const numOfComments = entry.comments ? entry.comments.length : 0
+
+    function openDetailsModal() {
+        onToggleEntryDetailsModal(entry._id)
+    }
 
     return (
         <article className="entry-preview">
             <div className="header">
-                <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} withDate={true}/>
+                <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} withDate={true} />
             </div>
 
             <div className="entry-image">
@@ -30,11 +36,11 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
                         <UserName user={userBy} /> {entry.txt}
                     </p>
                 </div>
-                {/* <div className='count-comment'>
-                    <p>
-                        View all ... comment/s
-                    </p>
-                </div> */}
+                {numOfComments !== 0 && (
+                    <button className="count-comment" onClick={openDetailsModal}>
+                        View {numOfComments === 1 ? 1 : 'all ' + numOfComments} comment{numOfComments === 1 ? '' : 's'}
+                    </button>
+                )}
                 <div className="new-comment">
                     <CreateComment entryId={entry._id} />
                 </div>
