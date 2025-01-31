@@ -1,4 +1,3 @@
-
 import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
@@ -10,18 +9,16 @@ export const entryService = {
     getById,
     save,
     remove,
-    addEntryComment
+    addEntryComment,
 }
 window.cs = entryService
 
-
-async function query(filterBy = { txt: '', byId: ''}) {
+async function query(filterBy = { txt: '', byId: '' }) {
     var entrys = await storageService.query(STORAGE_KEY)
     const { txt, byId } = filterBy
 
     // console.log(filterBy);
     // console.log(filterBy);
-    
 
     // if (txt) {
     //     const regex = new RegExp(filterBy.txt, 'i')
@@ -31,14 +28,14 @@ async function query(filterBy = { txt: '', byId: ''}) {
         entrys = entrys.filter(entry => entry.by._id === byId)
     }
     // if(sortField === 'vendor' || sortField === 'owner'){
-    //     entrys.sort((entry1, entry2) => 
+    //     entrys.sort((entry1, entry2) =>
     //         entry1[sortField].localeCompare(entry2[sortField]) * +sortDir)
     // }
     // if(sortField === 'price' || sortField === 'speed'){
-    //     entrys.sort((entry1, entry2) => 
+    //     entrys.sort((entry1, entry2) =>
     //         (entry1[sortField] - entry2[sortField]) * +sortDir)
     // }
-    
+
     // entrys = entrys.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
     return entrys
 }
@@ -59,16 +56,16 @@ async function save(entry) {
             _id: entry._id,
             txt: entry.txt,
             likedBy: entry.likedBy,
-            comments: entry.comments
+            comments: entry.comments,
         }
         savedEntry = await storageService.put(STORAGE_KEY, entryToSave)
     } else {
         const loggedInUser = userService.getLoggedinUser()
-        let entryToSave = {...entry}
+        let entryToSave = { ...entry }
 
         // console.log(entryToSave);
-        
-        entryToSave.by = {_id: loggedInUser._id, username: loggedInUser.username, imgUrl: loggedInUser.imgUrl}
+
+        entryToSave.by = { _id: loggedInUser._id, username: loggedInUser.username, imgUrl: loggedInUser.imgUrl }
         entryToSave.date = new Date()
         savedEntry = await storageService.post(STORAGE_KEY, entryToSave)
     }
@@ -82,7 +79,7 @@ async function addEntryComment(entryId, txt) {
     const comment = {
         id: makeId(),
         by: userService.getLoggedinUser(),
-        txt
+        txt,
     }
     entry.comments.push(comment)
     await storageService.put(STORAGE_KEY, entry)
