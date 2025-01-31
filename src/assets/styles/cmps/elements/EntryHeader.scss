@@ -5,16 +5,27 @@
     // padding-bottom: rem(12px);
     
     .prof-preview {
-        gap: rem(12px);
         display: flex;
         align-items: center;
+
+        .user-icon {
+            margin-right: 12px;
+        }
+        .entry-time {
+            font-size: 14px;
+            font-weight: 400;
+            color: $ig-secondary-text;
+            font-family: $font-family-system;
+            margin-left: 14px; //add dot svg with apropriate style
+        }
+
     }
-    .icon {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        color: $ig-primory-clr;
-    }
+    // .icon {
+    //     width: 3rem;
+    //     height: 3rem;
+    //     border-radius: 50%;
+    //     color: $ig-primory-clr;
+    // }
 
     // button,
     // a {

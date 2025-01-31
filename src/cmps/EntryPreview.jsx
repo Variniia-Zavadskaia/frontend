@@ -14,7 +14,7 @@ export function EntryPreview({ entry, onRemoveEntry, onUpdateEntry }) {
     return (
         <article className="entry-preview">
             <div className="header">
-                <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+                <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} withDate={true}/>
             </div>
 
             <div className="entry-image">

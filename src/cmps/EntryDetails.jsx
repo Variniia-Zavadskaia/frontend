@@ -15,7 +15,6 @@ import { getElapsedTime } from '../services/util.service'
 
 export function EntryDetails({ entryId }) {
     const entry = useSelector(storeState => storeState.entryModule.entry)
-    // const currentUser = useSelector(storeState => storeState.userModule.user)
     const currUserId = useSelector(storeState => storeState.userModule.user._id)
     const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
     const [comments, setComments] = useState([])
