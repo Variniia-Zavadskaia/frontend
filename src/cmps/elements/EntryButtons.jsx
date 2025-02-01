@@ -10,7 +10,7 @@ import { userUpdate } from '../../store/actions/user.actions'
 export function EntryButtons({ entry }) {
     //TODO btn share -> open modal with following
     const [likedBy, setLikedBy] = useState([...entry.likedBy])
-    const user = useSelector(storeState => storeState.userModule.user)     
+    // const user = useSelector(storeState => storeState.userModule.user)     
     // console.log(user);
        
     const userId = useSelector(storeState => storeState.userModule.user._id)
@@ -18,7 +18,7 @@ export function EntryButtons({ entry }) {
     const [saved, setSaved] = useState(false)
 
     useEffect(() => {
-        setSaved(savedEntryIds.some(savedId => savedId === entry._id))
+        setSaved(savedEntryIds && savedEntryIds.some(savedId => savedId === entry._id))
     }, [savedEntryIds])
 
     
@@ -36,7 +36,7 @@ export function EntryButtons({ entry }) {
     
     
     async function onSaveEntry() {
-        let updatedEntryIds = [...savedEntryIds]
+        let updatedEntryIds = savedEntryIds ? [...savedEntryIds] : []
         
         if (!saved) {
             updatedEntryIds.unshift(entry._id)
