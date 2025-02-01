@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { entrySvg } from '../Svgs'
-import { updateEntryLike } from '../../store/actions/entry.actions'
+import { entryUpdate} from '../../store/actions/entry.actions'
 import { LikeButton } from './LikeButton'
 import { onToggleEntryDetailsModal } from '../../store/actions/app.actions'
 import { showErrorMsg } from '../../services/event-bus.service'
@@ -26,7 +26,7 @@ export function EntryButtons({ entry }) {
     async function updateLikedBy(updatedLikedBy) {
         setLikedBy(updatedLikedBy)
         try {
-            await updateEntryLike(entry._id, updatedLikedBy)
+            await entryUpdate(entry._id, 'likedBy', updatedLikedBy)
         } catch (err) {
             showErrorMsg('Cannot update post like')
             console.log('Cannot update post like', err)

@@ -2,7 +2,7 @@ import { sideBarSvg } from './Svgs.jsx'
 import { ImgUploader } from './ImgUploader'
 import { useEffect, useState } from 'react'
 import { entryService } from '../services/entry'
-import { addEntry, updateEntry } from '../store/actions/entry.actions.js'
+import { addEntry, entryUpdate } from '../store/actions/entry.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { entrySvg } from './Svgs.jsx'
 import { useSelector } from 'react-redux'
@@ -60,7 +60,7 @@ export function CreateEntry({ onClose, entry = null }) {
         try {
             let savedEntry
             if (isEditMode) {
-                savedEntry = await updateEntry(entryToSave)
+                savedEntry = await entryUpdate(entry._id, 'txt', entryToSave.txt)
             } else {
                 savedEntry = await addEntry(entryToSave)
             }
@@ -120,7 +120,7 @@ export function CreateEntry({ onClose, entry = null }) {
         } else {
             return null
         }
-    }
+    }    
 
     return (
         <div className="add-entry">
