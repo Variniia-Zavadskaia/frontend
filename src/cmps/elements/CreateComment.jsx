@@ -31,14 +31,23 @@ export function CreateComment({ entryId, onSaveComment = null }) {
     }
 
     function onPostComment() {
-        let savedComment = { ...comment }
-        savedComment.date = new Date()
-        savedComment.id = makeId()
-        addEntryComment(savedComment)
-        if (onSaveComment) {
-            onSaveComment(savedComment)
+        if (comment.txt.trim()) {
+            let savedComment = { ...comment }
+            savedComment.date = new Date()
+            savedComment.id = makeId()
+            addEntryComment(savedComment)
+            if (onSaveComment) {
+                onSaveComment(savedComment)
+            }
+            setComment({ ...comment, txt: '' })
         }
-        setComment({ ...comment, txt: '' })
+    }
+
+    function handleKeyDown(ev) {
+        if (ev.key === 'Enter' && !ev.shiftKey) {
+            ev.preventDefault()  
+            onPostComment()
+        }
     }
 
     return (
@@ -48,6 +57,7 @@ export function CreateComment({ entryId, onSaveComment = null }) {
                 rows="1"
                 value={comment.txt}
                 onChange={handleTextChange}
+                onKeyDown={handleKeyDown} 
                 placeholder="Add a comment..."></textarea>
             {comment.txt.length !== 0 && <button className="post-btn" onClick={onPostComment}>
                 Post
