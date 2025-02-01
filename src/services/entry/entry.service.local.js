@@ -10,15 +10,13 @@ export const entryService = {
     save,
     remove,
     addEntryComment,
+    update
 }
 window.cs = entryService
 
-async function query(filterBy = { txt: '', byId: '', ids: [] }) {
+async function query(filterBy = { byId: '', ids: [] }) {
     var entrys = await storageService.query(STORAGE_KEY)
-    const { txt, byId, ids } = filterBy
-
-    // console.log(filterBy);
-    // console.log(filterBy);
+    const { byId, ids } = filterBy
 
     // if (txt) {
     //     const regex = new RegExp(filterBy.txt, 'i')
@@ -30,14 +28,6 @@ async function query(filterBy = { txt: '', byId: '', ids: [] }) {
     if (ids) {
         entrys = entrys.filter(entry => ids.includes(entry._id))
     }
-    // if(sortField === 'vendor' || sortField === 'owner'){
-    //     entrys.sort((entry1, entry2) =>
-    //         entry1[sortField].localeCompare(entry2[sortField]) * +sortDir)
-    // }
-    // if(sortField === 'price' || sortField === 'speed'){
-    //     entrys.sort((entry1, entry2) =>
-    //         (entry1[sortField] - entry2[sortField]) * +sortDir)
-    // }
 
     // entrys = entrys.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
     return entrys
@@ -49,6 +39,7 @@ function getById(entryId) {
 
 async function remove(entryId) {
     // throw new Error('Nope')
+    // add auth check
     await storageService.remove(STORAGE_KEY, entryId)
 }
 
@@ -72,6 +63,36 @@ async function save(entry) {
         entryToSave.date = new Date()
         savedEntry = await storageService.post(STORAGE_KEY, entryToSave)
     }
+    return savedEntry
+}
+
+async function update(_id, field, val) {
+    const allowChange = [
+        'txt', 'comments', 'likedBy'
+    ]
+    const onlyOwnerChange = [
+        'txt'
+    ]
+
+    if (!allowChange.includes(field)) {
+        console.log(field + " can not be changed");        
+        throw new Error("The change is prohibited"); 
+    }
+    
+    const entry = await storageService.get(STORAGE_KEY, _id)
+    if (onlyOwnerChange.includes(field))  {
+        const loggedInUser = userService.getLoggedinUser()
+
+        if (loggedInUser._id !== entry.by._id) {
+            console.log("Only owner (" + entry.by._id + ") can change", field); 
+            throw new Error("The change is prohibited");
+        }
+    }
+
+    entry[field] = val
+
+    const savedEntry = await storageService.put(STORAGE_KEY, entry)
+
     return savedEntry
 }
 

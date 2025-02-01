@@ -1,6 +1,13 @@
 import { entryService } from '../../services/entry'
 import { store } from '../store'
-import { ADD_ENTRY, REMOVE_ENTRY, SET_ENTRYS, SET_ENTRY, UPDATE_ENTRY, ADD_ENTRY_COMMENT } from '../reducers/entry.reducer'
+import {
+    ADD_ENTRY,
+    REMOVE_ENTRY,
+    SET_ENTRYS,
+    SET_ENTRY,
+    UPDATE_ENTRY,
+    ADD_ENTRY_COMMENT,
+} from '../reducers/entry.reducer'
 
 export async function loadEntrys(filterBy) {
     try {
@@ -14,7 +21,7 @@ export async function loadEntrys(filterBy) {
 
 export async function loadEntry(entryId) {
     // console.log('hhh');
-    
+
     try {
         const entry = await entryService.getById(entryId)
         store.dispatch(getCmdSetEntry(entry))
@@ -23,7 +30,6 @@ export async function loadEntry(entryId) {
         throw err
     }
 }
-
 
 export async function removeEntry(entryId) {
     try {
@@ -49,10 +55,23 @@ export async function addEntry(entry) {
 export async function updateEntry(entry) {
     try {
         const savedEntry = await entryService.save(entry)
+        
         store.dispatch(getCmdUpdateEntry(savedEntry))
         return savedEntry
     } catch (err) {
         console.log('Cannot save entry', err)
+        throw err
+    }
+}
+
+export async function entryUpdate(_id, field, val) {
+    try {
+        const updatedEntry = await entryService.update(_id, field, val)
+
+        store.dispatch(getCmdUpdateEntry(updatedEntry))
+        return updatedEntry
+    } catch (err) {
+        console.log('Cannot update entry', err)
         throw err
     }
 }
@@ -68,53 +87,41 @@ export async function addEntryComment(entryId, txt) {
     }
 }
 
-export async function updateEntryLike(entryId, likedBy) {
-    try {
-        let entry = await entryService.getById(entryId)
-        entry.likedBy = [...likedBy]
-        await updateEntry(entry)
-    } catch (err) {
-        console.log('Cannot update entry like', err)
-        throw err
-    }
-}
-
-
 // Command Creators:
 function getCmdSetEntrys(entrys) {
     return {
         type: SET_ENTRYS,
-        entrys
+        entrys,
     }
 }
 function getCmdSetEntry(entry) {
     return {
         type: SET_ENTRY,
-        entry
+        entry,
     }
 }
 function getCmdRemoveEntry(entryId) {
     return {
         type: REMOVE_ENTRY,
-        entryId
+        entryId,
     }
 }
 function getCmdAddEntry(entry) {
     return {
         type: ADD_ENTRY,
-        entry
+        entry,
     }
 }
 function getCmdUpdateEntry(entry) {
     return {
         type: UPDATE_ENTRY,
-        entry
+        entry,
     }
 }
 function getCmdAddEntryComment(comment) {
     return {
         type: ADD_ENTRY_COMMENT,
-        comment
+        comment,
     }
 }
 
@@ -122,7 +129,7 @@ function getCmdAddEntryComment(comment) {
 async function unitTestActions() {
     await loadEntrys()
     await addEntry(entryService.getEmptyEntry())
-    await updateEntry({
+    await updateEntry({ //test
         _id: 'm1oC7',
         title: 'Entry-Good',
     })
