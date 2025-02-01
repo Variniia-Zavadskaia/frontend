@@ -13,6 +13,7 @@ import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 export function EntryHeader({ entry, onRemoveEntry, withDate = false }) {
     const userBy = entry.by
     const currUserFollowing = useSelector(storeState => storeState.userModule.user.following)
+    const currUserId = useSelector(storeState => storeState.userModule.user._id)
     const [following, setFollowing] = useState(false)
 
     useEffect(() => {
@@ -52,7 +53,7 @@ export function EntryHeader({ entry, onRemoveEntry, withDate = false }) {
                         {getElapsedTime(entry.date)}
                     </Link>
                 )}
-                {!following && (
+                {!following && currUserId !== userBy._id && (
                     <button className="follow-button" onClick={onFollow}>
                         Follow
                     </button>
