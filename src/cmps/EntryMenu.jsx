@@ -1,6 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
-import { useSelector } from 'react-redux'
 import { onToggleModal } from '../store/actions/app.actions.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { removeEntry } from '../store/actions/entry.actions.js'
@@ -8,7 +6,7 @@ import { CreateEntry } from './CreateEntry.jsx'
 import { follow } from '../store/actions/user.actions.js'
 import { userService } from '../services/user/user.service.local.js'
 
-export function EntryMenu({ entry, onRemoveEntry = null, onClose }) {
+export function EntryMenu({ entry, onClose }) {
     const loggedInUser = userService.getLoggedinUser()
     const navigate = useNavigate()
     const owner = entry.by
@@ -18,9 +16,6 @@ export function EntryMenu({ entry, onRemoveEntry = null, onClose }) {
     async function onRemove() {
         try {
             await removeEntry(entry._id)
-            if (onRemoveEntry) {
-                onRemoveEntry()
-            }
             showSuccessMsg('entry removed')
         } catch (err) {
             showErrorMsg('Cannot remove entry')

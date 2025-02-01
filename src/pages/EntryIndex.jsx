@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { loadEntrys, updateEntry } from '../store/actions/entry.actions'
-
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { loadEntrys} from '../store/actions/entry.actions'
 import { entryService } from '../services/entry'
-
 import { EntryFilter } from '../cmps/EntryFilter'
 import { Widgets } from '../cmps/Widgets'
 import { AppFooter } from '../cmps/AppFooter'
@@ -25,40 +22,6 @@ export function EntryIndex() {
         loadEntrys(filterBy)
     }, [filterBy])
 
-    async function onRemoveEntry(entryId) {
-        // try {
-        //     await removeEntry(entryId)
-        //     showSuccessMsg('entry removed')
-        // } catch (err) {
-        //     showErrorMsg('Cannot remove entry')
-        // }
-    }
-
-    // async function onAddEntry() {
-    //     const entry = entryService.getEmptyEntry()
-    //     entry.vendor = prompt('Vendor?')
-    //     try {
-    //         const savedEntry = await addEntry(entry)
-    //         showSuccessMsg(`entry added (id: ${savedEntry._id})`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot add entry')
-    //     }
-    // }
-
-    async function onUpdateEntry(entry) {
-        // const speed = +prompt('New speed?', entry.speed)
-        // if (speed === 0 || speed === entry.speed) return
-
-        // const entryToSave = { ...entry, speed }
-        const entryToSave = { ...entry }
-        try {
-            const savedEntry = await updateEntry(entryToSave)
-            showSuccessMsg(`entry updated`)
-        } catch (err) {
-            showErrorMsg('Cannot update entry')
-        }
-    }
-
     console.log(entrys)
 
     return (
@@ -75,7 +38,7 @@ export function EntryIndex() {
                 <ul className="feed">
                     {entrys.map(entry => (
                         <li key={entry._id}>
-                            <EntryPreview entry={entry} onRemoveEntry={onRemoveEntry} onUpdateEntry={onUpdateEntry} />
+                            <EntryPreview entry={entry} />
                         </li>
                     ))}
                 </ul>

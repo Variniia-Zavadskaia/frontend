@@ -50,20 +50,3 @@ export async function updateComment(commentToUpdate, entryId) {
         throw err
     }
 }
-
-// export async function removeComment(commentId) {
-// 	try {
-// 		await commentService.remove(commentId)
-// 		store.dispatch(getActionRemoveComment(commentId))
-// 	} catch (err) {
-// 		console.log('commentActions: err in removecomment', err)
-// 		throw err
-// 	}
-// }
-// Command Creators
-// export function getActionRemoveComment(commentId) {
-// 	return { type: REMOVE_COMMENT, commentId }
-// }
-// export function getActionAddComment(comment) {
-// 	return { type: ADD_COMMENT, comment }
-// }

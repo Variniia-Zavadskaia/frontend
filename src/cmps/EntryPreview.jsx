@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-
-import { entrySvg } from './Svgs'
-
+import React from 'react'
 import { EntryButtons } from './elements/EntryButtons'
 import { EntryHeader } from './elements/EntryHeader'
 import { CreateComment } from './elements/CreateComment'
 import { UserName } from './elements/UserName'
 import { onToggleEntryDetailsModal } from '../store/actions/app.actions'
 
-export function EntryPreview({ entry, onRemoveEntry }) {
+export function EntryPreview({ entry }) {
     const userBy = entry.by
     const numOfComments = entry.comments ? entry.comments.length : 0
 
@@ -20,7 +16,7 @@ export function EntryPreview({ entry, onRemoveEntry }) {
     return (
         <article className="entry-preview">
             <div className="header">
-                <EntryHeader entry={entry} onRemoveEntry={onRemoveEntry} withDate={true} />
+                <EntryHeader entry={entry} withDate={true} />
             </div>
 
             <div className="entry-image">

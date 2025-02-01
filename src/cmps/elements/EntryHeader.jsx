@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { follow } from '../../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
-export function EntryHeader({ entry, onRemoveEntry, withDate = false }) {
+export function EntryHeader({ entry, withDate = false }) {
     const userBy = entry.by
     const currUserFollowing = useSelector(storeState => storeState.userModule.user.following)
     const currUserId = useSelector(storeState => storeState.userModule.user._id)
@@ -25,7 +25,6 @@ export function EntryHeader({ entry, onRemoveEntry, withDate = false }) {
             cmp: EntryMenu,
             props: {
                 entry,
-                onRemoveEntry,
             },
         })
     }
