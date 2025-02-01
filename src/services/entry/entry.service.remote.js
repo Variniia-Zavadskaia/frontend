@@ -5,6 +5,7 @@ export const entryService = {
     getById,
     save,
     remove,
+    update,
     addEntryComment
 }
 
@@ -24,11 +25,17 @@ async function remove(entryId) {
 async function save(entry) {
     var savedEntry
     if (entry._id) {
-        savedEntry = await httpService.put(`entry/${entry._id}`, entry)
+        savedEntry = await httpService.put(`entry/${entry._id}`, {action: 'full', entry})
     } else {
         savedEntry = await httpService.post('entry', entry)
     }
     return savedEntry
+}
+
+async function update(_id, field, val) {
+    const updatedEntry = httpService.put(`entry/${_id}`, { action: 'update', field, val })
+
+    return updatedEntry
 }
 
 async function addEntryComment(entryId, txt) {
