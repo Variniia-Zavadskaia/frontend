@@ -13,9 +13,9 @@ export const entryService = {
 }
 window.cs = entryService
 
-async function query(filterBy = { txt: '', byId: '' }) {
+async function query(filterBy = { txt: '', byId: '', ids: [] }) {
     var entrys = await storageService.query(STORAGE_KEY)
-    const { txt, byId } = filterBy
+    const { txt, byId, ids } = filterBy
 
     // console.log(filterBy);
     // console.log(filterBy);
@@ -26,6 +26,9 @@ async function query(filterBy = { txt: '', byId: '' }) {
     // }
     if (byId) {
         entrys = entrys.filter(entry => entry.by._id === byId)
+    }
+    if (ids) {
+        entrys = entrys.filter(entry => ids.includes(entry._id))
     }
     // if(sortField === 'vendor' || sortField === 'owner'){
     //     entrys.sort((entry1, entry2) =>

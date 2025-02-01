@@ -5,6 +5,7 @@ export const SET_WATCHED_USER = 'SET_WATCHED_USER'
 export const SET_WATCHED_USER_ENTRYS = 'SET_WATCHED_USER_ENTRYS'
 export const REMOVE_USER = 'REMOVE_USER'
 export const SET_USERS = 'SET_USERS'
+export const SET_SAVED_USER_ENTRYS = 'SET_SAVED_USER_ENTRYS'
 
 const initialState = {
     count: 10,
@@ -12,6 +13,7 @@ const initialState = {
     users: [],
     watchedUser: null,
     watchedUserEntrys: [],
+    watchedUserSavedEntrys: [],
 }
 
 export function userReducer(state = initialState, action) {
@@ -25,6 +27,9 @@ export function userReducer(state = initialState, action) {
             break
         case SET_WATCHED_USER_ENTRYS:
             newState = { ...state, watchedUserEntrys: action.entrys }
+            break
+        case SET_SAVED_USER_ENTRYS:
+            newState = { ...state, watchedUserSavedEntrys: action.savedEntrys }
             break
         case REMOVE_USER:
             newState = {

@@ -1,4 +1,5 @@
 import { storageService } from '../async-storage.service'
+import { entryService } from '../entry'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORAGE_KEY_USER = 'user'
@@ -14,6 +15,7 @@ export const userService = {
     getLoggedinUser,
     saveLoggedinUser,
     follow,
+    getSavedEntrys
 }
 
 async function getUsers() {
@@ -39,7 +41,7 @@ async function update(_id, field, val) {
 
     await storageService.put(STORAGE_KEY_USER, user)
 
-	// When admin updates other user's details, do not update loggedinUser
+    // When admin updates other user's details, do not update loggedinUser
     const loggedinUser = getLoggedinUser()
     if (loggedinUser._id === user._id) saveLoggedinUser(user)
 
@@ -57,9 +59,10 @@ async function signup(userCred) {
     const users = await storageService.query(STORAGE_KEY_USER)
     const userExists = users.some(user => user.username === userCred.username)
 
-    if (userExists) throw new Error("username already exists");
-    
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://res.cloudinary.com/dqfzhhtfh/image/upload/v1738007970/user_ojp9xs.svg'
+    if (userExists) throw new Error('username already exists')
+
+    if (!userCred.imgUrl)
+        userCred.imgUrl = 'https://res.cloudinary.com/dqfzhhtfh/image/upload/v1738007970/user_ojp9xs.svg'
 
     const user = await storageService.post(STORAGE_KEY_USER, userCred)
     return saveLoggedinUser(user)
@@ -74,13 +77,23 @@ function getLoggedinUser() {
 }
 
 function saveLoggedinUser(user) {
-	const loggedInUser = {...user}
+    const loggedInUser = { ...user }
 
     delete loggedInUser.password
 
-	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
-    
-	return loggedInUser
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
+
+    return loggedInUser
+}
+
+async function getSavedEntrys(userId) {
+    const loggedinUser = getLoggedinUser()
+    if (loggedinUser._id !== userId) throw new Error('equired userId is not logged in')
+
+    const user = await getById(userId)
+
+    const entrys = await entryService.query({ ids: [...user.savedEntryIds] })
+    return entrys
 }
 
 async function follow(followerId, followedId, follow) {
