@@ -1,7 +1,9 @@
 .widgets {
-    padding: rem(32px) 2rem;
+    padding: rem(32px) 0;
     // width: rem(319px);
-
+    width: rem(319px);
+    display: flex;
+    flex-direction: column;
     .menu-item {
         width: rem(319px);
         display: flex;
@@ -13,23 +15,20 @@
         gap: 1rem;
     }
 
-   
-        
-        .widg-txt {
-            font-size: rem(14px);
-            font-weight: bold;
-            color: $ig-primary-clr2;
-            margin-top: rem(20px);
-            // padding: rem(4px) rem(16px);
-        }
-    
-        .widg-txt-btn{
-            color: $ig-primory-clr;
-            margin-left: auto;
-            margin-top: rem(20px);
-        }
+    .widg-txt {
+        font-size: rem(14px);
+        font-weight: bold;
+        color: $ig-primary-clr2;
+        margin-top: rem(20px);
+        // padding: rem(4px) rem(16px);
+    }
 
-  
+    .widg-txt-btn {
+        color: $ig-primory-clr;
+        margin-left: auto;
+        margin-top: rem(20px);
+    }
+
     div {
         .icon {
             width: 3rem;
@@ -56,7 +55,7 @@
             color: $ig-primary-clr3;
             font-weight: bold;
             &:hover {
-                color:$ig-secondary-clr3 ;
+                color: $ig-secondary-clr3;
             }
         }
 
