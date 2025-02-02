@@ -11,6 +11,12 @@
         padding-top: 80px;
 
         .feed {
+            width: min(470px, 100vw);
+
+            @media (max-width: 470px) {
+                width: calc(100vw);
+            }
+
             @media (max-width: 480px) {
                 padding-top: 0;
             }
