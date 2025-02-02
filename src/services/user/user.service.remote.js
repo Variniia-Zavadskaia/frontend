@@ -12,6 +12,8 @@ export const userService = {
 	update,
     getLoggedinUser,
     saveLoggedinUser,
+    follow,
+    getSavedEntrys
 }
 
 function getUsers() {
@@ -27,8 +29,8 @@ function remove(userId) {
 	return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id, score }) {
-	const user = await httpService.put(`user/${_id}`, { _id, score })
+async function update(_id, field, val) {
+	const user = await httpService.put(`user/${_id}`, { _id, action: 'update', field, val })
 
 	// When admin updates other user's details, do not update loggedinUser
     const loggedinUser = getLoggedinUser() // Might not work because its defined in the main service???
@@ -54,16 +56,32 @@ async function logout() {
 	return await httpService.post('auth/logout')
 }
 
+
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function saveLoggedinUser(user) {
     const loggedInUser = {...user}
-
+    
     delete loggedInUser.password
-
+    
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
     
 	return loggedInUser
+}
+
+async function getSavedEntrys(userId) {
+    const entrys = await httpService.get(`user/${userId}/saved`)
+
+    return entrys
+}
+
+async function follow(followerId, followedId, follow) {
+    const {followedUser, followingUser} = await httpService.put(`user/${followerId}`, { _id: followerId, action: follow ? 'follow' : 'unfollow', followedId})
+
+    const loggedinUser = getLoggedinUser()
+    if (loggedinUser._id === followingUser._id) saveLoggedinUser(followingUser)
+
+    return {followedUser, followingUser} 
 }
