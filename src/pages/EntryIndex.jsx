@@ -27,14 +27,14 @@ export function EntryIndex() {
     return (
         <section className="entry-index">
             <div className="content">
-                <ul className="stories">
+                {/* <ul className="stories">
                     {randomFaces.map((face, idx) => (
                         <li key={idx} className="story">
                             <img src={face} alt={`Random Face ${idx + 1}`} />
                             <span>Name {idx + 1}</span>
                         </li>
                     ))}
-                </ul>
+                </ul> */}
                 <ul className="feed">
                     {entrys.map(entry => (
                         <li key={entry._id}>

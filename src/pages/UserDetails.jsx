@@ -76,7 +76,7 @@ export function UserDetails() {
         <section className="user-details">
             <header className="user-header">
                 <div className="user-img">
-                    <img src={user.imgUrl} />
+                    <img src={user.imgUrl} alt={`${user.username}'s profile`}/>
                 </div>
                 <div className="info-top">
                     <p className="username">{user.username}</p>
@@ -111,7 +111,7 @@ export function UserDetails() {
                 )}
             </nav>
             <Outlet />
-            <AppFooter />
+            {/* <AppFooter /> */}
         </section>
     )
 }

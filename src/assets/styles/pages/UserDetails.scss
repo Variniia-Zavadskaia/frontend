@@ -1,47 +1,98 @@
 .user-details {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    justify-self: center;
-    width: calc(100% - 40px);
-    max-width: rem(975px);
-    padding: 0px rem(20px);
-    padding-top: rem(30px);
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    padding: 0;
+    // margin: 0 auto;
+    // padding-top: rem(30px);
+    width: 100%;
+    margin-top: 1rem;
+
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        justify-self: center;
+        width: calc(100% - 40px);
+        max-width: rem(975px);
+        // padding: 0px rem(20px);
+        padding-top: rem(30px);
+    }
 
     .user-header {
         display: grid;
-        grid-template-columns: 120px 1fr;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 120px 1fr; // small
 
-        @include for-wide-layout {
+        grid-template-areas:
+            'img top'
+            'bottom  bottom '
+            'midle midle';
+        // grid-template-columns: 1fr 2fr; //wide
+        // @include for-mobile-layout{
+        //     grid-template-columns: 120px 1fr;
+        // }
+
+        @include for-normal-layout {
             grid-template-columns: 1fr 2fr;
+            grid-template-areas:
+                'img top '
+                'img    midle '
+                'img  bottom';
+
+            padding-bottom: rem(22px);
         }
 
         // justify-content: space-around;
-        padding-bottom: rem(44px);
+        // padding-bottom: rem(44px);
         .user-img {
-            grid-column-start: 1;
-            grid-row-start: 1;
-            grid-row-end: 5;
+            grid-area: img;
             margin-right: 28px;
-            justify-self: center;
+            // justify-self: center;
+            margin-left: rem(16px);
+            align-self: flex-end;
 
-            @include square-image(150px);
+            @include square-image(77px);
             img {
                 border-radius: 50%;
+            }
+
+            @media (min-width: 768px) {
+                justify-self: center;
+                align-self: center;
+                margin-right:0;
+                // padding-bottom: rem(22px);
+
+                @include square-image(150px);
+                img {
+                    border-radius: 50%;
+                }
             }
         }
 
         .info-top {
-            grid-column-start: 2;
-            grid-row-start: 1;
+            grid-area: top;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            // align-items: center;
             // gap: rem(0px);
-            margin-bottom: rem(20px);
+            // margin-bottom: rem(20px);
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+            }
+
+            @media (min-width: 768px) {
+            }
+
             .username {
                 font-size: rem(20px);
                 line-height: rem(25px);
-                margin-right: 20px;
+                // margin-right: 20px;
+                margin-bottom: 16px;
+
+                @media (min-width: 768px) {
+                    margin-right: 20px;
+                    margin-bottom: 0;
+                }
             }
             .user-buttons {
                 display: flex;
@@ -58,7 +109,7 @@
                     text-overflow: ellipsis;
                     font-family: $font-family-system;
                 }
-                
+
                 .follow-btn {
                     color: #fff;
                     background-color: $ig-primary-clr3;
@@ -70,32 +121,73 @@
             }
         }
         .info-midle {
-            grid-column-start: 2;
-            grid-row-start: 2;
+            grid-area: midle;
             display: flex;
-            height: rem(18px);
-            margin-bottom: rem(20px);
+            // height: rem(36px);
+            // margin: rem(20px) 0;
             gap: rem(40px);
+            justify-content: space-evenly;
+            align-items: end;
+            border-top: 1px solid $border-color;
+            padding: rem(12px) 0;
 
             p {
-                font-size: rem(16px);
+                font-size: rem(14px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                line-height: rem(18px);
+                color: $ig-primary-clr2;
+
                 span {
                     font-weight: bold;
+                    color: $ig-primory-clr;
+                }
+            }
+
+            @media (min-width: 768px) {
+                // margin: rem(20px) 0;
+                justify-content: flex-start;
+                border-top: none;
+                align-items: flex-start;
+                padding: 0;
+
+                p {
+                    font-size: rem(16px);
+                    flex-direction: row;
+                    color: $ig-primory-clr;
+
+                    span {
+                        font-weight: bold;
+                        margin-right: 5px;
+                    }
                 }
             }
         }
         .info-bottom {
-            grid-column-start: 2;
-            grid-row-start: 3;
+            grid-area: bottom;
+            // grid-column-start: 2;
+            // grid-row-start: 3;
+            margin: 12px 0;
+            margin-left: rem(16px);
 
             p {
                 font-size: rem(14px);
                 font-weight: bold;
             }
+
+            @media (min-width: 768px) {
+                margin: 0;
+            }
         }
     }
 
     .user-navigation {
+        @media (max-width: 480px) {
+            // padding: 0;
+            // padding-top: rem(30px);
+        }
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -107,38 +199,74 @@
             display: flex;
             align-items: center;
             color: #8e8e8e;
-            line-height: rem(18px);
-            font-size: rem(12px);
-            letter-spacing: rem(1px);
-            padding: rem(17px) 0;
-            text-transform: uppercase;
-            font-weight: bold;
-            gap: 4px;
+
+            @media (min-width: 768px) {
+                line-height: rem(18px);
+                font-size: rem(12px);
+                letter-spacing: rem(1px);
+                padding: rem(17px) 0;
+                text-transform: uppercase;
+                font-weight: bold;
+                gap: 4px;
+            }
 
             .icon {
-                font-size: 18px;
+                svg {
+                    height: 24px;
+                    width: 24px;
+                }
+            }
+
+            @media (min-width: 768px) {
+                .icon {
+                    font-size: 18px;
+
+                    svg {
+                        height: 12px;
+                    }
+                }
             }
 
             span {
-                margin-left: rem(6px);
+                display: none;
+
+                @media (min-width: 768px) {
+                    display: block;
+                    margin-left: rem(6px);
+                }
             }
 
             &.active {
-                color: $ig-primory-clr;
-                border-top: 1px solid black;
-                margin-top: 2px;
-
-                .icon {
-                    color: $ig-primory-clr;
-                }
+                color: $ig-primary-clr3;
 
                 &::after {
                     content: '';
-                    display: block;
+                    // display: block;
                     height: 2px;
-                    width: 100%;
-                    background-color: $ig-primory-clr; // Black underline
-                    margin-top: 8px;
+                    // width: 100%;
+                    color: $ig-primary-clr3;
+                    // margin-top: 8px;
+                }
+            }
+
+            @media (min-width: 768px) {
+                &.active {
+                    color: $ig-primory-clr;
+                    border-top: 1px solid black;
+                    margin-top: 2px;
+
+                    .icon {
+                        color: $ig-primory-clr;
+                    }
+
+                    &::after {
+                        content: '';
+                        display: block;
+                        height: 2px;
+                        width: 100%;
+                        background-color: $ig-primory-clr; // Black underline
+                        margin-top: 8px;
+                    }
                 }
             }
         }
