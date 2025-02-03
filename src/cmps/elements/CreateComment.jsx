@@ -3,49 +3,37 @@ import Picker from '@emoji-mart/react'
 import data from '@emoji-mart/data'
 
 import { entrySvg } from '../Svgs'
-import { userService } from '../../services/user'
-import { makeId } from '../../services/util.service'
-import { addComment } from '../../store/actions/comment.actions'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { addComment } from '../../store/actions/entry.actions'
 
-export function CreateComment({ entryId, onSaveComment = null }) {
-    const [comment, setComment] = useState({ txt: '', by: userService.getLoggedinUser(), likedBy: []})
+export function CreateComment({ entryId }) {
+    const [txt, setTxt] = useState('')
     const [showPicker, setShowPicker] = useState(false)
 
     function handleTextChange(ev) {
-        setComment({ ...comment, txt: ev.target.value })
+        setTxt(ev.target.value)
     }
 
     function handleEmojiSelect(emoji) {
-        setComment({ ...comment, txt: comment.txt + emoji.native })
+        setTxt(txt + emoji.native)
         setShowPicker(false)
     }
 
-    async function addEntryComment(commentToAdd) {
-        try {
-            await addComment(commentToAdd, entryId)
-            showSuccessMsg(`Comment added`)
-        } catch (err) {
-            showErrorMsg('Cannot add comment')
-        }
-    }
-
-    function onPostComment() {
-        if (comment.txt.trim()) {
-            let savedComment = { ...comment }
-            savedComment.date = new Date()
-            savedComment.id = makeId()
-            addEntryComment(savedComment)
-            if (onSaveComment) {
-                onSaveComment(savedComment)
+    async function onPostComment() {
+        if (txt.trim()) {
+            try {
+                await addComment(entryId, txt)
+                showSuccessMsg(`Comment added`)
+            } catch (err) {
+                showErrorMsg('Cannot add comment')
             }
-            setComment({ ...comment, txt: '' })
+            setTxt('')
         }
     }
 
     function handleKeyDown(ev) {
         if (ev.key === 'Enter' && !ev.shiftKey) {
-            ev.preventDefault()  
+            ev.preventDefault()
             onPostComment()
         }
     }
@@ -55,14 +43,16 @@ export function CreateComment({ entryId, onSaveComment = null }) {
             <textarea
                 name="txt"
                 rows="1"
-                value={comment.txt}
+                value={txt}
                 onChange={handleTextChange}
-                onKeyDown={handleKeyDown} 
+                onKeyDown={handleKeyDown}
                 placeholder="Add a comment..."></textarea>
-            {comment.txt.length !== 0 && <button className="post-btn" onClick={onPostComment}>
-                Post
-            </button>}
-            <div className='emoji-container'>
+            {txt.length !== 0 && (
+                <button className="post-btn" onClick={onPostComment}>
+                    Post
+                </button>
+            )}
+            <div className="emoji-container">
                 <button className="emoji-btn" onClick={() => setShowPicker(prev => !prev)}>
                     {entrySvg.emoji(24)}
                 </button>

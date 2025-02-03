@@ -5,9 +5,8 @@ import { getElapsedTime } from '../services/util.service'
 import { LikeButton } from './elements/LikeButton'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { showSuccessMsg } from '../services/event-bus.service'
 import { onToggleModal } from '../store/actions/app.actions'
-// import { updateCommentLike } from '../store/actions/comment.actions'
 
 export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, onUpdateComment }) {
     const userBy = comment.by
@@ -25,16 +24,7 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
 
     async function updateLikedBy(updatedLikedBy) {
         setLikedBy(updatedLikedBy)
-        comment.likedBy = updatedLikedBy
-        onUpdateComment(comment)
-
-        // try {
-        //     await updateCommentLike(entry._id, comment.id, updatedLikedBy)
-        // } catch (err) {
-        //     showErrorMsg('Cannot update comment like')
-        //     console.log('Cannot update comment like', err)
-        //     setLikedBy([...likedBy])
-        // }
+        onUpdateComment(comment.id, 'likedBy', updatedLikedBy)
     }
 
     return (
@@ -71,7 +61,6 @@ function commentMenu({ comment, onRemoveComment, onClose }) {
     const isOwner = userId === owner._id
 
     function onReport() {
-        // console.log('report')
         showSuccessMsg(`Report is sent`)
         onClose()
     }

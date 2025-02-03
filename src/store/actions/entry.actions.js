@@ -55,8 +55,8 @@ export async function addEntry(entry) {
 export async function updateEntry(entry) {
     try {
         const savedEntry = await entryService.save(entry)
-        
-        store.dispatch(getCmdUpdateEntry(savedEntry))
+
+        _entryUpdateState(entry)
         return savedEntry
     } catch (err) {
         console.log('Cannot save entry', err)
@@ -68,7 +68,7 @@ export async function entryUpdate(_id, field, val) {
     try {
         const updatedEntry = await entryService.update(_id, field, val)
 
-        store.dispatch(getCmdUpdateEntry(updatedEntry))
+        _entryUpdateState(updatedEntry)
         return updatedEntry
     } catch (err) {
         console.log('Cannot update entry', err)
@@ -76,14 +76,41 @@ export async function entryUpdate(_id, field, val) {
     }
 }
 
-export async function addEntryComment(entryId, txt) {
+export async function addComment(entryId, txt) {
     try {
-        const comment = await entryService.addEntryComment(entryId, txt)
-        store.dispatch(getCmdAddEntryComment(comment))
-        return comment
+        const entry = await entryService.addComment(entryId, txt)
+        _entryUpdateState(entry)
     } catch (err) {
-        console.log('Cannot add entry comment', err)
+        console.log('commentActions: err in addComment', err)
         throw err
+    }
+}
+
+export async function removeComment(entryId, commentId) {
+    try {
+        const entry = await entryService.removeComment(entryId, commentId)
+        _entryUpdateState(entry)
+    } catch (err) {
+        console.log('commentActions: err in removeComment', err)
+        throw err
+    }
+}
+
+export async function updateComment(entryId, commentId, field, val) {
+    try {
+        const entry = await entryService.updateComment(entryId, commentId, field, val)
+        _entryUpdateState(entry)
+    } catch (err) {
+        console.log('commentActions: err in removeComment', err)
+        throw err
+    }
+}
+
+function _entryUpdateState(entry) {
+    store.dispatch(getCmdUpdateEntry(entry))
+
+    if (store.getState().entryModule.entry && store.getState().entryModule.entry._id === entry._id) {
+        store.dispatch(getCmdSetEntry(entry))
     }
 }
 
@@ -129,7 +156,8 @@ function getCmdAddEntryComment(comment) {
 async function unitTestActions() {
     await loadEntrys()
     await addEntry(entryService.getEmptyEntry())
-    await updateEntry({ //test
+    await updateEntry({
+        //test
         _id: 'm1oC7',
         title: 'Entry-Good',
     })

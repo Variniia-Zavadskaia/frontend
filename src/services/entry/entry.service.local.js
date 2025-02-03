@@ -9,8 +9,10 @@ export const entryService = {
     getById,
     save,
     remove,
-    addEntryComment,
-    update
+    update,
+    addComment,
+    removeComment,
+    updateComment,
 }
 window.cs = entryService
 
@@ -29,7 +31,6 @@ async function query(filterBy = { byId: '', ids: [] }) {
         entrys = entrys.filter(entry => ids.includes(entry._id))
     }
 
-    // entrys = entrys.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
     return entrys
 }
 
@@ -57,8 +58,6 @@ async function save(entry) {
         const loggedInUser = userService.getLoggedinUser()
         let entryToSave = { ...entry }
 
-        // console.log(entryToSave);
-
         entryToSave.by = { _id: loggedInUser._id, username: loggedInUser.username, imgUrl: loggedInUser.imgUrl }
         entryToSave.date = new Date()
         savedEntry = await storageService.post(STORAGE_KEY, entryToSave)
@@ -67,25 +66,21 @@ async function save(entry) {
 }
 
 async function update(_id, field, val) {
-    const allowChange = [
-        'txt', 'comments', 'likedBy'
-    ]
-    const onlyOwnerChange = [
-        'txt'
-    ]
+    const allowChange = ['txt', 'comments', 'likedBy']
+    const onlyOwnerChange = ['txt']
 
     if (!allowChange.includes(field)) {
-        console.log(field + " can not be changed");        
-        throw new Error("The change is prohibited"); 
+        console.log(field + ' can not be changed')
+        throw new Error('The change is prohibited')
     }
-    
+
     const entry = await storageService.get(STORAGE_KEY, _id)
-    if (onlyOwnerChange.includes(field))  {
+    if (onlyOwnerChange.includes(field)) {
         const loggedInUser = userService.getLoggedinUser()
 
         if (loggedInUser._id !== entry.by._id) {
-            console.log("Only owner (" + entry.by._id + ") can change", field); 
-            throw new Error("The change is prohibited");
+            console.log('Only owner (' + entry.by._id + ') can change', field)
+            throw new Error('The change is prohibited')
         }
     }
 
@@ -96,17 +91,57 @@ async function update(_id, field, val) {
     return savedEntry
 }
 
-async function addEntryComment(entryId, txt) {
+async function addComment(entryId, txt) {
+    // Later, this is all done by the backend
+    const entry = await getById(entryId)
+    const loggedInUser = userService.getLoggedinUser()
+    const newComment = {
+        id: makeId(),
+        txt,
+        by: {
+            _id: loggedInUser._id,
+            fullname: loggedInUser.fullname,
+            username: loggedInUser.username,
+            imgUrl: loggedInUser.imgUrl,
+        },
+        likedBy: [],
+        date: new Date(),
+    }
+
+    entry.comments = [newComment, ...entry.comments]
+
+    await storageService.put(STORAGE_KEY, entry)
+
+    return entry
+}
+
+async function removeComment(entryId, commentId) {
     // Later, this is all done by the backend
     const entry = await getById(entryId)
 
-    const comment = {
-        id: makeId(),
-        by: userService.getLoggedinUser(),
-        txt,
-    }
-    entry.comments.push(comment)
+    entry.comments = entry.comments.filter(comment => comment.id !== commentId)
+
     await storageService.put(STORAGE_KEY, entry)
 
-    return comment
+    return entry
+}
+
+async function updateComment(entryId, commentId, field, val) {
+    if (field !== 'likedBy') {
+        throw new Error('Prohibited change')
+    }
+
+    const entry = await getById(entryId)
+
+    entry.comments = entry.comments.map(comment => {
+        if (comment.id !== commentId) return comment
+
+        comment[field] = val
+
+        return comment
+    })
+
+    await storageService.put(STORAGE_KEY, entry)
+
+    return entry
 }
