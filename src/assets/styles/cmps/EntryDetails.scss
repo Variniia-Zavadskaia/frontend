@@ -60,9 +60,12 @@
             border-top: 0.0625rem solid $border-color;
             padding: rem(6px) rem(16px);
             margin-bottom: 16px;
+           
             p {
-                color: $ig-secondary-clr2;
+                color: $ig-primary-clr2;
                 font-size: rem(12px);
+                line-height: rem(16px);
+                letter-spacing: 0.2px;
             }
         }
         .new-comment {

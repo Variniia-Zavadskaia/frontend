@@ -15,25 +15,13 @@ export const SIDEBAR_TYPE_FOOTER = 'footer'
 export const SIDEBAR_TYPE_HEADER = 'header'
 
 export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
-    // const user = useSelector(storeState => storeState.userModule.user)
     const currUserId = useSelector(storeState => storeState.userModule.user._id)
     const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
-    const navigate = useNavigate()
     const [showMoreMenu, setShowMoreMenu] = useState(false)
 
     function onAddEntry() {
         onToggleModal({ cmp: CreateEntry })
     }
-
-    // async function onLogout() {
-    //     try {
-    //         await logout()
-    //         navigate('/login')
-    //         showSuccessMsg(`Bye now`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot logout')
-    //     }
-    // }
 
     function onCloseMoreMenu() {
         setShowMoreMenu(false)
@@ -111,14 +99,9 @@ function MoreMenu({ onClose }) {
 
     useEffect(() => {
         const handleOutsideClick = event => {
-            // console.log('Event Target:', event.target)
-            // console.log('Menu Ref Current:', menuRef.current)
 
             if (menuRef.current && !menuRef.current.contains(event.target)) {
-                // console.log('Click is outside the menu.')
                 onClose()
-            } else {
-                // console.log('Click is inside the menu.')
             }
         }
 
