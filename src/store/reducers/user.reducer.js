@@ -25,6 +25,8 @@ export function userReducer(state = initialState, action) {
             newState = { ...state, user: action.user }
             break
         case SET_WATCHED_USER:
+            console.log(action.user);
+            
             newState = { ...state, watchedUser: action.user }
             break
         case SET_WATCHED_USER_ENTRYS:

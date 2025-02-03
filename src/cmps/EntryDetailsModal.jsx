@@ -14,7 +14,7 @@ export function EntryDetailsModal() {
         window.history.replaceState(null, '', `${lastPath}`);
 	}
 
-    if(!watchedEntryId) return <InstagramLoader/>
+    // if(!watchedEntryId) return <InstagramLoader/>
 
 	if (!watchedEntryId) return <></>
 

@@ -17,6 +17,7 @@ import { Signup } from './pages/Signup.jsx'
 import { DynamicModal } from './cmps/DynamicModal.jsx'
 import { EntryDetailsModal } from './cmps/EntryDetailsModal.jsx'
 import { EntryDetailsPage } from './pages/EntryDetailsPage.jsx'
+import { PageLoader } from './cmps/PageLoader.jsx'
 
 export function RootCmp() {
     const location = useLocation()
@@ -42,6 +43,7 @@ export function RootCmp() {
             </div> */}
             <main className="container">
                 <UserMsg />
+                {/* <PageLoader/> */}
                 <Routes>
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />

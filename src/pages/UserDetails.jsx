@@ -20,16 +20,12 @@ export function UserDetails() {
     const logedInUserId = useSelector(storeState => storeState.userModule.user._id)
     const entrysCount = useSelector(storeState => storeState.userModule.watchedUserEntrys.length)
     const dispatch = useDispatch()
-    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
+    // const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
 
     useEffect(() => {
-       
-        dispatch({ type: LOADING_START })
-
-        
-        loadUser(id)
         loadUserEntrys(id)
-        dispatch({ type: LOADING_DONE })
+        loadUser(id)
+        // dispatch({ type: LOADING_DONE })
         // console.log('ddd');
         
         socketService.emit(SOCKET_EMIT_USER_WATCH, id)
@@ -81,13 +77,20 @@ export function UserDetails() {
     // console.log(user)
     
     
-    console.log(isLoading);
+    // console.log(isLoading);
     
-    if (isLoading) return <InstagramLoader  />
-    if (!user) return <></>
+    // if (isLoading) return <InstagramLoader  />
+    // if (isLoading || !user || user._id !== id) return <InstagramLoader  />
+    if (!user || user._id !== id) return <InstagramLoader  />
+    // if (!user || user._id !== id) return null
+
+    console.log(user);
+    
 
     const numOfFollowers = user.followers ? user.followers.length : 0
     const numOfFollowings = user.following ? user.following.length : 0
+
+    // console.log('ggg');
 
     return (
         <section className="user-details">
