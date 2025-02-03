@@ -6,10 +6,12 @@ export const entryService = {
     save,
     remove,
     update,
-    addEntryComment
+    addComment,
+    removeComment,
+    updateComment,
 }
 
-async function query(filterBy = { txt: ''}) {
+async function query(filterBy = {}) {
     // console.log(filterBy);
     
     return httpService.get(`entry`, filterBy)
@@ -38,7 +40,20 @@ async function update(_id, field, val) {
     return updatedEntry
 }
 
-async function addEntryComment(entryId, txt) {
-    const savedComment = await httpService.post(`entry/${entryId}/comment`, {txt})
-    return savedComment
+async function addComment(entryId, txt) {
+    const entry = await httpService.post(`entry/${entryId}/comment`, {txt})
+
+    return entry
+}
+
+async function removeComment(entryId, commentId) {
+    const entry = await httpService.delete(`entry/${entryId}/comment/${commentId}`)
+
+    return entry
+}
+
+async function updateComment(entryId, commentId, field, val) {
+    const updatedEntry = httpService.put(`entry/${entryId}/comment/${commentId}`, { action: 'update', field, val })
+
+    return updatedEntry
 }
