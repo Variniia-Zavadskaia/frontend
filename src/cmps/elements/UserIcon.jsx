@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router'
+import { onToggleEntryDetailsModal } from '../../store/actions/app.actions'
 
 export function UserIcon({ user, size=60, isLink = true }) {
 
@@ -7,6 +8,7 @@ export function UserIcon({ user, size=60, isLink = true }) {
     function onIconClick() {
         if (isLink) {
             navigate(`/user/${user._id}`)
+            onToggleEntryDetailsModal()
         }
     }
 

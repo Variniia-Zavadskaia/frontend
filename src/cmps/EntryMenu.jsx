@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router'
-import { onToggleModal } from '../store/actions/app.actions.js'
+import { onToggleEntryDetailsModal, onToggleModal } from '../store/actions/app.actions.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { removeEntry } from '../store/actions/entry.actions.js'
 import { CreateEntry } from './CreateEntry.jsx'
@@ -11,7 +11,7 @@ export function EntryMenu({ entry, onClose }) {
     const navigate = useNavigate()
     const owner = entry.by
     const isOwner = loggedInUser._id === owner._id
-    const following = !isOwner && loggedInUser.following.some(followed => followed._id == owner._id)
+    const following = !isOwner && loggedInUser.following && loggedInUser.following.some(followed => followed._id == owner._id)
 
     async function onRemove() {
         try {
@@ -20,12 +20,14 @@ export function EntryMenu({ entry, onClose }) {
         } catch (err) {
             showErrorMsg('Cannot remove entry')
         }
+        onToggleEntryDetailsModal()
         onClose()
     }
 
-    function onIconClick() {
+    function onGoToPost() {
         navigate(`/entry/${entry._id}`)
 
+        onToggleEntryDetailsModal()
         onClose()
     }
 
@@ -64,7 +66,7 @@ export function EntryMenu({ entry, onClose }) {
                 </button>
             )}
 
-            <button onClick={onIconClick}>Go to post</button>
+            <button onClick={onGoToPost}>Go to post</button>
             {/* <button>Share to...</button> */}
             {/* <button>Copy link</button> */}
             {/* <button>About this account</button> */}

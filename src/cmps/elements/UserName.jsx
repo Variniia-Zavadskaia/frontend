@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router'
+import { onToggleEntryDetailsModal } from '../../store/actions/app.actions'
 
 export function UserName({user, isLink = true}) {
     const navigate = useNavigate()
@@ -6,6 +7,7 @@ export function UserName({user, isLink = true}) {
     function onUserNameClick() {
         if (isLink) {
             navigate(`/user/${user._id}`)
+            onToggleEntryDetailsModal()
         }
     }    
 

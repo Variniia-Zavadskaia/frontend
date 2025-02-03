@@ -45,17 +45,6 @@ export function CreateEntry({ onClose, entry = null }) {
         setEntryToSave({ ...entryToSave, txt: ev.target.value })
     }
 
-    // async function onAddEntry() {
-
-    //     try {
-    //         const savedEntry = await addEntry(entryToSave)
-    //         showSuccessMsg(`entry added (id: ${savedEntry._id})`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot add entry', err)
-    //     }
-    //     onClose()
-    // }
-
     async function onSave() {
         try {
             let savedEntry
@@ -120,7 +109,7 @@ export function CreateEntry({ onClose, entry = null }) {
         } else {
             return null
         }
-    }    
+    }
 
     return (
         <div className="add-entry">
