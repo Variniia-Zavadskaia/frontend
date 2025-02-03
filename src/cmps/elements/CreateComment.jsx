@@ -22,12 +22,12 @@ export function CreateComment({ entryId }) {
     async function onPostComment() {
         if (txt.trim()) {
             try {
+                setTxt('')
                 await addComment(entryId, txt)
                 showSuccessMsg(`Comment added`)
             } catch (err) {
                 showErrorMsg('Cannot add comment')
             }
-            setTxt('')
         }
     }
 
