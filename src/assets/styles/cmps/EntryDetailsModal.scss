@@ -16,11 +16,13 @@
         display: flex;
         border-radius: 4px;
         overflow: hidden;
-        position: relative;
-        max-width: none;
-        max-height: none;
-        max-height: calc(100% - 40px);
-        max-width: calc(100% - 64px - 64px);
+        // position: relative;
+        // max-width: none;
+        // max-height: none;
+        // max-height: calc(100% - 40px);
+        // max-width: calc(100% - 64px - 64px);
+        max-width: 90vw;
+    max-height: 90vh;
     }
 
     .close-btn {

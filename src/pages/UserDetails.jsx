@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { NavLink, Outlet } from 'react-router-dom'
 
@@ -11,17 +11,27 @@ import { UserEntryList } from '../cmps/UserEntryList'
 import { entrySvg } from '../cmps/Svgs'
 import { AppFooter } from '../cmps/AppFooter'
 import { follow } from '../store/actions/user.actions'
+import { InstagramLoader  } from '../cmps/elements/InstagramLoader '
+import { LOADING_DONE, LOADING_START } from '../store/reducers/system.reducer'
 
 export function UserDetails() {
-    const { id } = useParams()    
+    const { id } = useParams()
     const user = useSelector(storeState => storeState.userModule.watchedUser)
     const logedInUserId = useSelector(storeState => storeState.userModule.user._id)
     const entrysCount = useSelector(storeState => storeState.userModule.watchedUserEntrys.length)
+    const dispatch = useDispatch()
+    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
 
     useEffect(() => {
+       
+        dispatch({ type: LOADING_START })
+
+        
         loadUser(id)
         loadUserEntrys(id)
-
+        dispatch({ type: LOADING_DONE })
+        // console.log('ddd');
+        
         socketService.emit(SOCKET_EMIT_USER_WATCH, id)
         socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
 
@@ -53,10 +63,12 @@ export function UserDetails() {
         } else {
             return (
                 <div className="user-buttons">
-                    {(user.followers && user.followers.some(followers => followers._id === logedInUserId)) ? (
-                        <button onClick={()=>onFollow(false)}>Unfollow</button>
+                    {user.followers && user.followers.some(followers => followers._id === logedInUserId) ? (
+                        <button onClick={() => onFollow(false)}>Unfollow</button>
                     ) : (
-                        <button className="follow-btn" onClick={()=>onFollow(true)}>Follow</button>
+                        <button className="follow-btn" onClick={() => onFollow(true)}>
+                            Follow
+                        </button>
                     )}
                     <button>Message</button>
                     {/* <button>Setting</button> */}
@@ -65,9 +77,14 @@ export function UserDetails() {
         }
     }
 
+    
+    // console.log(user)
+    
+    
+    console.log(isLoading);
+    
+    if (isLoading) return <InstagramLoader  />
     if (!user) return <></>
-
-    console.log(user)
 
     const numOfFollowers = user.followers ? user.followers.length : 0
     const numOfFollowings = user.following ? user.following.length : 0
@@ -76,11 +93,11 @@ export function UserDetails() {
         <section className="user-details">
             <header className="user-header">
                 <div className="user-img">
-                    <img src={user.imgUrl} alt={`${user.username}'s profile`}/>
+                    <img src={user.imgUrl} alt={`${user.username}'s profile`} />
                 </div>
                 <div className="info-top">
                     <p className="username">{user.username}</p>
-                    <UserButtons/>
+                    <UserButtons />
                 </div>
                 <div className="info-midle">
                     <p>

@@ -1,55 +1,55 @@
 // Setup
-@import "setup/variables";
-@import "setup/functions";
-@import "setup/mixins";
-@import "setup/typography";
+@import 'setup/variables';
+@import 'setup/functions';
+@import 'setup/mixins';
+@import 'setup/typography';
 
 // Basics
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/base";
+@import 'basics/helpers';
+@import 'basics/layout';
+@import 'basics/base';
 // @import "basics/links";
-@import "basics/forms";
-
+@import 'basics/forms';
 
 // pages
-@import "RootCmp";
+@import 'RootCmp';
 
-@import "pages/AboutUs";
-@import "pages/EntryIndex";
-@import "pages/Explore";
-@import "pages/CommentIndex";
-@import "pages/UserDetails";
-@import "pages/TaskDetails";
-@import "pages/EntryDetailsPage";
-@import "pages/Login";
-@import "pages/Signup";
+@import 'pages/AboutUs';
+@import 'pages/EntryIndex';
+@import 'pages/Explore';
+@import 'pages/CommentIndex';
+@import 'pages/UserDetails';
+@import 'pages/TaskDetails';
+@import 'pages/EntryDetailsPage';
+@import 'pages/Login';
+@import 'pages/Signup';
 
 // Components
 // @import "cmps/list";
 // @import "cmps/preview";
 
 // @import "cmps/AppHeader";
-@import "cmps/app-footer";
-@import "cmps/Sidebar";
-@import "cmps/UserMsg";
-@import "cmps/Widgets";
+@import 'cmps/app-footer';
+@import 'cmps/Sidebar';
+@import 'cmps/UserMsg';
+@import 'cmps/Widgets';
 
-@import "cmps/EntryFilter";
-@import "cmps/CommentEdit";
-@import "cmps/CommentPreview";
-@import "cmps/CreateEntry";
-@import "cmps/UserEntryList";
-@import "cmps/EntryDetails";
-@import "cmps/EntryPreview";
+@import 'cmps/EntryFilter';
+@import 'cmps/CommentEdit';
+@import 'cmps/CommentPreview';
+@import 'cmps/CreateEntry';
+@import 'cmps/UserEntryList';
+@import 'cmps/EntryDetails';
+@import 'cmps/EntryPreview';
 
-@import "./cmps/dynamic-modal";
-@import "./cmps/EntryDetailsModal";
+@import './cmps/dynamic-modal';
+@import './cmps/EntryDetailsModal';
 
 //Elements
-@import "./cmps/elements/UserIcon";
-@import "./cmps/elements/UserName";
-@import "./cmps/elements/EntryButtons";
-@import "./cmps/elements/EntryHeader";
-@import "./cmps/elements/CreateComment";
-@import "./cmps/elements/LikeButton";
+@import './cmps/elements/UserIcon';
+@import './cmps/elements/UserName';
+@import './cmps/elements/EntryButtons';
+@import './cmps/elements/EntryHeader';
+@import './cmps/elements/CreateComment';
+@import './cmps/elements/LikeButton';
+@import './cmps/elements/InstagramLoader';

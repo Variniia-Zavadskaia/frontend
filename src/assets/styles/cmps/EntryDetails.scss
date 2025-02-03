@@ -6,19 +6,23 @@
     // max-height: 100%;
 
     .img-container {
-        flex: 1;
+        flex: 1; 
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
-        height: auto;
-        min-height: 450px;
+        // overflow: hidden;
+        // height: auto;
+        // min-height: 450px;
+        background-color: black;
         border-right: 0.0625rem solid $border-color;
 
         .entry-details-img {
-            height: auto;
-            width: 100%;
-            object-fit: cover;
+            // height: auto;
+            // width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; 
+            // object-fit: cover;
         }
 
         // background-color: black;
