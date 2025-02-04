@@ -116,20 +116,20 @@
         }
 
         .side-edit {
-            padding: 1rem;
             max-width: 324px;
             width: 0;
             opacity: 0;
-            border-left: 0.1rem solid $border-color;
             transition: width $edit-modal-expand-time ease-in-out, opacity 0.2s ease-in-out;
             will-change: width, opacity;
             // border-bottom: 0.1rem solid #dbdbdb;
             // display: flex;
             // flex-direction: column;
-
+            
             &.expanded {
                 opacity: 1;
                 width: 324px;  // When expanded
+                border-left: 0.1rem solid $border-color;
+                padding: 1rem;
             }
 
             .to {
@@ -139,7 +139,7 @@
                     margin-bottom: rem(14px);
 
                     .user-icon-edit {
-                        margin-left: rem(12px);
+                        margin-right: rem(12px);
                     }
 
                     .user-name-edit {

@@ -137,12 +137,9 @@ export function CreateEntry({ onClose, entry = null }) {
                 <div className={`side-edit ${step === 'text' ? 'expanded' : ''}`}>
                     <div className="to">
                         <div className="prof">
-                            <UserIcon
-                                className="user-icon-edit"
-                                user={{ _id: currUserId, imgUrl: curUserImg }}
-                                size={24}
-                                isLink={false}
-                            />
+                            <div className="user-icon-edit">
+                                <UserIcon user={{ _id: currUserId, imgUrl: curUserImg }} size={24} isLink={false} />
+                            </div>
                             <UserName
                                 className="user-name-edit"
                                 user={{ _id: currUserId, username: curUserName }}
