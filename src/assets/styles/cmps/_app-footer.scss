@@ -1,10 +1,15 @@
 .app-footer {
     // display: grid;
     // padding: rem(20px) 2rem;
-    color: $ig-secondary-clr2;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    color: $ig-primary-clr2;
+    margin: rem(24px) 0;
     
     a {
-        color: $ig-secondary-clr2;
+        color: $ig-primary-clr2;
         &:hover {
             text-decoration: underline;
         }
