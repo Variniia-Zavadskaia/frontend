@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { EntryButtons } from './elements/EntryButtons'
 import { EntryHeader } from './elements/EntryHeader'
 import { CreateComment } from './elements/CreateComment'
@@ -8,6 +8,7 @@ import { onToggleEntryDetailsModal } from '../store/actions/app.actions'
 export function EntryPreview({ entry }) {
     const userBy = entry.by
     const numOfComments = entry.comments ? entry.comments.length : 0
+    const [isTruncated, setIsTruncated] = useState(true)
 
     function openDetailsModal() {
         onToggleEntryDetailsModal(entry._id)
@@ -28,8 +29,14 @@ export function EntryPreview({ entry }) {
                     <EntryButtons entry={entry} />
                 </div>
                 <div className="entry-comment">
-                    <p>
+                    {/* <p>
                         <UserName user={userBy} /> {entry.txt}
+                    </p> */}
+                    <p className="show-more-text">
+                        <UserName user={userBy} /> {isTruncated ? entry.txt.slice(0, 150) + '... ' : entry.txt}
+                        <span className="toggle-btn" onClick={() => setIsTruncated(!isTruncated)}>
+                            {isTruncated && (entry.txt.length > 150) && 'more'}
+                        </span>
                     </p>
                 </div>
                 {numOfComments !== 0 && (

@@ -8,7 +8,7 @@
 
     .header {
         @media (max-width: 480px) {
-            padding: rem(12px) ;
+            padding: rem(12px);
         }
 
         padding-left: rem(4px);
@@ -42,12 +42,19 @@
         // }
         .entry-comment {
             margin-top: rem(8px);
+
+            .toggle-btn {
+                color: $ig-secondary-text;
+                cursor: pointer;
+                font-weight: 400;
+                font-size: 14px;
+            }
             // width: calc(-2px + min(470px, 100vw));
         }
-        .new-comment{
+        .new-comment {
             margin-top: rem(8px);
         }
-        .count-comment{
+        .count-comment {
             margin-top: rem(8px);
             font-size: 14px;
             font-weight: 400;
