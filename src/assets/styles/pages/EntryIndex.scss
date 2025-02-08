@@ -12,6 +12,7 @@
 
         .feed {
             width: min(470px, 100vw);
+            margin: 0 rem(80px);
 
             @media (max-width: 470px) {
                 width: calc(100vw);

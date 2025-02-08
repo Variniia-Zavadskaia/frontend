@@ -113,3 +113,12 @@ export function getElapsedTime(pastDate) {
       return elapsedTime
 
 }
+
+export function shuffleArray(arr) {
+    const newArr = [...arr]
+
+    console.log(newArr);
+    
+
+    return newArr.sort(() => Math.random() - 0.5);
+}

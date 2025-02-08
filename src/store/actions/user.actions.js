@@ -4,7 +4,7 @@ import { store } from '../store'
 
 import { showErrorMsg } from '../../services/event-bus.service'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
-import { REMOVE_USER, SET_SAVED_USER_ENTRYS, SET_USER, SET_USERS, SET_WATCHED_USER, SET_WATCHED_USER_ENTRYS } from '../reducers/user.reducer'
+import { REMOVE_USER, SET_SAVED_USER_ENTRYS, SET_USER, SET_USERS, SET_WATCHED_USER, SET_WATCHED_USER_ENTRYS, SET_SUGGGESTED_USERS } from '../reducers/user.reducer'
 import { entryService } from '../../services/entry'
 
 export async function loadUsers() {
@@ -111,6 +111,18 @@ export async function loadUserSavedEntrys(userId) {
         // console.log(entrys);
         
         store.dispatch({ type: SET_SAVED_USER_ENTRYS, savedEntrys })
+    } catch (err) {
+        showErrorMsg('Error loading saved posts')
+        console.log('Error loading saved posts', err)
+    }
+}
+
+export async function loadSuggestedUsers(userId) {
+    try {
+        const suggesedUsers = await userService.getUsers()
+        console.log(suggesedUsers);
+        
+        store.dispatch({ type: SET_SUGGGESTED_USERS, suggesedUsers })
     } catch (err) {
         showErrorMsg('Error loading saved posts')
         console.log('Error loading saved posts', err)

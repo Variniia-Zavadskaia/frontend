@@ -13,7 +13,8 @@ export const userService = {
     getLoggedinUser,
     saveLoggedinUser,
     follow,
-    getSavedEntrys
+    getSavedEntrys,
+    getSuggestedUsers,
 }
 
 function getUsers() {
@@ -75,6 +76,15 @@ async function getSavedEntrys(userId) {
     const entrys = await httpService.get(`user/${userId}/saved`)
 
     return entrys
+}
+
+async function getSuggestedUsers(userId) {
+    const users = await httpService.get(`user/${userId}/suggested`)
+
+    console.log(users);
+    
+
+    return users
 }
 
 async function follow(followerId, followedId, follow) {

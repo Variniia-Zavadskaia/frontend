@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom'
 import { AppFooter } from './AppFooter'
 import { UserIcon } from './elements/UserIcon'
 import { UserName } from './elements/UserName'
+import { shuffleArray } from '../services/util.service'
+import { loadSuggestedUsers, loadUsers } from '../store/actions/user.actions'
 
 export function Widgets() {
     // const user = useSelector(storeState => storeState.userModule.user)
@@ -12,21 +14,25 @@ export function Widgets() {
     const curUserImg = useSelector(storeState => storeState.userModule.user.imgUrl)
     const currUserName = useSelector(storeState => storeState.userModule.user.username)
     const currUserFull = useSelector(storeState => storeState.userModule.user.fullname)
-    const userFollowings = useSelector(storeState => storeState.userModule.user.following)
-    const allUsers = useSelector(storeState => storeState.userModule.users)
-    const [suggestions, setSuggestions] = useState(allUsers)
+    const suggestedUsers = useSelector(storeState => storeState.userModule.user.suggesedUsers)
+
 
     useEffect(() => {
+        loadSuggestedUsers()
+    }, [])    
 
-    }, [userFollowings])
+    function SuggestedUser(idx) {
+        // if (!suggestedUsers) return null
 
-    function SuggestedUser() {
+        // const suggestedUser = suggestedUsers[idx]
+
         return (
             <NavLink className="menu-item" to={`user/${currUserId}`}>
-                <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
-                <div>
-                    <span className="text first">{currUserName}</span>
-                    <span className="text second">{currUserName}</span>
+                 {/* <UserIcon user={{ _id: curUserImg, imgUrl: curUserImg }} size={44} /> */}
+                 <img src="src/assets/icons/user.svg" alt="user Icon" className="icon regular" />
+                 <div>
+                    <UserName className="text first" user={{ _id: currUserId, username: currUserName }} />
+                    <span className="text second">{currUserFull}</span>
                 </div>
                 <button>Follow</button>
             </NavLink>
@@ -48,10 +54,10 @@ export function Widgets() {
                 <button className="widg-txt-btn">See All</button>
             </div>
             <div>
-                <SuggestedUser />
-                <SuggestedUser />
-                <SuggestedUser />
-                <SuggestedUser />
+                <SuggestedUser idx={0}/>
+                <SuggestedUser idx={1}/>
+                <SuggestedUser idx={2}/>
+                <SuggestedUser idx={3}/>
             </div>
             <AppFooter />
         </section>
