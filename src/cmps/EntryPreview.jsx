@@ -8,7 +8,7 @@ import { onToggleEntryDetailsModal } from '../store/actions/app.actions'
 export function EntryPreview({ entry }) {
     const userBy = entry.by
     const numOfComments = entry.comments ? entry.comments.length : 0
-    const [isTruncated, setIsTruncated] = useState(true)
+    const [isTruncated, setIsTruncated] = useState(entry.txt.length > 150)
 
     function openDetailsModal() {
         onToggleEntryDetailsModal(entry._id)
@@ -29,14 +29,13 @@ export function EntryPreview({ entry }) {
                     <EntryButtons entry={entry} />
                 </div>
                 <div className="entry-comment">
-                    {/* <p>
-                        <UserName user={userBy} /> {entry.txt}
-                    </p> */}
                     <p className="show-more-text">
                         <UserName user={userBy} /> {isTruncated ? entry.txt.slice(0, 150) + '... ' : entry.txt}
-                        <span className="toggle-btn" onClick={() => setIsTruncated(!isTruncated)}>
-                            {isTruncated && (entry.txt.length > 150) && 'more'}
-                        </span>
+                        {isTruncated && (
+                            <span className="toggle-btn" onClick={() => setIsTruncated(!isTruncated)}>
+                                more
+                            </span>
+                        )}
                     </p>
                 </div>
                 {numOfComments !== 0 && (
