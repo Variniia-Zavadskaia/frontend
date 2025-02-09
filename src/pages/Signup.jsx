@@ -37,7 +37,7 @@ export function Signup() {
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         await signup(credentials)
         clearState()
-        navigate('/entry')
+        navigate('/')
     }
 
     function onUploaded(imgUrl) {

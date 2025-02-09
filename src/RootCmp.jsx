@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import { useLocation } from 'react-router-dom'
 
 import { EntryIndex } from './pages/EntryIndex.jsx'
@@ -47,7 +47,8 @@ export function RootCmp() {
                 <Routes>
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Signup />} />
-                    <Route path="entry" element={<EntryIndex />} />
+                    <Route path="/" element={<EntryIndex />} />
+                    <Route path="/entry" element={<Navigate to="/" replace />} />
                     <Route path="explore" element={<Explore />} />
                     <Route path="p/:entryId" element={<EntryDetailsPage />} />
                     <Route path="user/:id" element={<UserDetails />}>

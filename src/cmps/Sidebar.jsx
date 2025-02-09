@@ -29,7 +29,7 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
 
     return (
         <div className={`sidebar sidebar-${type}`}>
-            <Link to="entry" className={`logo ${type !== SIDEBAR_TYPE_REGULAR ? 'sidebar-item' : ''}`}>
+            <Link to="/" className={`logo ${type !== SIDEBAR_TYPE_REGULAR ? 'sidebar-item' : ''}`}>
                 <div className="full-logo">
                     <div className="logo-text">{sideBarSvg.logo}</div>
                 </div>
@@ -38,7 +38,7 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
                 </div>
             </Link>
             <div className="menu">
-                <NavLink className="sidebar-item sidebar-menu-item" id="home" to="entry">
+                <NavLink className="sidebar-item sidebar-menu-item" id="home" to="/">
                     <div className="icon">{sideBarSvg.home}</div>
                     <span className="text">Home</span>
                 </NavLink>

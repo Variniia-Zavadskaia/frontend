@@ -24,7 +24,9 @@ export function Login() {
 
         if (!credentials.username) return
         await login(credentials)
-        navigate('/entry')
+        console.log('kkkk');
+        
+        navigate('/')
     }
 
     function handleChange(ev) {
@@ -33,7 +35,7 @@ export function Login() {
         setCredentials({ ...credentials, [field]: value })
     }
 
-    console.log('gggg')
+    // console.log('gggg')
 
     return (
         <div className="login-container">
