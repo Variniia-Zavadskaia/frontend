@@ -1,5 +1,5 @@
-import React from 'react'
-import { Routes, Route, Navigate } from 'react-router'
+import React, { useEffect } from 'react'
+import { Routes, Route, Navigate, useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom'
 
 import { EntryIndex } from './pages/EntryIndex.jsx'
@@ -18,10 +18,19 @@ import { DynamicModal } from './cmps/DynamicModal.jsx'
 import { EntryDetailsModal } from './cmps/EntryDetailsModal.jsx'
 import { EntryDetailsPage } from './pages/EntryDetailsPage.jsx'
 import { PageLoader } from './cmps/PageLoader.jsx'
+import { userService } from './services/user'
 
 export function RootCmp() {
     const location = useLocation()
     const hideSidebar = location.pathname === '/login' || location.pathname === '/signup'
+    const goToLogin = userService.getLoggedinUser() === null && location.pathname !== '/login' && location.pathname !== '/signup'
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (goToLogin) {
+            navigate('/login')
+        }
+    }, [])
 
     function SideBarContainer({ type = SIDEBAR_TYPE_REGULAR }) {
         return (
@@ -30,6 +39,8 @@ export function RootCmp() {
             </div>
         )
     }
+
+    if (goToLogin) return <h1>Proceeding to Log in</h1>
 
     return (
         <div className={`app ${hideSidebar ? 'no-sidebar' : ''}`}>
