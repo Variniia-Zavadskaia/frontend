@@ -48,7 +48,7 @@ export function EntryHeader({ entry, withDate = false }) {
                 </div>
                 <UserName user={userBy} />
                 {withDate && (
-                    <Link className="entry-time" to={`/entry/${entry._id}`}>
+                    <Link className="entry-time" to={`/p/${entry._id}`}>
                         {getElapsedTime(entry.date)}
                     </Link>
                 )}

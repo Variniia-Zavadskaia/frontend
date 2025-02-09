@@ -49,7 +49,7 @@ export function RootCmp() {
                     <Route path="signup" element={<Signup />} />
                     <Route path="entry" element={<EntryIndex />} />
                     <Route path="explore" element={<Explore />} />
-                    <Route path="entry/:entryId" element={<EntryDetailsPage />} />
+                    <Route path="p/:entryId" element={<EntryDetailsPage />} />
                     <Route path="user/:id" element={<UserDetails />}>
                         <Route index element={<UserEntrys />} />
                         <Route path="saved" element={<SavedUserEntrys />} />

@@ -25,7 +25,7 @@ export function EntryMenu({ entry, onClose }) {
     }
 
     function onGoToPost() {
-        navigate(`/entry/${entry._id}`)
+        navigate(`/p/${entry._id}`)
 
         onToggleEntryDetailsModal()
         onClose()

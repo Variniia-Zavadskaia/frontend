@@ -18,7 +18,7 @@ export function EntryDetailsModal() {
 
 	if (!watchedEntryId) return <></>
 
-    window.history.replaceState(null, '', `/entry/${watchedEntryId}`);
+    window.history.replaceState(null, '', `/p/${watchedEntryId}`);
 
 	return (
 		<div className="entry-details-modal">
