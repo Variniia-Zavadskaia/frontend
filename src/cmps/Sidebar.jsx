@@ -59,6 +59,11 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
                     <span className="text">Messages</span>
                 </NavLink>
 
+                {/* <NavLink className="sidebar-item sidebar-menu-item" id="notification">
+                    <div className="icon">{entrySvg.heart}</div>
+                    <span className="text">Notification</span>
+                </NavLink> */}
+
                 {/* <NavLink to="review">Notification</NavLink> */}
                 <button className="sidebar-item sidebar-menu-item" id="create" onClick={onAddEntry}>
                     <div className="icon">{sideBarSvg.create}</div>
