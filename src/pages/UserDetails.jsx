@@ -131,7 +131,7 @@ export function UserDetails() {
                 )}
             </nav>
             <Outlet />
-            <AppFooter />
+            {/* <AppFooter /> */}
         </section>
     )
 }
