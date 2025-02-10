@@ -23,6 +23,7 @@ export function showUserMsg(msg) {
 }
 
 export function showSuccessMsg(txt) {
+    if (process.env.NODE_ENV === 'production') return
     showUserMsg({txt, type: 'success'})
 }
 export function showErrorMsg(txt) {

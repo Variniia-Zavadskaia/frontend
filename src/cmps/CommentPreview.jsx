@@ -35,7 +35,7 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
             <div className="comment-body">
                 <div className="body-top" style={{ gap: `${isEntryMsg ? 8 : 4}px` }}>
                     <UserName user={userBy} />
-                    {comment.date && <p>{getElapsedTime(comment.date)}</p>}
+                    {/* {comment.date && <p>{getElapsedTime(comment.date)}</p>} */}
                 </div>
                 <p> {comment.txt} </p>
                 {!isEntryMsg && (
