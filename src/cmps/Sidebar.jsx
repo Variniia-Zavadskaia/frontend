@@ -31,7 +31,8 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
         <div className={`sidebar sidebar-${type}`}>
             <Link to="/" className={`logo ${type !== SIDEBAR_TYPE_REGULAR ? 'sidebar-item' : ''}`}>
                 <div className="full-logo">
-                    <div className="logo-text">{sideBarSvg.logo}</div>
+                    {/* <div className="logo-text">{sideBarSvg.logo}</div> */}
+                    <div className="logo-text"><h1>Shotverse</h1></div>
                 </div>
                 <div className="icon-logo">
                     <div className="sidebar-item">{sideBarSvg.logoMini}</div>

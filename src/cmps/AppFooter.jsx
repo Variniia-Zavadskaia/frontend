@@ -7,7 +7,7 @@ export function AppFooter() {
           
             <NavLink to="about">About</NavLink>
 
-            <p>&copy; 2025 Instagram from Variniia </p>
+            <p>&copy; 2025 Shotverse from Variniia </p>
 
             {import.meta.env.VITE_LOCAL ? (
                 <span className="local-services">Local Services</span>
