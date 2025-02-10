@@ -29,15 +29,18 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
 
     return (
         <article className="comment-preview">
-            <div className='comment-icon'>
+            <div className="comment-icon">
                 <UserIcon user={userBy} size={32} />
             </div>
             <div className="comment-body">
-                <div className="body-top" style={{ gap: `${isEntryMsg ? 8 : 4}px` }}>
+                {/* <div className="body-top" style={{ gap: `${isEntryMsg ? 8 : 4}px` }}>
                     <UserName user={userBy} />
-                    {/* {comment.date && <p>{getElapsedTime(comment.date)}</p>} */}
+                    {comment.date && <p>{getElapsedTime(comment.date)}</p>}
                 </div>
-                <p> {comment.txt} </p>
+                <p> {comment.txt} </p> */}
+                <p>
+                    <UserName user={userBy} /> {comment.txt}
+                </p>
                 {!isEntryMsg && (
                     <div className="body-bottom">
                         {comment.date && <p>{getElapsedTime(comment.date)}</p>}
@@ -48,6 +51,9 @@ export function CommentPreview({ comment, isEntryMsg = false, onRemoveComment, o
                         )}
                         <button onClick={onOptions}>{entrySvg.option}</button>
                     </div>
+                )}
+                {isEntryMsg && (
+                    <div className="body-bottom">{comment.date && <p>{getElapsedTime(comment.date)}</p>}</div>
                 )}
             </div>
             {!isEntryMsg && <LikeButton likedBy={comment.likedBy} updateLikedBy={updateLikedBy} size={16} />}
