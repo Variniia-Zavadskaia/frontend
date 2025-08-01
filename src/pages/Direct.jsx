@@ -6,7 +6,7 @@ import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_
 export function Direct() {
     const [msg, setMsg] = useState({ txt: '' })
     const [msgs, setMsgs] = useState([])
-    const [topic, setTopic] = useState('Love')
+    const [topic, setTopic] = useState('Primary')
     const [isBotMode, setIsBotMode] = useState(false)
 
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
@@ -55,6 +55,9 @@ export function Direct() {
 
     return (
         <section className="chat">
+            <header className='chat-header'>
+                {/* <p className="username">{user.username}</p> */}
+            </header>
             <h2>Lets Chat about {topic}</h2>
 
             <label>
@@ -65,16 +68,23 @@ export function Direct() {
 
             <div>
                 <label>
-                    <input type="radio" name="topic" value="Love"
-                        checked={topic === 'Love'} onChange={({ target }) => setTopic(target.value)} />
-                    Love
+                    <input type="radio" name="topic" value="Primary"
+                        checked={topic === 'Primary'} onChange={({ target }) => setTopic(target.value)} />
+                    Primary
                 </label>
 
                 <label>
                     <input
-                        type="radio" name="topic" value="Politics"
-                        checked={topic === 'Politics'} onChange={({ target }) => setTopic(target.value)} />
-                    Politics
+                        type="radio" name="topic" value="General"
+                        checked={topic === 'General'} onChange={({ target }) => setTopic(target.value)} />
+                    General
+                </label>
+
+                  <label>
+                    <input
+                        type="radio" name="topic" value="Requests"
+                        checked={topic === 'Requests'} onChange={({ target }) => setTopic(target.value)} />
+                    Requests
                 </label>
 
             </div>

@@ -1,5 +1,6 @@
 .create-comment {
     display: flex;
+    position: relative;
     align-items: center;
     gap: rem(8px);
     width: 100%;
@@ -54,6 +55,7 @@
         .emoji-picker {
             position: absolute;
             bottom: 40px;
+            left: -50px;
             transition: left 1s, top 1s;
             // top: 40px;
             z-index: 100;

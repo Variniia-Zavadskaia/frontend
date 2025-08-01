@@ -69,6 +69,9 @@ export function Login() {
                     <button type="submit" className="login-btn">
                         Log in
                     </button>
+                    <button type="submit" className="gest-btn">
+                        Gest mood
+                    </button>
                 </form>
                 <div className="divider">
                     <span>OR</span>
