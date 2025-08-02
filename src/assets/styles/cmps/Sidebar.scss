@@ -1,5 +1,4 @@
 .sidebar {
-
     //common view section
     list-style: none;
     display: flex;
@@ -171,13 +170,19 @@
 
     &.active {
         font-weight: bold;
-        svg path{
-            fill:black;
-            // fill-rule: ;
+        svg path:first-of-type {
+            fill: black;
             // stroke: white;
         }
+        svg path:last-of-type {
+            fill: white;
+            stroke: none;
+        }
+        svg path:only-of-type {
+            fill: black;
+        }
         svg polygon {
-            fill-rule:black;
+            fill-rule: black;
             // stroke: white;
         }
     }
