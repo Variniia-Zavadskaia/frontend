@@ -1,23 +1,54 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router'
+import { Outlet } from 'react-router'
+import { loadUser } from '../store/actions/user.actions'
+import { store } from '../store/store'
+import { showSuccessMsg } from '../services/event-bus.service'
 
-import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_SET_TOPIC } from '../services/socket.service'
+import {
+    socketService,
+    SOCKET_EMIT_SEND_MSG,
+    SOCKET_EVENT_ADD_MSG,
+    SOCKET_EMIT_SET_TOPIC,
+    SOCKET_EMIT_USER_WATCH,
+    SOCKET_EVENT_USER_UPDATED,
+} from '../services/socket.service'
+import { InstagramLoader } from '../cmps/elements/InstagramLoader '
 
 export function Direct() {
+    const { id } = useParams()
+    const user = useSelector(storeState => storeState.userModule.watchedUser)
+    const logedInUser = useSelector(storeState => storeState.userModule.user)
+    const dispatch = useDispatch()
+
     const [msg, setMsg] = useState({ txt: '' })
     const [msgs, setMsgs] = useState([])
     const [topic, setTopic] = useState('Primary')
-    const [isBotMode, setIsBotMode] = useState(false)
 
-    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    useEffect(() => {
+        loadUser(id)
+        // dispatch({ type: LOADING_DONE })
+        console.log('ddd')
+        console.log('id from useParams:', id)
 
-    const botTimeoutRef = useRef()
+        socketService.emit(SOCKET_EMIT_USER_WATCH, id)
+        socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+
+        return () => {
+            socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+        }
+    }, [id, dispatch])
+
+    function onUserUpdate(user) {
+        showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
+        store.dispatch({ type: 'SET_WATCHED_USER', user })
+    }
 
     useEffect(() => {
         socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
         return () => {
             socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
-            botTimeoutRef.current && clearTimeout(botTimeoutRef.current)
         }
     }, [])
 
@@ -29,20 +60,12 @@ export function Direct() {
         setMsgs(prevMsgs => [...prevMsgs, newMsg])
     }
 
-    function sendBotResponse() {
-        // Handle case: send single bot response (debounce).
-        botTimeoutRef.current && clearTimeout(botTimeoutRef.current)
-        botTimeoutRef.current = setTimeout(() => {
-            setMsgs(prevMsgs => ([...prevMsgs, { from: 'Bot', txt: 'You are amazing!' }]))
-        }, 1250)
-    }
-
     function sendMsg(ev) {
         ev.preventDefault()
-        const from = loggedInUser?.fullname || 'Me'
+        const from = logedInUser?.fullname || 'Me'
         const newMsg = { from, txt: msg.txt }
         socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
-        if (isBotMode) sendBotResponse()
+        // if (isBotMode) sendBotResponse()
         // for now - we add the msg ourself
         // addMsg(newMsg)
         setMsg({ txt: '' })
@@ -53,52 +76,60 @@ export function Direct() {
         setMsg(prevMsg => ({ ...prevMsg, [name]: value }))
     }
 
+    if (!user || user._id !== id) return <InstagramLoader />
+
+    console.log(user)
     return (
-        <section className="chat">
-            <header className='chat-header'>
-                {/* <p className="username">{user.username}</p> */}
-            </header>
-            <h2>Lets Chat about {topic}</h2>
+        <section className="chat-container">
+            <section className="chat-list">
+                <header className="chat-header">
+                    <div className="chat-top">
+                        <p className="chat-username">{user.username}</p>
+                    </div>
+                </header>
 
-            <label>
-                <input type="checkbox" name="isBotMode" checked={isBotMode}
-                    onChange={({ target }) => setIsBotMode(target.checked)} />
-                Bot Mode
-            </label>
+                <div className="chat-controls">
+                    <nav className="chat-navigation">
+                        {['Primary', 'General', 'Requests'].map(opt => (
+                            <button
+                                key={opt}
+                                className={`chat-nav-btn ${topic === opt ? 'active' : ''}`}
+                                onClick={() => setTopic(opt)}>
+                                {opt}
+                            </button>
+                        ))}
+                    </nav>
+                    <Outlet />
+                </div>
+            </section>
+            <section className="chat-mass">
+                <div className="chat-start">
+                    <span>Your messages</span>
+                    <p>Send a message to start a chat.</p>
+                    <button>Send message</button>
+                </div>
 
-            <div>
-                <label>
-                    <input type="radio" name="topic" value="Primary"
-                        checked={topic === 'Primary'} onChange={({ target }) => setTopic(target.value)} />
-                    Primary
-                </label>
+                {/* <ul className="chat-messages">
+                    {msgs.map((msg, idx) => (
+                        <li key={idx} className={`chat-message ${msg.from === 'Me' ? 'me' : 'them'}`}>
+                            <span className="msg-text">{msg.txt}</span>
+                        </li>
+                    ))}
+                </ul>
 
-                <label>
+                <form onSubmit={sendMsg} className="chat-input-area">
                     <input
-                        type="radio" name="topic" value="General"
-                        checked={topic === 'General'} onChange={({ target }) => setTopic(target.value)} />
-                    General
-                </label>
-
-                  <label>
-                    <input
-                        type="radio" name="topic" value="Requests"
-                        checked={topic === 'Requests'} onChange={({ target }) => setTopic(target.value)} />
-                    Requests
-                </label>
-
-            </div>
-
-            <form onSubmit={sendMsg}>
-                <input
-                    type="text" value={msg.txt} onChange={handleFormChange}
-                    name="txt" autoComplete="off" />
-                <button>Send</button>
-            </form>
-
-            <ul>
-                {msgs.map((msg, idx) => (<li key={idx}>{msg.from}: {msg.txt}</li>))}
-            </ul>
+                        type="text"
+                        value={msg.txt}
+                        onChange={handleFormChange}
+                        name="txt"
+                        autoComplete="off"
+                        placeholder="Write a message..."
+                        className="chat-input"
+                    />
+                    <button className="send-btn">Send</button>
+                </form> */}
+            </section>
         </section>
     )
 }

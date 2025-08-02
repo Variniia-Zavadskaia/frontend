@@ -23,7 +23,8 @@ import { userService } from './services/user'
 export function RootCmp() {
     const location = useLocation()
     const hideSidebar = location.pathname === '/login' || location.pathname === '/signup'
-    const goToLogin = userService.getLoggedinUser() === null && location.pathname !== '/login' && location.pathname !== '/signup'
+    const goToLogin =
+        userService.getLoggedinUser() === null && location.pathname !== '/login' && location.pathname !== '/signup'
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -66,7 +67,7 @@ export function RootCmp() {
                         <Route index element={<UserEntrys />} />
                         <Route path="saved" element={<SavedUserEntrys />} />
                     </Route>
-                    <Route path="direct" element={<Direct />} />
+                    <Route path="/direct/:id" element={<Direct />} />
                     <Route path="admin" element={<AdminIndex />} />
                 </Routes>
             </main>

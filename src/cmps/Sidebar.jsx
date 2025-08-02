@@ -32,7 +32,9 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
             <Link to="/" className={`logo ${type !== SIDEBAR_TYPE_REGULAR ? 'sidebar-item' : ''}`}>
                 <div className="full-logo">
                     {/* <div className="logo-text">{sideBarSvg.logo}</div> */}
-                    <div className="logo-text"><h1>Shotverse</h1></div>
+                    <div className="logo-text">
+                        <h1>Shotverse</h1>
+                    </div>
                 </div>
                 <div className="icon-logo">
                     <div className="sidebar-item">{sideBarSvg.logoMini}</div>
@@ -55,7 +57,7 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
                 </NavLink>
 
                 {/* <NavLink to="review">Reels</NavLink> */}
-                <NavLink className="sidebar-item sidebar-menu-item" id="message" to="direct">
+                <NavLink className="sidebar-item sidebar-menu-item" id="message" to={`/direct/${currUserId}`}>
                     <div className="icon">{sideBarSvg.messages}</div>
                     <span className="text">Messages</span>
                 </NavLink>
@@ -101,11 +103,9 @@ export function Sidebar({ type = SIDEBAR_TYPE_REGULAR }) {
 function MoreMenu({ onClose }) {
     const navigate = useNavigate()
     const menuRef = useRef(null)
-    
 
     useEffect(() => {
         const handleOutsideClick = event => {
-
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 onClose()
             }
